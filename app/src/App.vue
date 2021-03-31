@@ -1,32 +1,64 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view />
+    <b-navbar variant="light">
+      <b-navbar-brand>
+        <router-link to="/" exact>GDCLobby</router-link>
+      </b-navbar-brand>
+    </b-navbar>
+    <b-nav vertical variant="light" class="sidebar bg-light">
+      <b-nav-item to="/" exact exact-active-class="active">
+        <font-awesome-icon :icon="['fas', 'globe-americas']" /> Missions
+      </b-nav-item>
+      <b-nav-item to="/AAA" exact exact-active-class="active">
+        <font-awesome-icon :icon="['fas', '']" /> Not Found
+      </b-nav-item>
+    </b-nav>
+    <router-view class="main" />
   </div>
 </template>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
+.sidebar {
+  z-index: 1;
+  position: absolute;
+  width: 250px;
+  margin-top: 51px;
+  margin: 0;
+  height: 100%;
+  text-align: initial;
+  border-right: 1px solid #e7e7e7;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+.navbar a,
+.sidebar a {
+  color: #444444;
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.navbar a:hover,
+.sidebar a:hover {
+  color: #5e5e5e;
+  text-decoration: none;
+}
+
+.navbar,
+.nav-link {
+  border-bottom: 1px solid #e7e7e7;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  background: #eeeeee;
+}
+
+.main {
+  margin-left: 250px;
 }
 </style>

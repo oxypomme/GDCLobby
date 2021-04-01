@@ -1,5 +1,6 @@
 import { Controller } from '@nestjs/common';
 import { Crud } from '@nestjsx/crud';
+import { ApiTags } from '@nestjs/swagger';
 
 import { Mission } from './mission.entity';
 import { MissionService } from './mission.service';
@@ -19,6 +20,7 @@ import { MissionService } from './mission.service';
     },
   },
 })
+@ApiTags('mission')
 @Controller('mission')
 export class MissionController {
   constructor(public service: MissionService) {}

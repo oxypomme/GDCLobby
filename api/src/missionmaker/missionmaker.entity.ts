@@ -1,5 +1,6 @@
 import { Mission } from 'src/mission/mission.entity';
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity()
 export class Missionmaker {
@@ -12,6 +13,7 @@ export class Missionmaker {
   @Column()
   Email: string;
 
+  @ApiProperty({ type: () => Mission })
   @OneToMany(() => Mission, (miss) => miss.MissionMaker, { cascade: true })
   Missions: Mission[];
 }

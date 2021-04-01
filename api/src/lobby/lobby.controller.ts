@@ -9,19 +9,30 @@ import { LobbyService } from './lobby.service';
   model: {
     type: Lobby,
   },
+  params: {
+    missionId: {
+      field: 'missionId',
+      type: 'number',
+    },
+  },
   query: {
+    exclude: ['missionId'],
     join: {
       mission: {
         eager: true,
       },
-      slots: {
+      'mission.missionMaker': {
+        eager: true,
+        exclude: ['email'],
+      },
+      roles: {
         eager: true,
       },
     },
   },
 })
 @ApiTags('lobby')
-@Controller('lobby')
+@Controller('mission/:missionId/lobby')
 export class LobbyController {
   constructor(public service: LobbyService) {}
 }

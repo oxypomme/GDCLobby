@@ -21,6 +21,9 @@ export class Lobby {
   @ManyToOne(() => Mission, (m) => m.lobbys)
   mission: Mission;
 
+  @Column()
+  missionId: number;
+
   @ApiProperty({ type: () => Role })
   @OneToMany(() => Role, (s) => s.lobby, { cascade: true })
   roles: Role[];

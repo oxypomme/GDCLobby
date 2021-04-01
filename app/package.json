@@ -1,8 +1,9 @@
 {
   "name": "gdclobby-app",
   "version": "1.0.0",
-  "private": true,
+  "description": "",
   "author": "oxypomme",
+  "private": true,
   "license": "MIT",
   "homepage": "https://github.com/oxypomme/GDCLobby#readme",
   "scripts": {

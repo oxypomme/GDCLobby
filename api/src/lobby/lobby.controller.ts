@@ -27,6 +27,7 @@ import { LobbyService } from './lobby.service';
       },
       roles: {
         eager: true,
+        exclude: ['missionId', 'lobbyId'],
       },
     },
   },

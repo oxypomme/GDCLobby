@@ -1,5 +1,5 @@
 import { Mission } from 'src/mission/mission.entity';
-import { Role } from 'src/slot/role.entity';
+import { Role } from 'src/role/role.entity';
 import { Entity, Column, ManyToOne, PrimaryColumn, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
 

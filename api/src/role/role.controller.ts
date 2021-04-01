@@ -9,16 +9,35 @@ import { RoleService } from './role.service';
   model: {
     type: Role,
   },
+  params: {
+    missionId: {
+      field: 'missionId',
+      type: 'number',
+    },
+    lobbyId: {
+      field: 'lobbyId',
+      type: 'number',
+    },
+  },
   query: {
+    exclude: ['missionId', 'lobbyId'],
     join: {
       lobby: {
         eager: true,
+        exclude: ['missionId'],
+      },
+      mission: {
+        eager: true,
+      },
+      'mission.missionMaker': {
+        eager: true,
+        exclude: ['email'],
       },
     },
   },
 })
 @ApiTags('role')
-@Controller('role')
+@Controller('mission/:missionId/lobby/:lobbyId/role')
 export class RoleController {
   constructor(public service: RoleService) {}
 }

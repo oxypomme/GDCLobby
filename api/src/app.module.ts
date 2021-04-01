@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MissionModule } from './mission/mission.module';
 import { MissionmakerModule } from './missionmaker/missionmaker.module';
 import { LobbyModule } from './lobby/lobby.module';
-import { RoleModule } from './slot/role.module';
+import { RoleModule } from './role/role.module';
 import OrmConfig from './ormconfig';
 
 @Module({

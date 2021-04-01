@@ -17,10 +17,12 @@ import { MissionService } from './mission.service';
       },
       lobbys: {
         eager: true,
+        exclude: ['missionId'],
       },
       'lobbys.roles': {
         eager: true,
         required: false,
+        exclude: ['lobbyId', 'missionId'],
       },
     },
   },

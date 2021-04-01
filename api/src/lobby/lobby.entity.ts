@@ -6,22 +6,22 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export class Lobby {
   @PrimaryColumn({ name: 'LobbyId' })
-  Id: number;
+  id: number;
 
   @Column()
-  Name: string;
+  name: string;
 
   @Column()
-  MinPlayers: number;
+  minPlayers: number;
 
   @Column()
-  MaxPlayers: number;
+  maxPlayers: number;
 
   @ApiProperty({ type: () => Mission })
-  @ManyToOne(() => Mission, (m) => m.Lobbys)
-  Mission: Mission;
+  @ManyToOne(() => Mission, (m) => m.lobbys)
+  mission: Mission;
 
   @ApiProperty({ type: () => Role })
-  @OneToMany(() => Role, (s) => s.Lobby, { cascade: true })
-  Slots: Role[];
+  @OneToMany(() => Role, (s) => s.lobby, { cascade: true })
+  roles: Role[];
 }

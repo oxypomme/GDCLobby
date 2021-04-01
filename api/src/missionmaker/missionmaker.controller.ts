@@ -11,7 +11,7 @@ import { MissionmakerService } from './missionmaker.service';
   },
   query: {
     join: {
-      Missions: {
+      missions: {
         eager: true,
       },
     },

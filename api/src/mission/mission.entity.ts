@@ -12,16 +12,16 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export class Mission {
   @PrimaryGeneratedColumn({ name: 'MissionId' })
-  Id: number;
+  id: number;
 
   @Column()
-  Name: string;
+  name: string;
 
   @ApiProperty({ type: () => Missionmaker })
-  @ManyToOne(() => Missionmaker, (mm) => mm.Missions)
-  MissionMaker: Missionmaker;
+  @ManyToOne(() => Missionmaker, (mm) => mm.missions)
+  missionMaker: Missionmaker;
 
   @ApiProperty({ type: () => Lobby })
-  @OneToMany(() => Lobby, (l) => l.Mission, { cascade: true })
-  Lobbys: Lobby[];
+  @OneToMany(() => Lobby, (l) => l.mission, { cascade: true })
+  lobbys: Lobby[];
 }

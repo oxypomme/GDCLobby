@@ -11,7 +11,7 @@ import { RoleService } from './role.service';
   },
   query: {
     join: {
-      Lobby: {
+      lobby: {
         eager: true,
       },
     },

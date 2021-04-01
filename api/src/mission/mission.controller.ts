@@ -11,11 +11,16 @@ import { MissionService } from './mission.service';
   },
   query: {
     join: {
-      MissionMaker: {
+      missionMaker: {
+        eager: true,
+        exclude: ['email'],
+      },
+      lobbys: {
         eager: true,
       },
-      Lobbys: {
+      'lobbys.roles': {
         eager: true,
+        required: false,
       },
     },
   },

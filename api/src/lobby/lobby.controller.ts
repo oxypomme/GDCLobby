@@ -11,10 +11,10 @@ import { LobbyService } from './lobby.service';
   },
   query: {
     join: {
-      Mission: {
+      mission: {
         eager: true,
       },
-      Slots: {
+      slots: {
         eager: true,
       },
     },

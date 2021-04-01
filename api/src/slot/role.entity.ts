@@ -5,15 +5,15 @@ import { ApiProperty } from '@nestjs/swagger';
 @Entity()
 export class Role {
   @PrimaryColumn({ name: 'RoleId' })
-  Id: number;
+  id: number;
 
   @Column()
-  NameRole: string;
+  nameRole: string;
 
   @Column({ nullable: true })
-  NameCanard: string;
+  nameCanard: string;
 
   @ApiProperty({ type: () => Lobby })
-  @ManyToOne(() => Lobby, (l) => l.Slots)
-  Lobby: Lobby;
+  @ManyToOne(() => Lobby, (l) => l.roles)
+  lobby: Lobby;
 }

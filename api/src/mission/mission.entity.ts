@@ -6,7 +6,6 @@ import {
   Column,
   ManyToOne,
   OneToMany,
-  JoinColumn,
 } from 'typeorm';
 
 @Entity()
@@ -18,8 +17,8 @@ export class Mission {
   Name: string;
 
   @ManyToOne(() => Missionmaker, (mm) => mm.Missions)
-  Mission_maker: Missionmaker;
+  MissionMaker: Missionmaker;
 
-  @OneToMany(() => Lobby, (l) => l.Mission)
+  @OneToMany(() => Lobby, (l) => l.Mission, { cascade: true })
   Lobbys: Lobby[];
 }

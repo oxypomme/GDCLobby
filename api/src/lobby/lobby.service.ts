@@ -1,20 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { TypeOrmCrudService } from '@nestjsx/crud-typeorm';
+
 import { Lobby } from './lobby.entity';
 
 @Injectable()
-export class LobbyService {
-  constructor(
-    @InjectRepository(Lobby)
-    private readonly missionRepository: Repository<Lobby>,
-  ) {}
-
-  create(lobby: Lobby): Promise<Lobby> {
-    return this.missionRepository.save(lobby);
-  }
-
-  findAll(): Promise<Lobby[]> {
-    return this.missionRepository.find();
+export class LobbyService extends TypeOrmCrudService<Lobby> {
+  constructor(@InjectRepository(Lobby) repo) {
+    super(repo);
   }
 }

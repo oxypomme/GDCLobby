@@ -1,5 +1,5 @@
 import { Lobby } from 'src/lobby/lobby.entity';
-import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Role {
@@ -9,7 +9,7 @@ export class Role {
   @Column()
   NameRole: string;
 
-  @Column()
+  @Column({ nullable: true })
   NameCanard: string;
 
   @ManyToOne(() => Lobby, (l) => l.Slots)

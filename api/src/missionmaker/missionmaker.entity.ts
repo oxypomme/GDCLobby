@@ -12,6 +12,6 @@ export class Missionmaker {
   @Column()
   Email: string;
 
-  @OneToMany(() => Mission, (miss) => miss.Mission_maker)
+  @OneToMany(() => Mission, (miss) => miss.MissionMaker, { cascade: true })
   Missions: Mission[];
 }

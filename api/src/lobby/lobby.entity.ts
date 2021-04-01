@@ -1,13 +1,6 @@
 import { Mission } from 'src/mission/mission.entity';
 import { Role } from 'src/slot/role.entity';
-import {
-  Entity,
-  Column,
-  ManyToOne,
-  PrimaryColumn,
-  OneToMany,
-  JoinColumn,
-} from 'typeorm';
+import { Entity, Column, ManyToOne, PrimaryColumn, OneToMany } from 'typeorm';
 
 @Entity()
 export class Lobby {
@@ -26,6 +19,6 @@ export class Lobby {
   @ManyToOne(() => Mission, (m) => m.Lobbys)
   Mission: Mission;
 
-  @OneToMany(() => Role, (s) => s.Lobby)
+  @OneToMany(() => Role, (s) => s.Lobby, { cascade: true })
   Slots: Role[];
 }

@@ -10,12 +10,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   model: {
     type: Missionmaker,
   },
-  params: {
-    id: {
-      primary: true,
-      disabled: true,
-    },
-  },
   query: {
     join: {
       missions: {

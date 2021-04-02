@@ -3,6 +3,8 @@ import { JwtService } from '@nestjs/jwt';
 import { MissionmakerService } from 'src/missionmaker/missionmaker.service';
 import bcrypt from 'bcrypt';
 import { jwtConstants } from './constants';
+import { getManager, getRepository } from 'typeorm';
+import { Missionmaker } from 'src/missionmaker/missionmaker.entity';
 
 @Injectable()
 export class AuthService {
@@ -16,8 +18,7 @@ export class AuthService {
       where: { email: username },
     });
 
-    /*(await bcrypt.compare(pass, user.password))*/
-    if (user && pass === user.password) {
+    if (user && (await bcrypt.compare(pass, user.password))) {
       const { password, ...result } = user;
       return result;
     }
@@ -25,10 +26,22 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user.email, sub: user.userId };
     return {
       accessToken: this.jwtService.sign(payload),
       expiresIn: jwtConstants.expiresIn,
     };
+  }
+
+  async register(user: any) {
+    const payload = {
+      email: user.email,
+      name: user.name,
+      password: user.password,
+    };
+    const entityManager = getManager();
+    const obj = entityManager.create(Missionmaker, payload);
+    const { password, ...result } = await getRepository(Missionmaker).save(obj);
+    return result;
   }
 }

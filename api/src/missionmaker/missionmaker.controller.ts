@@ -1,5 +1,5 @@
 import { Controller, UseGuards } from '@nestjs/common';
-import { Crud } from '@nestjsx/crud';
+import { Crud, CrudAuth } from '@nestjsx/crud';
 import { ApiTags } from '@nestjs/swagger';
 
 import { Missionmaker } from './missionmaker.entity';
@@ -9,6 +9,12 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @Crud({
   model: {
     type: Missionmaker,
+  },
+  params: {
+    id: {
+      primary: true,
+      disabled: true,
+    },
   },
   query: {
     join: {
@@ -20,6 +26,12 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   routes: {
     only: ['getOneBase', 'updateOneBase', 'deleteOneBase'],
   },
+})
+@CrudAuth({
+  property: 'user',
+  filter: (user: any) => ({
+    email: user.username,
+  }),
 })
 @ApiTags('missionmaker')
 @UseGuards(JwtAuthGuard)

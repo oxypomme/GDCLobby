@@ -28,7 +28,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   },
 })
 @ApiTags('missionmaker')
-@UseGuards(JwtAuthGuard) // TODO: And how I create a user ?
+@UseGuards(JwtAuthGuard)
 @Controller('missionmaker')
 export class MissionmakerController {
   constructor(public service: MissionmakerService) {}

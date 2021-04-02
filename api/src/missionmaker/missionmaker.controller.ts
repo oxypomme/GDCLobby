@@ -10,6 +10,12 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   model: {
     type: Missionmaker,
   },
+  params: {
+    id: {
+      primary: true,
+      disabled: true,
+    },
+  },
   query: {
     join: {
       missions: {
@@ -17,9 +23,12 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
       },
     },
   },
+  routes: {
+    only: ['getOneBase', 'updateOneBase', 'deleteOneBase'],
+  },
 })
 @ApiTags('missionmaker')
-@UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard) // TODO: And how I create a user ?
 @Controller('missionmaker')
 export class MissionmakerController {
   constructor(public service: MissionmakerService) {}

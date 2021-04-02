@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { MissionmakerService } from 'src/missionmaker/missionmaker.service';
+import bcrypt from 'bcrypt';
 
 @Injectable()
 export class AuthService {
@@ -14,7 +15,8 @@ export class AuthService {
       where: { email: username },
     });
 
-    if (user && user.password === pass) {
+    /*(await bcrypt.compare(pass, user.password))*/
+    if (user && pass === user.password) {
       const { password, ...result } = user;
       return result;
     }

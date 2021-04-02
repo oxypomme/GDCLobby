@@ -1,9 +1,10 @@
-import { Controller } from '@nestjs/common';
-import { Crud } from '@nestjsx/crud';
+import { Controller, UseGuards } from '@nestjs/common';
+import { Crud, CrudAuth } from '@nestjsx/crud';
 import { ApiTags } from '@nestjs/swagger';
 
 import { Role } from './role.entity';
 import { RoleService } from './role.service';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Crud({
   model: {
@@ -34,11 +35,18 @@ import { RoleService } from './role.service';
     },
   },
   routes: {
-    only: ['getOneBase', 'getManyBase'],
+    exclude: ['getOneBase', 'getManyBase'],
   },
 })
+@CrudAuth({
+  property: 'user',
+  filter: (user: any) => ({
+    missionMakerId: user.userId,
+  }),
+})
 @ApiTags('role')
+@UseGuards(JwtAuthGuard)
 @Controller('mission/:missionId/lobby/:lobbyId/role')
-export class RoleController {
+export class RoleEditController {
   constructor(public service: RoleService) {}
 }

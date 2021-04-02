@@ -18,7 +18,7 @@ import { MissionService } from './mission.service';
     },
   },
   routes: {
-    exclude: ['getOneBase'],
+    only: ['getManyBase'],
   },
 })
 @ApiTags('mission')

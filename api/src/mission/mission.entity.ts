@@ -7,7 +7,8 @@ import {
   ManyToOne,
   OneToMany,
 } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Mission {
@@ -23,6 +24,11 @@ export class Mission {
   @ApiProperty({ type: () => Missionmaker })
   @ManyToOne(() => Missionmaker, (mm) => mm.missions)
   missionMaker: Missionmaker;
+
+  @ApiHideProperty()
+  @Column()
+  @Exclude()
+  missionMakerId: number;
 
   @ApiProperty({ type: () => Lobby })
   @OneToMany(() => Lobby, (l) => l.mission, { cascade: true })

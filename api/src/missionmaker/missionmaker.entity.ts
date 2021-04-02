@@ -18,7 +18,7 @@ export class Missionmaker {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ unique: true })
   email: string;
 
   @ApiHideProperty()

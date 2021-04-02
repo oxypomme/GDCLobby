@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { MissionmakerService } from 'src/missionmaker/missionmaker.service';
-import bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt';
 import { jwtConstants } from './constants';
 import { getManager, getRepository } from 'typeorm';
 import { Missionmaker } from 'src/missionmaker/missionmaker.entity';
@@ -26,11 +26,17 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const payload = { username: user.email, sub: user.userId };
-    return {
-      accessToken: this.jwtService.sign(payload),
-      expiresIn: jwtConstants.expiresIn,
-    };
+    const profile = await this.validateUser(user.email, user.password);
+    if (profile) {
+      return {
+        accessToken: this.jwtService.sign({
+          id: profile.id,
+          username: profile.name,
+        }),
+        expiresIn: jwtConstants.expiresIn,
+      };
+    }
+    return null;
   }
 
   async register(user: any) {

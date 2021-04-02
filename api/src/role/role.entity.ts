@@ -1,7 +1,8 @@
 import { Lobby } from 'src/lobby/lobby.entity';
 import { Entity, PrimaryColumn, Column, ManyToOne, JoinColumn } from 'typeorm';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Mission } from 'src/mission/mission.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Role {
@@ -18,13 +19,17 @@ export class Role {
   @ManyToOne(() => Lobby, (l) => l.roles)
   lobby: Lobby;
 
+  @ApiHideProperty()
   @Column()
+  @Exclude()
   lobbyId: number;
 
   @ApiProperty({ type: () => Mission })
   @ManyToOne(() => Mission, (m) => m.id)
   mission: Mission;
 
+  @ApiHideProperty()
   @Column()
+  @Exclude()
   missionId: number;
 }

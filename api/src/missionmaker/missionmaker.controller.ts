@@ -30,7 +30,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @CrudAuth({
   property: 'user',
   filter: (user: any) => ({
-    email: user.username,
+    id: user.userId,
   }),
 })
 @ApiTags('missionmaker')

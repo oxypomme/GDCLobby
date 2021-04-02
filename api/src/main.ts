@@ -14,7 +14,9 @@ async function bootstrap() {
     .setVersion('1.0.0')
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('/doc', app, document);
+  SwaggerModule.setup('/doc', app, document, {
+    customSiteTitle: 'GDCLobby API',
+  });
 
   await app.listen(3000);
 }

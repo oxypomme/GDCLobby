@@ -32,6 +32,6 @@ export class Missionmaker {
   }
 
   @ApiProperty({ type: () => Mission })
-  @OneToMany(() => Mission, (miss) => miss.missionMaker, { cascade: true })
+  @OneToMany(() => Mission, (miss) => miss.missionMaker)
   missions: Mission[];
 }

@@ -17,6 +17,9 @@ export class Mission {
   @Column()
   name: string;
 
+  @Column({ default: new Date().toISOString() })
+  date: string;
+
   @ApiProperty({ type: () => Missionmaker })
   @ManyToOne(() => Missionmaker, (mm) => mm.missions)
   missionMaker: Missionmaker;

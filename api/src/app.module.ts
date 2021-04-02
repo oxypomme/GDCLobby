@@ -4,7 +4,9 @@ import { MissionModule } from './mission/mission.module';
 import { MissionmakerModule } from './missionmaker/missionmaker.module';
 import { LobbyModule } from './lobby/lobby.module';
 import { RoleModule } from './role/role.module';
+import { AuthModule } from './auth/auth.module';
 import OrmConfig from './ormconfig';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
@@ -13,8 +15,9 @@ import OrmConfig from './ormconfig';
     MissionModule,
     LobbyModule,
     RoleModule,
+    AuthModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [],
 })
 export class AppModule {}

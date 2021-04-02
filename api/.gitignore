@@ -34,4 +34,5 @@ lerna-debug.log*
 !.vscode/extensions.json
 
 # Security
-ormconfig.ts
+src/ormconfig.ts
+src/auth/constants.ts

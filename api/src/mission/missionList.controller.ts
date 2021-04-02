@@ -15,23 +15,14 @@ import { MissionService } from './mission.service';
         eager: true,
         exclude: ['email'],
       },
-      lobbys: {
-        eager: true,
-        exclude: ['missionId'],
-      },
-      'lobbys.roles': {
-        eager: true,
-        required: false,
-        exclude: ['lobbyId', 'missionId'],
-      },
     },
   },
   routes: {
-    exclude: ['getManyBase'],
+    exclude: ['getOneBase'],
   },
 })
 @ApiTags('mission')
 @Controller('mission')
-export class MissionController {
+export class MissionListController {
   constructor(public service: MissionService) {}
 }

@@ -24,9 +24,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
       },
     },
   },
-  routes: {
-    exclude: ['getOneBase', 'getManyBase'],
-  },
 })
 @CrudAuth({
   property: 'user',

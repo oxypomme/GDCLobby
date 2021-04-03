@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, ManyToOne } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Mission } from 'src/mission/mission.entity';
 import { Exclude } from 'class-transformer';
@@ -7,11 +7,11 @@ import { Team } from 'src/team/team.entity';
 
 @Entity()
 export class Role {
-  @PrimaryColumn({ name: 'RoleId' })
+  @PrimaryGeneratedColumn({ name: 'RoleId' })
   id: number;
 
   @Column()
-  nameRole: string;
+  name: string;
 
   @Column({ default: false })
   isBooked: boolean;
@@ -24,7 +24,7 @@ export class Role {
   mission: Mission;
 
   @ApiHideProperty()
-  @Column()
+  @Column({ update: false })
   @Exclude()
   missionId: number;
 

@@ -6,6 +6,7 @@ import { RoleModule } from './role/role.module';
 import { AuthModule } from './auth/auth.module';
 import OrmConfig from './ormconfig';
 import { AppController } from './app.controller';
+import { TeamModule } from './team/team.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { AppController } from './app.controller';
     MissionModule,
     RoleModule,
     AuthModule,
+    TeamModule,
   ],
   controllers: [AppController],
   providers: [],

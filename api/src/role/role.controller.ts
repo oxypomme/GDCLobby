@@ -11,11 +11,7 @@ import { RoleService } from './role.service';
   },
   params: {
     missionId: {
-      field: 'team.missionId',
-      type: 'number',
-    },
-    teamId: {
-      field: 'teamId',
+      field: 'missionId',
       type: 'number',
     },
   },
@@ -35,7 +31,7 @@ import { RoleService } from './role.service';
   },
 })
 @ApiTags('roles')
-@Controller('missions/:missionId/teams/:teamId/roles')
+@Controller('missions/:missionId/roles')
 export class RoleController {
   constructor(public service: RoleService) {}
 }

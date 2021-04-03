@@ -9,12 +9,6 @@ import { TeamService } from './team.service';
   model: {
     type: Team,
   },
-  params: {
-    missionId: {
-      field: 'missionId',
-      type: 'number',
-    },
-  },
   query: {
     join: {
       roles: {
@@ -30,7 +24,7 @@ import { TeamService } from './team.service';
   },
 })
 @ApiTags('teams')
-@Controller('missions/:missionId/teams')
+@Controller('teams')
 export class TeamController {
   constructor(public service: TeamService) {}
 }

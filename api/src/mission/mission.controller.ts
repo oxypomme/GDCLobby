@@ -9,6 +9,17 @@ import { MissionService } from './mission.service';
   model: {
     type: Mission,
   },
+  query: {
+    join: {
+      roles: {
+        eager: true,
+      },
+      'roles.player': {
+        eager: true,
+        required: false,
+      },
+    },
+  },
   routes: {
     only: ['getOneBase', 'getManyBase'],
   },

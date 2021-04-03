@@ -9,6 +9,7 @@ import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import { Player } from 'src/player/player.entity';
 import { Team } from 'src/team/team.entity';
+import { Mission } from 'src/mission/mission.entity';
 
 @Entity()
 export class Role {
@@ -23,6 +24,15 @@ export class Role {
 
   @Column({ name: 'Condi' })
   condition: string;
+
+  @ApiProperty({ type: () => Mission })
+  @ManyToOne(() => Mission, (m) => m)
+  mission: Mission;
+
+  @ApiHideProperty()
+  @Column({ update: false })
+  @Exclude()
+  missionId: number;
 
   @ApiProperty({ type: () => Player })
   @ManyToOne(() => Player, (p) => p)

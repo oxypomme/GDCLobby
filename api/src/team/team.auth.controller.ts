@@ -10,17 +10,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   model: {
     type: Team,
   },
-  params: {
-    missionId: {
-      field: 'missionId',
-      type: 'number',
-    },
-  },
   query: {
     join: {
-      mission: {
-        eager: true,
-      },
       roles: {
         eager: true,
       },
@@ -45,7 +36,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 })
 @ApiTags('teams')
 @UseGuards(JwtAuthGuard)
-@Controller('missions/:missionId/teams')
+@Controller('teams')
 export class TeamAuthController {
   constructor(public service: TeamService) {}
 }

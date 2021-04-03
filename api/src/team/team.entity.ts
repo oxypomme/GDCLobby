@@ -22,12 +22,12 @@ export class Team {
   @OneToMany(() => Role, (r) => r.team)
   roles: Role[];
 
-  @ApiProperty({ type: () => Mission })
+  /*@ApiProperty({ type: () => Mission })
   @ManyToOne(() => Mission, (m) => m.teams)
   mission: Mission;
 
   @ApiHideProperty()
   @Column({ update: false })
   @Exclude()
-  missionId: number;
+  missionId: number;*/
 }

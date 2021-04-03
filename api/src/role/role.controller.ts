@@ -5,6 +5,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { Role } from './role.entity';
 import { RoleService } from './role.service';
 
+//TODO: Secure : If not Admin, can't upadte fields like Name, IsBooked, etc. + If not you, can't update PlayerId
 @Crud({
   model: {
     type: Role,

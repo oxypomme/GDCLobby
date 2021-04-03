@@ -10,19 +10,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   model: {
     type: Mission,
   },
-  query: {
-    join: {
-      teams: {
-        eager: true,
-      },
-      'teams.roles': {
-        eager: true,
-        required: false,
-      },
-    },
-  },
   routes: {
-    exclude: ['getOneBase', 'getManyBase', 'createManyBase'],
+    exclude: ['getOneBase', 'getManyBase'],
   },
 })
 @CrudAuth({

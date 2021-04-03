@@ -9,18 +9,8 @@ import { MissionService } from './mission.service';
   model: {
     type: Mission,
   },
-  query: {
-    join: {
-      teams: {
-        eager: true,
-      },
-      'teams.roles': {
-        eager: true,
-      },
-    },
-  },
   routes: {
-    only: ['getOneBase'],
+    only: ['getOneBase', 'getManyBase'],
   },
 })
 @ApiTags('missions')

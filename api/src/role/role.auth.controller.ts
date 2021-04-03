@@ -37,9 +37,13 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   filter: (user: any) => ({
     playerId: user.userId,
   }),
-  or: (user: any) => ({
-    'playerId.isAdmin': user.isAdmin,
-  }),
+  or: (user: any) => {
+    // A dirty workaround
+    if (user.isAdmin) {
+      return {};
+    }
+    return { id: -1 };
+  },
 })
 @ApiTags('roles')
 @UseGuards(JwtAuthGuard)

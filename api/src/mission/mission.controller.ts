@@ -18,6 +18,10 @@ import { MissionService } from './mission.service';
         eager: true,
         required: false,
       },
+      teams: {
+        eager: true,
+        required: false,
+      },
     },
   },
   routes: {

@@ -17,6 +17,10 @@ import { TeamService } from './team.service';
       'roles.player': {
         eager: true,
       },
+      missions: {
+        eager: true,
+        required: false,
+      },
     },
   },
   routes: {

@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: console,
+    logger: ['error'],
   });
 
   const options = new DocumentBuilder()
@@ -19,5 +19,6 @@ async function bootstrap() {
   });
 
   await app.listen(3000);
+  console.log('Server ready');
 }
 bootstrap();

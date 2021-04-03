@@ -3,12 +3,11 @@ import {
   PrimaryGeneratedColumn,
   Column,
   OneToMany,
-  ManyToOne,
+  ManyToMany,
 } from 'typeorm';
-import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 import { Role } from 'src/role/role.entity';
 import { Mission } from 'src/mission/mission.entity';
-import { Exclude } from 'class-transformer';
 
 @Entity()
 export class Team {
@@ -22,12 +21,7 @@ export class Team {
   @OneToMany(() => Role, (r) => r.team)
   roles: Role[];
 
-  /*@ApiProperty({ type: () => Mission })
-  @ManyToOne(() => Mission, (m) => m.teams)
-  mission: Mission;
-
-  @ApiHideProperty()
-  @Column({ update: false })
-  @Exclude()
-  missionId: number;*/
+  @ApiProperty({ type: () => Mission })
+  @ManyToMany(() => Mission, (m) => m.teams, { cascade: ['insert', 'update'] })
+  missions: Mission[];
 }

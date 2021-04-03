@@ -10,25 +10,15 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   model: {
     type: Role,
   },
-  params: {
-    missionId: {
-      field: 'missionId',
-      type: 'number',
-    },
-    lobbyId: {
-      field: 'lobbyId',
-      type: 'number',
-    },
-  },
   query: {
     join: {
-      lobby: {
+      team: {
         eager: true,
       },
       mission: {
         eager: true,
       },
-      'mission.missionMaker': {
+      player: {
         eager: true,
         exclude: ['email'],
       },
@@ -41,12 +31,15 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 @CrudAuth({
   property: 'user',
   filter: (user: any) => ({
-    missionMakerId: user.userId,
+    playerId: user.userId,
+  }),
+  or: (user: any) => ({
+    'playerId.isAdmin': user.isAdmin,
   }),
 })
 @ApiTags('role')
 @UseGuards(JwtAuthGuard)
-@Controller('mission/:missionId/lobby/:lobbyId/role')
+@Controller('role')
 export class RoleEditController {
   constructor(public service: RoleService) {}
 }

@@ -9,14 +9,6 @@ import { MissionService } from './mission.service';
   model: {
     type: Mission,
   },
-  query: {
-    join: {
-      missionMaker: {
-        eager: true,
-        exclude: ['email'],
-      },
-    },
-  },
   routes: {
     only: ['getManyBase'],
   },

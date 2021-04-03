@@ -11,16 +11,8 @@ import { MissionService } from './mission.service';
   },
   query: {
     join: {
-      missionMaker: {
+      roles: {
         eager: true,
-        exclude: ['email'],
-      },
-      lobbys: {
-        eager: true,
-      },
-      'lobbys.roles': {
-        eager: true,
-        required: false,
       },
     },
   },

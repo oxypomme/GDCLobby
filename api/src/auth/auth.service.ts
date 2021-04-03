@@ -1,21 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { MissionmakerService } from 'src/missionmaker/missionmaker.service';
 import * as bcrypt from 'bcrypt';
-import { jwtConstants } from './constants';
 import { getManager, getRepository } from 'typeorm';
-import { Missionmaker } from 'src/missionmaker/missionmaker.entity';
+import { jwtConstants } from './constants';
+import { Player } from 'src/player/player.entity';
+import { PlayerService } from 'src/player/player.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private usersService: MissionmakerService,
+    private usersService: PlayerService,
     private jwtService: JwtService,
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
     const user = await this.usersService.findOne({
-      where: { email: username },
+      where: { username },
     });
 
     if (user && (await bcrypt.compare(pass, user.password))) {
@@ -26,12 +26,13 @@ export class AuthService {
   }
 
   async login(user: any) {
-    const profile = await this.validateUser(user.email, user.password);
+    const profile = await this.validateUser(user.username, user.password);
     if (profile) {
       return {
         accessToken: this.jwtService.sign({
           id: profile.id,
-          username: profile.name,
+          username: profile.username,
+          isAdmin: profile.isAdmin,
         }),
         expiresIn: jwtConstants.expiresIn,
       };
@@ -41,13 +42,12 @@ export class AuthService {
 
   async register(user: any) {
     const payload = {
-      email: user.email,
-      name: user.name,
+      username: user.username,
       password: user.password,
     };
     const entityManager = getManager();
-    const obj = entityManager.create(Missionmaker, payload);
-    const { password, ...result } = await getRepository(Missionmaker).save(obj);
+    const obj = entityManager.create(Player, payload);
+    const { password, ...result } = await getRepository(Player).save(obj);
     return result;
   }
 }

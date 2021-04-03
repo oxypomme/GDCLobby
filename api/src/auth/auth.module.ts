@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 
-import { MissionmakerModule } from 'src/missionmaker/missionmaker.module';
+import { PlayerModule } from 'src/player/player.module';
 import { AuthService } from './auth.service';
 import { LocalStrategy } from './local.strategy';
 import { jwtConstants } from './constants';
@@ -10,7 +10,7 @@ import { JwtStrategy } from './jwt.strategy';
 
 @Module({
   imports: [
-    MissionmakerModule,
+    PlayerModule,
     PassportModule,
     JwtModule.register({
       secret: jwtConstants.secret,

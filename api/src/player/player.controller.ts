@@ -2,35 +2,40 @@ import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudAuth } from '@nestjsx/crud';
 import { ApiTags } from '@nestjs/swagger';
 
-import { Mission } from './mission.entity';
-import { MissionService } from './mission.service';
+import { Player } from './player.entity';
+import { PlayerService } from './player.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Crud({
   model: {
-    type: Mission,
+    type: Player,
+  },
+  params: {
+    id: {
+      primary: true,
+      disabled: true,
+    },
   },
   query: {
     join: {
-      missionMaker: {
+      roles: {
         eager: true,
-        exclude: ['email'],
       },
     },
   },
   routes: {
-    only: ['createManyBase'],
+    only: ['getOneBase', 'updateOneBase', 'deleteOneBase'],
   },
 })
 @CrudAuth({
   property: 'user',
   filter: (user: any) => ({
-    missionMakerId: user.userId,
+    id: user.userId,
   }),
 })
-@ApiTags('mission')
+@ApiTags('player')
 @UseGuards(JwtAuthGuard)
-@Controller('mission')
-export class MissionListEditController {
-  constructor(public service: MissionService) {}
+@Controller('player')
+export class PlayerController {
+  constructor(public service: PlayerService) {}
 }

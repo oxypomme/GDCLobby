@@ -13,8 +13,8 @@ import { MissionService } from './mission.service';
     only: ['getManyBase'],
   },
 })
-@ApiTags('mission')
-@Controller('mission')
+@ApiTags('missions')
+@Controller('missions')
 export class MissionListController {
   constructor(public service: MissionService) {}
 }

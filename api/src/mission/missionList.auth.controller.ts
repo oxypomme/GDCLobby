@@ -24,9 +24,9 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
     return { id: -1 };
   },
 })
-@ApiTags('mission')
+@ApiTags('missions')
 @UseGuards(JwtAuthGuard)
-@Controller('mission')
+@Controller('missions')
 export class MissionListEditController {
   constructor(public service: MissionService) {}
 }

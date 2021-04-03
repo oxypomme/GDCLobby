@@ -1,6 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { Mission } from 'src/mission/mission.entity';
 import { Exclude } from 'class-transformer';
 import { Player } from 'src/player/player.entity';
 import { Team } from 'src/team/team.entity';
@@ -19,17 +24,9 @@ export class Role {
   @Column({ name: 'Condi' })
   condition: string;
 
-  @ApiProperty({ type: () => Mission })
-  @ManyToOne(() => Mission, (m) => m.id)
-  mission: Mission;
-
-  @ApiHideProperty()
-  @Column({ update: false })
-  @Exclude()
-  missionId: number;
-
   @ApiProperty({ type: () => Player })
-  @ManyToOne(() => Player, (p) => p.id)
+  @ManyToOne(() => Player, (p) => p)
+  @JoinColumn()
   player: Player;
 
   @ApiHideProperty()
@@ -38,7 +35,7 @@ export class Role {
   playerId: number;
 
   @ApiProperty({ type: () => Team })
-  @ManyToOne(() => Team, (t) => t.id)
+  @ManyToOne(() => Team, (t) => t)
   team: Team;
 
   @ApiHideProperty()

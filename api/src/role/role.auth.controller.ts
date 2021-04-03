@@ -6,6 +6,7 @@ import { Role } from './role.entity';
 import { RoleService } from './role.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
+//TODO: Secure : If not Admin, can't upadte fields like Name, IsBooked, etc. + If not you, can't update PlayerId
 @Crud({
   model: {
     type: Role,
@@ -34,9 +35,9 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
     'playerId.isAdmin': user.isAdmin,
   }),
 })
-@ApiTags('role')
+@ApiTags('roles')
 @UseGuards(JwtAuthGuard)
-@Controller('role')
+@Controller('missions/:missionId/teams/:teamId/roles')
 export class RoleEditController {
   constructor(public service: RoleService) {}
 }

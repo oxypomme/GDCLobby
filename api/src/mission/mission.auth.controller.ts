@@ -12,8 +12,12 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
   },
   query: {
     join: {
-      roles: {
+      teams: {
         eager: true,
+      },
+      'teams.roles': {
+        eager: true,
+        required: false,
       },
     },
   },
@@ -31,9 +35,9 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
     return { id: -1 };
   },
 })
-@ApiTags('mission')
+@ApiTags('missions')
 @UseGuards(JwtAuthGuard)
-@Controller('mission/edit')
+@Controller('missions')
 export class MissionEditController {
   constructor(public service: MissionService) {}
 }

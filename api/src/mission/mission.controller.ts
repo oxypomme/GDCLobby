@@ -11,7 +11,10 @@ import { MissionService } from './mission.service';
   },
   query: {
     join: {
-      roles: {
+      teams: {
+        eager: true,
+      },
+      'teams.roles': {
         eager: true,
       },
     },
@@ -20,8 +23,8 @@ import { MissionService } from './mission.service';
     only: ['getOneBase'],
   },
 })
-@ApiTags('mission')
-@Controller('mission')
+@ApiTags('missions')
+@Controller('missions')
 export class MissionController {
   constructor(public service: MissionService) {}
 }

@@ -9,9 +9,18 @@ import { TeamService } from './team.service';
   model: {
     type: Team,
   },
+  params: {
+    missionId: {
+      field: 'missionId',
+      type: 'number',
+    },
+  },
   query: {
     join: {
       roles: {
+        eager: true,
+      },
+      'roles.player': {
         eager: true,
       },
     },
@@ -20,8 +29,8 @@ import { TeamService } from './team.service';
     only: ['getOneBase', 'getManyBase'],
   },
 })
-@ApiTags('team')
-@Controller('team')
+@ApiTags('teams')
+@Controller('missions/:missionId/teams')
 export class TeamController {
   constructor(public service: TeamService) {}
 }

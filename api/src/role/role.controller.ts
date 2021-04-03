@@ -5,17 +5,23 @@ import { ApiTags } from '@nestjs/swagger';
 import { Role } from './role.entity';
 import { RoleService } from './role.service';
 
-//TODO: Secure : If not Admin, can't upadte fields like Name, IsBooked, etc. + If not you, can't update PlayerId
 @Crud({
   model: {
     type: Role,
   },
+  params: {
+    missionId: {
+      field: 'team.missionId',
+      type: 'number',
+    },
+    teamId: {
+      field: 'teamId',
+      type: 'number',
+    },
+  },
   query: {
     join: {
       team: {
-        eager: true,
-      },
-      mission: {
         eager: true,
       },
       player: {
@@ -28,8 +34,8 @@ import { RoleService } from './role.service';
     only: ['getOneBase', 'getManyBase'],
   },
 })
-@ApiTags('role')
-@Controller('role')
+@ApiTags('roles')
+@Controller('missions/:missionId/teams/:teamId/roles')
 export class RoleController {
   constructor(public service: RoleService) {}
 }

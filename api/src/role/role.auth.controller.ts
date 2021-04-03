@@ -6,7 +6,7 @@ import { Role } from './role.entity';
 import { RoleService } from './role.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
-//TODO: Secure : If not Admin, can't upadte fields like Name, IsBooked, etc. + If not you, can't update PlayerId
+//TODO: Secure : If not Admin, can't update fields like Name, IsBooked, etc. + If not you, can't update PlayerId
 @Crud({
   model: {
     type: Role,

@@ -1,11 +1,69 @@
 <div *ngIf="mission">
-  <h2>{{ mission.id }} Details</h2>
+  <h2>{{ mission.name }}</h2>
   <div>
-    <label
-      >Mission name
-      <input id="mission-name" [(ngModel)]="mission.name" placeholder="name" />
-    </label>
+    Liste des slots pour {{ mission.name }}.
+    <table>
+      <thead>
+        <th>#</th>
+        <th>Nom</th>
+        <th>Joueur</th>
+        <th></th>
+      </thead>
+      <tbody *ngFor="let role of mission.roles">
+        <td>{{ role.id }}</td>
+        <td>{{ role.name }}</td>
+        <td>
+          <span *ngIf="role.player">
+            [{{ role.team?.name }}] {{ role.player.username }}
+          </span>
+        </td>
+        <td>
+          <button *ngIf="!role.player && evalCondition(role)">
+            S'inscrire
+          </button>
+          <!--TODO: If auth or admin, add EDIT-->
+        </td>
+      </tbody>
+    </table>
   </div>
-  <button (click)="save()">Save</button>
-  <button (click)="goBack()">Back</button>
+  <div>
+    <h3>A la une</h3>
+    <div>
+      <h4>Ouverture du site de l'interco !</h4>
+      <p>
+        Mission dans :
+        <span class="value">{{
+          calcRemainingTime() | date: "dj hh mm ss"
+        }}</span>
+      </p>
+    </div>
+    <div>
+      <h4>Dates clés</h4>
+      <p>
+        Inscriptions ouvertes jusqu'au <span class="value">{{ "???" }}</span>
+      </p>
+      <p>
+        Mission prévue le
+        <span class="value">{{ mission.date | date: "dd/MM/yyyy" }}</span>
+      </p>
+    </div>
+    <div>
+      <h4>Inscriptions</h4>
+      <p>
+        Joueurs inscrits :
+        <span class="value">{{ calcPlayers() }}</span>
+      </p>
+      <p>
+        Places disponibles :
+        <span class="value">{{ calcFree() }}</span>
+      </p>
+      <p>
+        Places réservées :
+        <span class="value">{{ calcBooked() }}</span>
+      </p>
+      <p></p>
+      <p></p>
+    </div>
+  </div>
+  <button (click)="goBack()">Retour à la liste</button>
 </div>

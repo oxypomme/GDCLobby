@@ -1,7 +1,14 @@
-<ul class="missions">
-  <li *ngFor="let mission of missions">
-    <a routerLink="/missions/{{ mission.id }}">
-      <span class="badge">{{ mission.id }}</span> {{ mission.name }}
-    </a>
-  </li>
-</ul>
+<table>
+  <thead>
+    <th>#</th>
+    <th>Nom</th>
+    <th>Date</th>
+    <th></th>
+  </thead>
+  <tbody *ngFor="let mission of missions">
+    <td>{{ mission.id }}</td>
+    <td>{{ mission.name }}</td>
+    <td>{{ mission.date | date: "dd/MM/yyyy" }}</td>
+    <td><button routerLink="/missions/{{ mission.id }}">Details</button></td>
+  </tbody>
+</table>

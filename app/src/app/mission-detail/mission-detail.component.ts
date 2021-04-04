@@ -3,6 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
+import { Role } from '../role';
 
 @Component({
   selector: 'app-mission-detail',
@@ -27,6 +28,25 @@ export class MissionDetailComponent implements OnInit {
     this.missionService
       .getMission(id)
       .subscribe((mission) => (this.mission = mission));
+  }
+
+  calcRemainingTime(): Date {
+    const time = new Date(this.mission.date).getTime() - new Date().getTime();
+    return time > 0 ? new Date(time) : null;
+  }
+
+  evalCondition(role: Role): Function {
+    return Function(`"use strict";return ${role.condition}`)();
+  }
+
+  calcPlayers(): number {
+    return this.mission.roles?.filter((r) => r.player !== null).length;
+  }
+  calcFree(): number {
+    return this.mission.roles?.filter((r) => r.player === null).length;
+  }
+  calcBooked(): number {
+    return this.mission.roles?.filter((r) => r.isBooked).length;
   }
 
   goBack(): void {

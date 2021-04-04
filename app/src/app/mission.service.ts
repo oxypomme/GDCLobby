@@ -19,7 +19,7 @@ export class MissionService {
 
   getMissions(): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.missionsUrl).pipe(
-      tap((_) => this.log('fetched heroes')),
+      tap((_) => this.log('fetched missions')),
       catchError(this.handleError<Mission[]>('getMissions', []))
     );
   }
@@ -35,8 +35,8 @@ export class MissionService {
   updateMission(mission: Mission): Observable<any> {
     const url = `${this.missionsUrl}/${mission.id}`;
     return this.http.put(url, mission, this.httpOptions).pipe(
-      tap((_) => this.log(`updated hero id=${mission.id}`)),
-      catchError(this.handleError<any>('updateHero'))
+      tap((_) => this.log(`updated mission id=${mission.id}`)),
+      catchError(this.handleError<any>('updateMission'))
     );
   }
 

@@ -16,6 +16,7 @@ import { TeamService } from './team.service';
       },
       'roles.player': {
         eager: true,
+        exclude: ['isAdmin'],
       },
       missions: {
         eager: true,

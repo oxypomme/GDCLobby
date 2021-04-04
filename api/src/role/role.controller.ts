@@ -22,7 +22,7 @@ import { RoleService } from './role.service';
       },
       player: {
         eager: true,
-        exclude: ['email'],
+        exclude: ['isAdmin'],
       },
     },
   },

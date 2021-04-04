@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { MessageService } from './message.service';
 import { Mission } from './mission';
 
 @Injectable({
@@ -16,10 +15,7 @@ export class MissionService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(
-    private http: HttpClient,
-    private messageSevice: MessageService
-  ) {}
+  constructor(private http: HttpClient) {}
 
   getMissions(): Observable<Mission[]> {
     return this.http.get<Mission[]>(this.missionsUrl).pipe(
@@ -45,7 +41,7 @@ export class MissionService {
   }
 
   private log(message: string): void {
-    this.messageSevice.add(message);
+    console.log(message);
   }
 
   /**

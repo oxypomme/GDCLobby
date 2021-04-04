@@ -1,0 +1,7 @@
+<ul class="missions">
+  <li *ngFor="let mission of missions">
+    <a routerLink="/missions/{{ mission.id }}">
+      <span class="badge">{{ mission.id }}</span> {{ mission.name }}
+    </a>
+  </li>
+</ul>

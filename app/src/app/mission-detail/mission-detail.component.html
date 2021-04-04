@@ -1,0 +1,11 @@
+<div *ngIf="mission">
+  <h2>{{ mission.id }} Details</h2>
+  <div>
+    <label
+      >Mission name
+      <input id="mission-name" [(ngModel)]="mission.name" placeholder="name" />
+    </label>
+  </div>
+  <button (click)="save()">Save</button>
+  <button (click)="goBack()">Back</button>
+</div>

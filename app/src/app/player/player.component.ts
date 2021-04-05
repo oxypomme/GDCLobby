@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import PlayerActions from '../store/player/player.actions';
-import { selectPlayerLogged } from '../store/player/player.selectors';
+import { selectIsPlayerLogged } from '../store/player/player.selectors';
 
 @Component({
   selector: 'app-player',
@@ -15,7 +15,7 @@ export class PlayerComponent implements OnInit {
   isLogged$: Observable<boolean>;
 
   constructor(private store: Store<{ count: number }>) {
-    this.isLogged$ = store.select(selectPlayerLogged);
+    this.isLogged$ = store.select(selectIsPlayerLogged);
   }
 
   ngOnInit(): void {}
@@ -34,7 +34,7 @@ export class PlayerComponent implements OnInit {
 
   register() {
     this.store.dispatch(
-      PlayerActions.register({
+      PlayerActions.register.request({
         credentials: { username: this.username, password: this.password },
       })
     );

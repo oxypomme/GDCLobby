@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
-import { catchError, exhaustMap, map } from 'rxjs/operators';
+import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators';
 import { Player } from 'src/app/player';
 
 import { PlayerService } from 'src/app/player.service';
@@ -15,10 +15,13 @@ export class PlayerEffects {
       ofType(PlayerActions.logIn.request),
       exhaustMap(({ credentials }) =>
         this.playerService.logIn(credentials).pipe(
-          map((jwt: JWToken | null) =>
+          mergeMap((jwt: JWToken | null) =>
             jwt
-              ? PlayerActions.logIn.success({ jwt })
-              : PlayerActions.failed({ err: 'User not matching' })
+              ? [
+                  PlayerActions.logIn.success({ jwt }),
+                  PlayerActions.fetch.request({ jwt }),
+                ]
+              : [PlayerActions.failed({ err: 'User not matching' })]
           ),
           catchError((err) => of(PlayerActions.failed({ err })))
         )
@@ -28,11 +31,27 @@ export class PlayerEffects {
 
   register$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(PlayerActions.register),
+      ofType(PlayerActions.register.request),
       exhaustMap(({ credentials }) =>
         this.playerService.register(credentials).pipe(
           map((profile: Player) =>
             PlayerActions.logIn.request({ credentials })
+          ),
+          catchError((err) => of(PlayerActions.failed({ err })))
+        )
+      )
+    )
+  );
+
+  fetch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlayerActions.fetch.request),
+      exhaustMap(({ jwt }) =>
+        this.playerService.fetch(jwt).pipe(
+          map((profile: Player) =>
+            profile
+              ? PlayerActions.fetch.success({ profile })
+              : PlayerActions.failed({ err: 'An error occured' })
           ),
           catchError((err) => of(PlayerActions.failed({ err })))
         )

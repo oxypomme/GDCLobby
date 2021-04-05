@@ -6,12 +6,13 @@ import { Player } from './player';
 import { environment } from '../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { Creditentials } from './store/player/creditentials';
+import { JWToken } from './store/player/player.reducer';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PlayerService {
-  private playerUrl = `http://${environment.apiHost}/players`;
+  private playerUrl = `http://${environment.apiHost}/player`;
   private authUrl = `http://${environment.apiHost}/auth`;
 
   httpOptions = {
@@ -55,6 +56,17 @@ export class PlayerService {
           (_) => this.log('try registering'),
           catchError(this.handleError<Player>('register'))
         )
+      );
+  }
+
+  fetch({ accessToken }: JWToken): Observable<Player> {
+    return this.http
+      .get<Player>(this.playerUrl, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .pipe(
+        tap((_) => this.log('fetched player')),
+        catchError(this.handleError<Player>('fetchPlayer'))
       );
   }
 

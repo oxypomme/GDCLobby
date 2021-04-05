@@ -3,7 +3,12 @@ import { PlayerState } from './player.reducer';
 
 export const selectPlayer = (state) => state.player;
 
-export const selectPlayerLogged = createSelector(
+export const selectIsPlayerLogged = createSelector(
   selectPlayer,
   (state: PlayerState) => !!state.jwt
+);
+
+export const selectPlayerLogged = createSelector(
+  selectPlayer,
+  (state: PlayerState) => state.profile
 );

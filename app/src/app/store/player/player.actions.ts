@@ -1,13 +1,16 @@
 import { createAction, props } from '@ngrx/store';
+import { Player } from 'src/app/player';
 
 import { Creditentials } from './creditentials';
 import { JWToken } from './player.reducer';
 
 export default {
-  register: createAction(
-    '[Player Component] Register Requested',
-    props<{ credentials: Creditentials }>()
-  ),
+  register: {
+    request: createAction(
+      '[Player Component] Register Requested',
+      props<{ credentials: Creditentials }>()
+    ),
+  },
 
   logIn: {
     request: createAction(
@@ -17,6 +20,17 @@ export default {
     success: createAction(
       '[Player Component] LogIn Success',
       props<{ jwt: JWToken }>()
+    ),
+  },
+
+  fetch: {
+    request: createAction(
+      '[Player Component] Fetch Requested',
+      props<{ jwt: JWToken }>()
+    ),
+    success: createAction(
+      '[Player Component] Fetch Success',
+      props<{ profile: Player }>()
     ),
   },
 

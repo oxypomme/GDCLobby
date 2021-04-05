@@ -1,4 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
+import { Player } from 'src/app/player';
 import PlayerActions from './player.actions';
 
 export interface JWToken {
@@ -8,6 +9,7 @@ export interface JWToken {
 
 export interface PlayerState {
   jwt?: JWToken;
+  profile?: Player;
   err?: unknown;
   isLoading: boolean;
 }
@@ -18,10 +20,11 @@ export const initialState: PlayerState = {
 
 const _playerReducer = createReducer(
   initialState,
-  on(PlayerActions.register, (state) => {
-    console.log('registered dummy');
-    return state;
-  }),
+  on(PlayerActions.register.request, (state) => ({
+    ...state,
+    err: undefined,
+    isLoading: true,
+  })),
 
   on(PlayerActions.logIn.request, (state) => ({
     ...state,
@@ -37,6 +40,17 @@ const _playerReducer = createReducer(
   on(PlayerActions.logOut, (state) => ({
     ...state,
     jwt: undefined,
+  })),
+
+  on(PlayerActions.fetch.request, (state) => ({
+    ...state,
+    err: undefined,
+    isLoading: true,
+  })),
+  on(PlayerActions.fetch.success, (state, { profile }) => ({
+    ...state,
+    isLoading: false,
+    profile,
   })),
 
   on(PlayerActions.failed, (state, { err }) => ({

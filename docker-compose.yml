@@ -11,7 +11,7 @@ services:
     volumes:
       - ./api/db:/docker-entrypoint-initdb.d
   db-admin:
-    image: adminer
+    image: adminer:4.8.0
     depends_on:
       - db
     restart: always
@@ -21,11 +21,6 @@ services:
     image: gdclobbyapi
     depends_on:
       - db
-    build:
-      context: .
-      dockerfile: ./api/Dockerfile
-    environment:
-      NODE_ENV: production
     restart: always
     ports: # todo remove
       - '3000:3000'

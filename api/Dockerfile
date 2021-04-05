@@ -1,7 +1,7 @@
 FROM node:12.18-alpine AS builder
 
 WORKDIR /usr/src/api
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+COPY ["./package.json", "./package-lock.json*", "./"]
 RUN npm install
 COPY . .
 

@@ -9,18 +9,18 @@ services:
     command: mysqld --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     volumes:
-      - /home/oxytom/build/gdclobby/db:/docker-entrypoint-initdb.d
+      - ./api/db:/docker-entrypoint-initdb.d
   db-admin:
     image: adminer:4.8.0
     depends_on:
       - db
     restart: unless-stopped
-    ports: # todo change to 8080:8080
-      - '8085:8080'
+    ports:
+      - '8080:8080'
   api:
     image: oxytom/gdclobbyapi:latest
     depends_on:
       - db
     restart: unless-stopped
-    ports: # todo remove
+    ports:
       - '3000:3000'

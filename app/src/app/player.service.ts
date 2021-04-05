@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 
-import { Mission } from './mission';
+import { Player } from './player';
 import { environment } from '../environments/environment';
+import { catchError, tap } from 'rxjs/operators';
+import { Creditentials } from './store/player/creditentials';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MissionService {
-  private missionsUrl = `http://${environment.apiHost}/missions`;
+export class PlayerService {
+  private playerUrl = `http://${environment.apiHost}/players`;
+  private authUrl = `http://${environment.apiHost}/auth`;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -18,27 +20,42 @@ export class MissionService {
 
   constructor(private http: HttpClient) {}
 
-  getMissions(): Observable<Mission[]> {
-    return this.http.get<Mission[]>(this.missionsUrl).pipe(
-      tap((_) => this.log('fetched missions')),
-      catchError(this.handleError<Mission[]>('getMissions', []))
-    );
+  logIn({ username, password }: Creditentials): Observable<any> {
+    const url = `${this.authUrl}/login`;
+    return this.http
+      .post(
+        url,
+        {
+          username,
+          password,
+        },
+        this.httpOptions
+      )
+      .pipe(
+        tap(
+          (_) => this.log('try logging in'),
+          catchError(this.handleError<any>('logIn'))
+        )
+      );
   }
 
-  getMission(id: number): Observable<Mission> {
-    const url = `${this.missionsUrl}/${id}`;
-    return this.http.get<Mission>(url).pipe(
-      tap((_) => this.log(`fetched mission id=${id}`)),
-      catchError(this.handleError<Mission>(`getMission id=${id}`))
-    );
-  }
-
-  updateMission(mission: Mission): Observable<any> {
-    const url = `${this.missionsUrl}/${mission.id}`;
-    return this.http.put(url, mission, this.httpOptions).pipe(
-      tap((_) => this.log(`updated mission id=${mission.id}`)),
-      catchError(this.handleError<any>('updateMission'))
-    );
+  register({ username, password }: Creditentials): Observable<Player> {
+    const url = `${this.authUrl}/register`;
+    return this.http
+      .post<Player>(
+        url,
+        {
+          username,
+          password,
+        },
+        this.httpOptions
+      )
+      .pipe(
+        tap(
+          (_) => this.log('try registering'),
+          catchError(this.handleError<Player>('register'))
+        )
+      );
   }
 
   private log(message: string): void {

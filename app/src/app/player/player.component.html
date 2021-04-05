@@ -1,0 +1,10 @@
+<div>isLogged : {{ isLogged$ | async }}</div>
+
+<input type="text" [(ngModel)]="username" placeholder="Username" />
+<input type="password" [(ngModel)]="password" placeholder="Password" />
+
+<button (click)="logIn()" *ngIf="!(isLogged$ | async)">Login</button>
+
+<button (click)="logOut()" *ngIf="isLogged$ | async">Logout</button>
+
+<button (click)="register()">Register</button>

@@ -20,34 +20,41 @@
 
         <br /><br />
 
-        <table class="table is-bordered is-hoverable is-fullwidth">
+        <table
+          class="table is-bordered is-hoverable is-fullwidth"
+          *ngIf="mission"
+        >
           <thead>
             <tr>
               <th>#</th>
-              <th>Team</th>
-              <th>Pseudo</th>
+              <th>Nom</th>
+              <th>Joueur</th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody *ngFor="let role of mission.roles">
             <tr>
-              <th>1</th>
-              <td>[GDC]</td>
-              <td>tanin</td>
-            </tr>
-            <tr>
-              <th>2</th>
-              <td>[GIE]</td>
-              <td>Morbakos</td>
-            </tr>
-            <tr>
-              <th>3</th>
-              <td>[GIE]</td>
-              <td>Tisma</td>
-            </tr>
-            <tr>
-              <th>4</th>
-              <td>[GIE]</td>
-              <td>Stians</td>
+              <th>{{ role.id }}</th>
+              <td>{{ role.name }}</td>
+              <td>
+                <span *ngIf="role.player">
+                  [{{ role.team?.name }}] {{ role.player.username }}
+                </span>
+              </td>
+              <td>
+                <button *ngIf="!role.player && evalCondition(role)">
+                  S'inscrire
+                </button>
+                <!--TODO: Doesn't work-->
+                <button
+                  *ngIf="
+                    role.player == playerLogged$ || playerLogged$.isAdmin
+                      | async
+                  "
+                >
+                  Editer
+                </button>
+              </td>
             </tr>
           </tbody>
         </table>

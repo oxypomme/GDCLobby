@@ -10,10 +10,17 @@ import { MissionService } from '../mission.service';
 export class MissionInfoPanelComponent implements OnInit {
   @Input() mission?: Mission;
 
+  remainingTime: Date;
+
   constructor(private missionService: MissionService) {}
 
   ngOnInit(): void {
     this.getMission();
+
+    setInterval(() => {
+      const time = new Date(this.mission.date).getTime() - new Date().getTime();
+      this.remainingTime = time > 0 ? new Date(time) : null;
+    }, 1000);
   }
 
   getMission(): void {
@@ -23,10 +30,6 @@ export class MissionInfoPanelComponent implements OnInit {
       .subscribe((mission) => (this.mission = mission));
   }
 
-  calcRemainingTime(): Date {
-    const time = new Date(this.mission.date).getTime() - new Date().getTime();
-    return time > 0 ? new Date(time) : null;
-  }
   calcPlayers(): number {
     return this.mission.roles?.filter((r) => r.player !== null).length;
   }

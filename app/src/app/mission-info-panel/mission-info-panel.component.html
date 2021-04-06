@@ -1,4 +1,4 @@
-<div class="information-panel" id="info">
+<div class="information-panel" id="info" *ngIf="mission">
   <div class="info-top">
     <h4 class="title">À la une</h4>
 
@@ -7,10 +7,7 @@
     <div class="info-item">
       Mission dans :
       <span class="info-val">
-        <span id="info-days"></span>
-        <span id="info-hours"></span>
-        <span id="info-mins"></span>
-        <span id="info-secs"></span>
+        {{ remainingTime | date: "ddj H'h' m'm' s's'" }}
       </span>
     </div>
   </div>
@@ -19,11 +16,13 @@
     <h4 class="title">Dates clés</h4>
 
     <div class="info-item">
-      Inscriptions ouvertes jusqu'au : <span class="info-val">15/12/2020</span>
+      Inscriptions ouvertes jusqu'au :
+      <span class="info-val">{{ "15/12/2020" }}</span>
     </div>
 
     <div class="info-item">
-      Mission prévue le : <span class="info-val">15/04/2021</span>
+      Mission prévue le :
+      <span class="info-val">{{ mission.date | date: "dd/MM/yyyy" }}</span>
     </div>
   </div>
 
@@ -31,15 +30,15 @@
     <h4 class="title">Inscriptions</h4>
 
     <div class="info-item">
-      Joueurs inscrits : <span class="info-val">9</span>
+      Joueurs inscrits : <span class="info-val">{{ calcPlayers() }}</span>
     </div>
 
     <div class="info-item">
-      Places disponibles : <span class="info-val">31</span>
+      Places disponibles : <span class="info-val">{{ calcFree() }}</span>
     </div>
 
     <div class="info-item">
-      Places réservées : <span class="info-val">10</span>
+      Places réservées : <span class="info-val">{{ calcBooked() }}</span>
     </div>
   </div>
 </div>

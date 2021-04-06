@@ -14,11 +14,9 @@ import {
   styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
-  isLogged$: Observable<boolean>;
   playerLogged$: Observable<Player>;
 
   constructor(private store: Store<{ count: number }>) {
-    this.isLogged$ = store.select(selectIsPlayerLogged);
     this.playerLogged$ = store.select(selectPlayerLogged);
   }
 

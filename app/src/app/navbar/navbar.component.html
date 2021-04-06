@@ -53,20 +53,24 @@
       >
         Inscription
       </a>-->
-      <a routerLink="/login" class="navbar-item" *ngIf="!(isLogged$ | async)">
+      <a
+        routerLink="/login"
+        class="navbar-item"
+        *ngIf="!(playerLogged$ | async)"
+      >
         Connexion
       </a>
       <a
         routerLink="/register"
         class="navbar-item"
-        *ngIf="!(isLogged$ | async)"
+        *ngIf="!(playerLogged$ | async)"
       >
         Créer un compte
       </a>
-      <span *ngIf="isLogged$ && playerLogged$ | async" class="navbar-item">
+      <a *ngIf="playerLogged$ | async" class="navbar-item">
         {{ (playerLogged$ | async).username }}
-      </span>
-      <a (click)="logOut()" class="navbar-item" *ngIf="isLogged$ | async">
+      </a>
+      <a (click)="logOut()" class="navbar-item" *ngIf="playerLogged$ | async">
         Se déconnecter
       </a>
     </div>

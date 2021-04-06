@@ -45,11 +45,12 @@
                 <button *ngIf="!role.player && evalCondition(role)">
                   S'inscrire
                 </button>
-                <!--TODO: Doesn't work-->
                 <button
                   *ngIf="
-                    role.player == playerLogged$ || playerLogged$.isAdmin
-                      | async
+                    (playerLogged$ | async) &&
+                    ((role.player &&
+                      role.player.id == (playerLogged$ | async).id) ||
+                      (playerLogged$ | async).isAdmin)
                   "
                 >
                   Editer

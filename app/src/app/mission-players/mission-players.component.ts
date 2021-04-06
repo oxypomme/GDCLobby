@@ -15,7 +15,7 @@ import { selectPlayerLogged } from '../store/player/player.selectors';
 export class MissionPlayersComponent implements OnInit {
   @Input() mission?: Mission;
 
-  playerLogged$: Observable<Player>;
+  playerLogged$?: Observable<Player>;
 
   constructor(
     private missionService: MissionService,

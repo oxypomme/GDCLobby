@@ -1,0 +1,60 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+  <!-- menu burger mobile -->
+  <div class="navbar-brand">
+    <a
+      role="button"
+      class="navbar-burger burger"
+      aria-label="menu"
+      aria-expanded="false"
+      data-target="navbarBasicExample"
+      id="navbar-burger"
+      onclick="menu_open()"
+    >
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbar-menu" class="navbar-menu">
+    <!-- navbar left part -->
+    <div class="navbar-start">
+      <a routerLink="/" class="navbar-item"> Accueil </a>
+
+      <div class="navbar-item has-dropdown is-hoverable" id="navbar-dropdown">
+        <a class="navbar-link" onclick="dropdown_open()"> Briefing </a>
+
+        <div class="navbar-dropdown">
+          <a routerLink="/context" class="navbar-item"> Contexte </a>
+          <a routerLink="/orga-blufor" class="navbar-item">
+            Organisation BLUFOR
+          </a>
+          <a routerLink="/mission" class="navbar-item"> Mission </a>
+          <a routerLink="/intel" class="navbar-item intel-hide intel-J7">
+            Intel
+          </a>
+        </div>
+      </div>
+
+      <a routerLink="/modset" class="navbar-item"> Modset </a>
+
+      <a routerLink="/contact" class="navbar-item"> Contact </a>
+
+      <a routerLink="/list-player" class="navbar-item"> Liste des joueurs </a>
+    </div>
+
+    <!-- navbar right part -->
+    <div class="navbar-end">
+      <span class="separator"></span>
+      <a
+        href="https://docs.google.com/spreadsheets/d/1ifGPagrc4w9XfaBiUjkKJxSEgeZou6fhCFJFlbZ18EY/edit#gid=0"
+        class="navbar-item"
+        target="_blank"
+      >
+        Inscription
+      </a>
+      <a routerLink="/login" class="navbar-item"> Connexion </a>
+      <a routerLink="/register" class="navbar-item"> Créer un compte </a>
+    </div>
+  </div>
+</nav>

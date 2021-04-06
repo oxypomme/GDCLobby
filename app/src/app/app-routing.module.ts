@@ -1,14 +1,26 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+import { ContactComponent } from './contact/contact.component';
+import { LoginComponent } from './login/login.component';
+import { MissionBriefContextComponent } from './mission-brief-context/mission-brief-context.component';
+import { MissionBriefMissionComponent } from './mission-brief-mission/mission-brief-mission.component';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
-import { MissionsComponent } from './missions/missions.component';
-import { PlayerComponent } from './player/player.component';
+import { MissionModsetComponent } from './mission-modset/mission-modset.component';
+import { MissionOrgaBlueforComponent } from './mission-orga-bluefor/mission-orga-bluefor.component';
+import { MissionPlayersComponent } from './mission-players/mission-players.component';
+import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'mission', pathMatch: 'full' },
-  { path: 'mission', component: MissionsComponent },
-  { path: 'missions/:id', component: MissionDetailComponent },
-  { path: 'profile', component: PlayerComponent },
+  { path: '', component: MissionDetailComponent },
+  { path: 'context', component: MissionBriefContextComponent },
+  { path: 'orga-blufor', component: MissionOrgaBlueforComponent },
+  { path: 'mission', component: MissionBriefMissionComponent },
+  { path: 'modset', component: MissionModsetComponent },
+  { path: 'contact', component: ContactComponent },
+  { path: 'list-player', component: MissionPlayersComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   // { path: '**', component: PageNotFoundComponent },
 ];
 

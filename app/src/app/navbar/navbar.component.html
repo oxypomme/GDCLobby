@@ -46,15 +46,26 @@
     <!-- navbar right part -->
     <div class="navbar-end">
       <span class="separator"></span>
-      <a
+      <!--<a
         href="https://docs.google.com/spreadsheets/d/1ifGPagrc4w9XfaBiUjkKJxSEgeZou6fhCFJFlbZ18EY/edit#gid=0"
         class="navbar-item"
         target="_blank"
       >
         Inscription
+      </a>-->
+      <a routerLink="/login" class="navbar-item" *ngIf="!(isLogged$ | async)">
+        Connexion
       </a>
-      <a routerLink="/login" class="navbar-item"> Connexion </a>
-      <a routerLink="/register" class="navbar-item"> Créer un compte </a>
+      <a
+        routerLink="/register"
+        class="navbar-item"
+        *ngIf="!(isLogged$ | async)"
+      >
+        Créer un compte
+      </a>
+      <a (click)="logOut()" class="navbar-item" *ngIf="isLogged$ | async">
+        Se déconnecter
+      </a>
     </div>
   </div>
 </nav>

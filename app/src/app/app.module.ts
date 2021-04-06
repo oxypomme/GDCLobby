@@ -9,7 +9,6 @@ import { AppComponent } from './app.component';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { effects, store } from './store';
-import { PlayerComponent } from './player/player.component';
 import { EffectsModule } from '@ngrx/effects';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -27,7 +26,6 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     AppComponent,
     MissionDetailComponent,
-    PlayerComponent,
     ContactComponent,
     NavbarComponent,
     MissionInfoPanelComponent,

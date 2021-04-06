@@ -27,15 +27,16 @@
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
-            <label class="label">Email</label>
+            <label class="label">Pseudo</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control">
                 <input
                   class="input"
-                  type="email"
-                  placeholder="me@example.com"
+                  type="text"
+                  [(ngModel)]="username"
+                  placeholder="me"
                 />
               </p>
             </div>
@@ -49,7 +50,12 @@
           <div class="field-body">
             <div class="field">
               <p class="control">
-                <input class="input" type="email" placeholder="example_mdp" />
+                <input
+                  class="input"
+                  [(ngModel)]="password"
+                  type="password"
+                  placeholder="example_mdp"
+                />
               </p>
             </div>
           </div>
@@ -63,10 +69,7 @@
 
         <div class="field is-grouped is-grouped-right">
           <p class="control">
-            <a class="button is-primary"> Connexion </a>
-          </p>
-          <p class="control">
-            <a class="button is-light"> Annuler </a>
+            <a class="button is-primary" (click)="logIn()"> Connexion </a>
           </p>
         </div>
 

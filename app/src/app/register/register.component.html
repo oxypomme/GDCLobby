@@ -31,13 +31,18 @@
           <div class="field-body">
             <div class="field">
               <p class="control">
-                <input class="input" type="text" placeholder="pseudo" />
+                <input
+                  class="input"
+                  [(ngModel)]="username"
+                  type="text"
+                  placeholder="pseudo"
+                />
               </p>
             </div>
           </div>
         </div>
 
-        <div class="field is-horizontal">
+        <!--<div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Team</label>
           </div>
@@ -53,9 +58,9 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>-->
 
-        <div class="field is-horizontal">
+        <!--<div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Email</label>
           </div>
@@ -70,7 +75,7 @@
               </p>
             </div>
           </div>
-        </div>
+        </div>-->
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -79,7 +84,12 @@
           <div class="field-body">
             <div class="field">
               <p class="control">
-                <input class="input" type="email" placeholder="example_mdp" />
+                <input
+                  class="input"
+                  [(ngModel)]="password"
+                  type="password"
+                  placeholder="example_mdp"
+                />
               </p>
             </div>
           </div>
@@ -89,10 +99,7 @@
 
         <div class="field is-grouped is-grouped-right">
           <p class="control">
-            <a class="button is-primary"> Créer </a>
-          </p>
-          <p class="control">
-            <a class="button is-light"> Annuler </a>
+            <a class="button is-primary" (click)="register()"> Créer </a>
           </p>
         </div>
 

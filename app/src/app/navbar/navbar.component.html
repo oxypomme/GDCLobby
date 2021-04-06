@@ -67,7 +67,11 @@
       >
         Créer un compte
       </a>
-      <a *ngIf="playerLogged$ | async" class="navbar-item">
+      <a
+        routerLink="/profile"
+        class="navbar-item"
+        *ngIf="playerLogged$ | async"
+      >
         {{ (playerLogged$ | async).username }}
       </a>
       <a (click)="logOut()" class="navbar-item" *ngIf="playerLogged$ | async">

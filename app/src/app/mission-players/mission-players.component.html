@@ -17,7 +17,6 @@
         <small>
           Liste des joueurs inscrit pour l'<b>Opération Rogue Wave Piercer</b>.
         </small>
-
         <br /><br />
 
         <table
@@ -29,7 +28,7 @@
               <th>#</th>
               <th>Nom</th>
               <th>Joueur</th>
-              <th></th>
+              <th *ngIf="playerLogged$ | async"></th>
             </tr>
           </thead>
           <tbody *ngFor="let role of mission.roles">
@@ -41,19 +40,31 @@
                   [{{ role.team?.name }}] {{ role.player.username }}
                 </span>
               </td>
-              <td>
-                <button *ngIf="!role.player && evalCondition(role)">
-                  S'inscrire
-                </button>
+              <td *ngIf="playerLogged$ | async">
                 <button
-                  *ngIf="
-                    (playerLogged$ | async) &&
-                    ((role.player &&
-                      role.player.id == (playerLogged$ | async).id) ||
-                      (playerLogged$ | async).isAdmin)
-                  "
+                  routerLink="{{ role.id }}"
+                  class="button is-small is-outlined"
+                  *ngIf="(playerLogged$ | async).isAdmin"
                 >
                   Editer
+                </button>
+                <button
+                  class="button is-small is-outlined"
+                  (click)="leaveMission(role)"
+                  *ngIf="
+                    role.player && role.player.id === (playerLogged$ | async).id
+                  "
+                >
+                  Déserter
+                </button>
+                <button
+                  class="button is-small is-outlined"
+                  (click)="joinMission(role)"
+                  *ngIf="
+                    !isAlreadyRegistered && !role.player && evalCondition(role)
+                  "
+                >
+                  S'inscrire
                 </button>
               </td>
             </tr>

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
 import { Role } from '../role';
-import { Store } from '@ngrx/store';
 import { Player } from '../player';
-import { Observable } from 'rxjs';
 import { selectPlayerLogged } from '../store/player/player.selectors';
 
 @Component({

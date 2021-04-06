@@ -1,6 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
+
 import { Player } from 'src/app/player';
 import PlayerActions from './player.actions';
+import PlayerHydrationActions from './hydration/hydration.actions';
 
 export interface JWToken {
   accessToken: string;
@@ -20,6 +22,10 @@ export const initialState: PlayerState = {
 
 const _playerReducer = createReducer(
   initialState,
+  on(PlayerHydrationActions.success, (_, { player: state }) => ({
+    ...state,
+  })),
+
   on(PlayerActions.register.request, (state) => ({
     ...state,
     err: undefined,
@@ -37,10 +43,7 @@ const _playerReducer = createReducer(
     isLoading: false,
   })),
 
-  on(PlayerActions.logOut, (state) => ({
-    ...state,
-    jwt: undefined,
-  })),
+  on(PlayerActions.logOut, () => initialState),
 
   on(PlayerActions.fetch.request, (state) => ({
     ...state,

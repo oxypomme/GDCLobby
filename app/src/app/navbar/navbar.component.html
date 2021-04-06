@@ -63,6 +63,9 @@
       >
         Créer un compte
       </a>
+      <span *ngIf="isLogged$ && playerLogged$ | async" class="navbar-item">
+        {{ (playerLogged$ | async).username }}
+      </span>
       <a (click)="logOut()" class="navbar-item" *ngIf="isLogged$ | async">
         Se déconnecter
       </a>

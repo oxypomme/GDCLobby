@@ -43,6 +43,17 @@ const _playerReducer = createReducer(
     isLoading: false,
   })),
 
+  on(PlayerActions.update.request, (state) => ({
+    ...state,
+    err: undefined,
+    isLoading: true,
+  })),
+  on(PlayerActions.update.success, (state, { profile }) => ({
+    ...state,
+    profile,
+    isLoading: false,
+  })),
+
   on(PlayerActions.logOut, () => initialState),
 
   on(PlayerActions.fetch.request, (state) => ({
@@ -54,6 +65,16 @@ const _playerReducer = createReducer(
     ...state,
     isLoading: false,
     profile,
+  })),
+
+  on(PlayerActions.delete.request, (state) => ({
+    ...state,
+    err: undefined,
+    isLoading: true,
+  })),
+  on(PlayerActions.delete.request, (state) => ({
+    ...state,
+    isLoading: false,
   })),
 
   on(PlayerActions.failed, (state, { err }) => ({

@@ -59,6 +59,48 @@ export class PlayerService {
       );
   }
 
+  update(
+    { username, password }: Creditentials,
+    { accessToken }: JWToken
+  ): Observable<Player> {
+    return this.http
+      .patch<Player>(
+        this.playerUrl,
+        {
+          username,
+          password,
+        },
+        {
+          headers: {
+            ContentType: 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .pipe(
+        tap(
+          (_) => this.log('try updating'),
+          catchError(this.handleError<Player>('update'))
+        )
+      );
+  }
+
+  delete({ accessToken }: JWToken): Observable<Player> {
+    return this.http
+      .delete<Player>(this.playerUrl, {
+        headers: {
+          ContentType: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .pipe(
+        tap(
+          (_) => this.log('try deleting'),
+          catchError(this.handleError<Player>('delete'))
+        )
+      );
+  }
+
   fetch({ accessToken }: JWToken): Observable<Player> {
     return this.http
       .get<Player>(this.playerUrl, {

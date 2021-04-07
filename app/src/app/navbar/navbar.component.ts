@@ -3,10 +3,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Player } from '../player';
 import PlayerActions from '../store/player/player.actions';
-import {
-  selectIsPlayerLogged,
-  selectPlayerLogged,
-} from '../store/player/player.selectors';
+import { selectPlayerLogged } from '../store/player/player.selectors';
 
 @Component({
   selector: 'app-navbar',

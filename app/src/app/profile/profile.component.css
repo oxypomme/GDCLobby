@@ -1,0 +1,8 @@
+.mybuttons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.mybuttons > *:first-of-type {
+  margin-right: 10px;
+}

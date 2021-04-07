@@ -43,6 +43,34 @@ export class PlayerEffects {
     )
   );
 
+  update$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlayerActions.update.request),
+      exhaustMap(({ credentials, jwt }) =>
+        this.playerService.update(credentials, jwt).pipe(
+          map((profile: Player) =>
+            profile
+              ? PlayerActions.update.success({ profile })
+              : PlayerActions.failed({ err: 'An error occured' })
+          ),
+          catchError((err) => of(PlayerActions.failed({ err })))
+        )
+      )
+    )
+  );
+
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlayerActions.delete.request),
+      exhaustMap(({ jwt }) =>
+        this.playerService.delete(jwt).pipe(
+          map((profile: any) => PlayerActions.logOut()),
+          catchError((err) => of(PlayerActions.failed({ err })))
+        )
+      )
+    )
+  );
+
   fetch$ = createEffect(() =>
     this.actions$.pipe(
       ofType(PlayerActions.fetch.request),

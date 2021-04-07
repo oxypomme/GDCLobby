@@ -23,6 +23,24 @@ export default {
     ),
   },
 
+  update: {
+    request: createAction(
+      '[Player Component] Update Requested',
+      props<{ credentials: Creditentials; jwt: JWToken }>()
+    ),
+    success: createAction(
+      '[Player Component] Update Success',
+      props<{ profile: Player }>()
+    ),
+  },
+
+  delete: {
+    request: createAction(
+      '[Player Component] Delete Requested',
+      props<{ jwt: JWToken }>()
+    ),
+  },
+
   fetch: {
     request: createAction(
       '[Player Component] Fetch Requested',

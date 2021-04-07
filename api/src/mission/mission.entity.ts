@@ -24,9 +24,4 @@ export class Mission {
   @ApiProperty({ type: () => Role })
   @OneToMany(() => Role, (r) => r.mission, { cascade: true })
   roles: Role[];
-
-  @ApiProperty({ type: () => Team })
-  @ManyToMany(() => Team, (t) => t.missions, { cascade: ['insert', 'update'] })
-  @JoinTable({ name: 'mission_teams' })
-  teams: Team[];
 }

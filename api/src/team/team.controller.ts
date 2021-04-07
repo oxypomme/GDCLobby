@@ -11,13 +11,13 @@ import { TeamService } from './team.service';
   },
   query: {
     join: {
-      players: {
+      roles: {
         eager: true,
-        exclude: ['isAdmin', 'password'],
       },
-      missions: {
+      'roles.player': {
         eager: true,
         required: false,
+        exclude: ['isAdmin', 'password'],
       },
     },
   },

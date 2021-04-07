@@ -17,6 +17,8 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
       },
       'roles.player': {
         eager: true,
+        required: false,
+        exclude: ['isAdmin', 'password'],
       },
     },
   },

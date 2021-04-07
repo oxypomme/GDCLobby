@@ -27,7 +27,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
       },
       player: {
         eager: true,
-        exclude: ['email'],
+        exclude: ['isAdmin', 'password'],
       },
     },
   },

@@ -8,6 +8,7 @@ import {
 import { ApiProperty } from '@nestjs/swagger';
 import { Mission } from 'src/mission/mission.entity';
 import { Player } from 'src/player/player.entity';
+import { Role } from 'src/role/role.entity';
 
 @Entity()
 export class Team {
@@ -17,11 +18,7 @@ export class Team {
   @Column({ unique: true })
   name: string;
 
-  @ApiProperty({ type: () => Player })
-  @OneToMany(() => Player, (p) => p.team)
-  players: Player[];
-
-  @ApiProperty({ type: () => Mission })
-  @ManyToMany(() => Mission, (m) => m.teams, { cascade: ['insert', 'update'] })
-  missions: Mission[];
+  @ApiProperty({ type: () => Role })
+  @OneToMany(() => Role, (r) => r.team)
+  players: Role[];
 }

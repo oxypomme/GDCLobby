@@ -14,16 +14,12 @@ import { MissionService } from './mission.service';
       roles: {
         eager: true,
       },
-      'roles.team': {
-        eager: true,
-        required: false,
-      },
       'roles.player': {
         eager: true,
         required: false,
         exclude: ['isAdmin', 'password'],
       },
-      teams: {
+      'roles.team': {
         eager: true,
         required: false,
       },

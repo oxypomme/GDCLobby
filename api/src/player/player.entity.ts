@@ -34,15 +34,6 @@ export class Player {
     this.password = await bcrypt.hash(this.password, 10);
   }
 
-  @ApiProperty({ type: () => Team })
-  @ManyToOne(() => Team, (t) => t)
-  team: Team;
-
-  @ApiHideProperty()
-  @Column()
-  @Exclude()
-  teamId: number;
-
   @ApiProperty({ type: () => Role })
   @OneToMany(() => Role, (r) => r.player)
   roles: Role[];

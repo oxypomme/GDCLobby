@@ -26,9 +26,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
         eager: true,
         required: false,
       },
-      team: {
-        eager: true,
-      },
     },
   },
   routes: {

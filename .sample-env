@@ -1,0 +1,2 @@
+MYSQL_ROOT_PASSWORD = MySecuredPassword # Password for the database
+MYSQL_DATABASE = MyDatabase # The database used for the API

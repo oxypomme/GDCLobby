@@ -11,10 +11,7 @@ import { TeamService } from './team.service';
   },
   query: {
     join: {
-      roles: {
-        eager: true,
-      },
-      'roles.player': {
+      players: {
         eager: true,
         exclude: ['isAdmin'],
       },

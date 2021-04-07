@@ -6,8 +6,8 @@ import {
   ManyToMany,
 } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Role } from 'src/role/role.entity';
 import { Mission } from 'src/mission/mission.entity';
+import { Player } from 'src/player/player.entity';
 
 @Entity()
 export class Team {
@@ -17,9 +17,9 @@ export class Team {
   @Column({ unique: true })
   name: string;
 
-  @ApiProperty({ type: () => Role })
-  @OneToMany(() => Role, (r) => r.team)
-  roles: Role[];
+  @ApiProperty({ type: () => Player })
+  @OneToMany(() => Player, (p) => p.team)
+  players: Player[];
 
   @ApiProperty({ type: () => Mission })
   @ManyToMany(() => Mission, (m) => m.teams, { cascade: ['insert', 'update'] })

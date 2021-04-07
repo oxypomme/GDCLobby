@@ -5,7 +5,7 @@ require('dotenv').config();
 
 const config: TypeOrmModuleOptions = {
   type: 'mysql',
-  host: 'db',
+  host: process.env.MYSQL_HOST,
   port: 3306,
   username: 'root',
   password: process.env.MYSQL_ROOT_PASSWORD,

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 05 avr. 2021 à 00:15
+-- Généré le : mer. 07 avr. 2021 à 15:25
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -53,6 +53,7 @@ CREATE TABLE `mission_teams` (
 CREATE TABLE `player` (
   `PlayerId` int(11) NOT NULL,
   `Username` varchar(64) NOT NULL,
+  `TeamId` int(11) NOT NULL,
   `Password` varchar(64) NOT NULL,
   `IsAdmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -67,7 +68,6 @@ CREATE TABLE `role` (
   `RoleId` int(11) NOT NULL,
   `MissionId` int(11) NOT NULL,
   `PlayerId` int(11) DEFAULT NULL,
-  `TeamId` int(11) DEFAULT NULL,
   `Name` varchar(255) NOT NULL,
   `IsBooked` tinyint(1) NOT NULL DEFAULT 0,
   `Condi` text NOT NULL COMMENT 'Conditions selon lesquelles le slot est considéré comme “ouvert”'
@@ -114,7 +114,6 @@ ALTER TABLE `player`
 ALTER TABLE `role`
   ADD PRIMARY KEY (`RoleId`),
   ADD KEY `PlayerId` (`PlayerId`),
-  ADD KEY `TeamId` (`TeamId`),
   ADD KEY `MissionId` (`MissionId`);
 
 --

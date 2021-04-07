@@ -4,11 +4,13 @@ import {
   Column,
   OneToMany,
   BeforeInsert,
+  ManyToOne,
 } from 'typeorm';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
 import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/role.entity';
+import { Team } from 'src/team/team.entity';
 
 @Entity()
 export class Player {
@@ -30,6 +32,15 @@ export class Player {
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
   }
+
+  @ApiProperty({ type: () => Team })
+  @ManyToOne(() => Team, (t) => t)
+  team: Team;
+
+  @ApiHideProperty()
+  @Column()
+  @Exclude()
+  teamId: number;
 
   @ApiProperty({ type: () => Role })
   @OneToMany(() => Role, (r) => r.player)

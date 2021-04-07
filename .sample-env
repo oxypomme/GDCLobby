@@ -1,2 +1,3 @@
+MYSQL_HOST = 127.0.0.1 # IP to MySQL Host
 MYSQL_ROOT_PASSWORD = MySecuredPassword # Password for the database
 MYSQL_DATABASE = MyDatabase # The database used for the API

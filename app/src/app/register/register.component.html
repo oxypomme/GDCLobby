@@ -42,18 +42,18 @@
           </div>
         </div>
 
-        <div class="field is-horizontal">
+        <div class="field is-horizontal" *ngIf="teams">
           <div class="field-label is-normal">
             <label class="label">Team</label>
           </div>
           <div class="field-body">
             <div class="field">
               <div class="select">
-                <select>
-                  <option value="">-- Choisir une team --</option>
-                  <option value="GDC">GDC</option>
-                  <option value="GIE">GIE</option>
-                  <option value="autres">Autres...</option>
+                <select [(ngModel)]="selectedTeam">
+                  <option value="" disabled>-- Choisir une team --</option>
+                  <option *ngFor="let team of teams" [value]="team.id">
+                    {{ team.name }}
+                  </option>
                 </select>
               </div>
             </div>

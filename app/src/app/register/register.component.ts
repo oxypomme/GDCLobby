@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import PlayerActions from '../store/player/player.actions';
 import { selectIsPlayerLogged } from '../store/player/player.selectors';
+import { Team } from '../team';
+import { TeamsService } from '../teams.service';
 
 @Component({
   selector: 'app-register',
@@ -12,11 +14,14 @@ import { selectIsPlayerLogged } from '../store/player/player.selectors';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
+  teams: Team[];
+  selectedTeam: number;
   username: string;
   password: string;
   isLogged$: Observable<boolean>;
 
   constructor(
+    private teamService: TeamsService,
     private store: Store<{ count: number }>,
     private location: Location
   ) {
@@ -27,12 +32,23 @@ export class RegisterComponent implements OnInit {
     this.isLogged$.subscribe((isLogged: boolean) => {
       if (isLogged) this.location.back();
     });
+    this.getTeams();
+  }
+
+  getTeams() {
+    this.teamService.getTeams().subscribe((teams) => {
+      this.teams = teams;
+    });
   }
 
   register() {
     this.store.dispatch(
       PlayerActions.register.request({
-        credentials: { username: this.username, password: this.password },
+        credentials: {
+          username: this.username,
+          password: this.password,
+          team: this.selectedTeam,
+        },
       })
     );
   }

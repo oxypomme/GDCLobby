@@ -21,7 +21,7 @@ import { MissionService } from './mission.service';
       'roles.player': {
         eager: true,
         required: false,
-        exclude: ['isAdmin'],
+        exclude: ['isAdmin', 'password'],
       },
       teams: {
         eager: true,

@@ -13,7 +13,7 @@ import { TeamService } from './team.service';
     join: {
       players: {
         eager: true,
-        exclude: ['isAdmin'],
+        exclude: ['isAdmin', 'password'],
       },
       missions: {
         eager: true,

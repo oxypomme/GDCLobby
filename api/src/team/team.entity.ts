@@ -1,13 +1,5 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  OneToMany,
-  ManyToMany,
-} from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
 import { ApiProperty } from '@nestjs/swagger';
-import { Mission } from 'src/mission/mission.entity';
-import { Player } from 'src/player/player.entity';
 import { Role } from 'src/role/role.entity';
 
 @Entity()

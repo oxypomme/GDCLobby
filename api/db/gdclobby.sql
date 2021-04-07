@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mer. 07 avr. 2021 à 15:25
+-- Généré le : mer. 07 avr. 2021 à 18:10
 -- Version du serveur :  10.4.14-MariaDB
 -- Version de PHP : 7.4.10
 
@@ -36,24 +36,12 @@ CREATE TABLE `mission` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `mission_teams`
---
-
-CREATE TABLE `mission_teams` (
-  `teamTeamId` int(11) NOT NULL,
-  `missionMissionId` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `player`
 --
 
 CREATE TABLE `player` (
   `PlayerId` int(11) NOT NULL,
   `Username` varchar(64) NOT NULL,
-  `TeamId` int(11) NOT NULL,
   `Password` varchar(64) NOT NULL,
   `IsAdmin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -68,6 +56,7 @@ CREATE TABLE `role` (
   `RoleId` int(11) NOT NULL,
   `MissionId` int(11) NOT NULL,
   `PlayerId` int(11) DEFAULT NULL,
+  `TeamId` int(11) NOT NULL,
   `Name` varchar(255) NOT NULL,
   `IsBooked` tinyint(1) NOT NULL DEFAULT 0,
   `Condi` text NOT NULL COMMENT 'Conditions selon lesquelles le slot est considéré comme “ouvert”'
@@ -93,13 +82,6 @@ CREATE TABLE `team` (
 --
 ALTER TABLE `mission`
   ADD PRIMARY KEY (`MissionId`);
-
---
--- Index pour la table `mission_teams`
---
-ALTER TABLE `mission_teams`
-  ADD PRIMARY KEY (`teamTeamId`,`missionMissionId`),
-  ADD KEY `missionMissionId` (`missionMissionId`);
 
 --
 -- Index pour la table `player`

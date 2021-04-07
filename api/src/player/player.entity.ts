@@ -4,14 +4,11 @@ import {
   Column,
   OneToMany,
   BeforeInsert,
-  ManyToOne,
   BeforeUpdate,
 } from 'typeorm';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/role.entity';
-import { Team } from 'src/team/team.entity';
 
 @Entity()
 export class Player {

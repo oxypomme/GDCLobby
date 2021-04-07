@@ -37,7 +37,7 @@
               <td>{{ role.name }}</td>
               <td>
                 <span *ngIf="role.player">
-                  [{{ role.team?.name }}] {{ role.player.username }}
+                  [{{ role.player.team.name }}] {{ role.player.username }}
                 </span>
               </td>
               <td *ngIf="playerLogged$ | async">
@@ -70,6 +70,7 @@
             </tr>
           </tbody>
         </table>
+        <button class="button is-fullwidth">Ajout d'un slot</button>
       </div>
     </div>
   </div>

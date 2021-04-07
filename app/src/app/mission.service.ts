@@ -52,6 +52,15 @@ export class MissionService {
       )
     );
   }
+
+  createRole(missId: number, role: Partial<Role>): Observable<Role> {
+    const url = `${this.missionsUrl}/${missId}/roles`;
+    return this.http.post<Role>(url, role, this.httpOptions).pipe(
+      tap((_) => this.log(`fetched mission mss=${missId}`)),
+      catchError(this.handleError<Role>(`getRole mss=${missId}`))
+    );
+  }
+
   updateRole(
     id: number,
     role: Role,

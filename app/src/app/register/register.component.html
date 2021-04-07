@@ -42,24 +42,6 @@
           </div>
         </div>
 
-        <div class="field is-horizontal" *ngIf="teams">
-          <div class="field-label is-normal">
-            <label class="label">Team</label>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <div class="select">
-                <select [(ngModel)]="selectedTeam">
-                  <option value="" disabled>-- Choisir une team --</option>
-                  <option *ngFor="let team of teams" [value]="team.id">
-                    {{ team.name }}
-                  </option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
-
         <!--<div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Email</label>

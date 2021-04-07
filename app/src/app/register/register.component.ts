@@ -32,13 +32,6 @@ export class RegisterComponent implements OnInit {
     this.isLogged$.subscribe((isLogged: boolean) => {
       if (isLogged) this.location.back();
     });
-    this.getTeams();
-  }
-
-  getTeams() {
-    this.teamService.getTeams().subscribe((teams) => {
-      this.teams = teams;
-    });
   }
 
   register() {
@@ -47,7 +40,6 @@ export class RegisterComponent implements OnInit {
         credentials: {
           username: this.username,
           password: this.password,
-          team: this.selectedTeam,
         },
       })
     );

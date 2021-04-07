@@ -13,78 +13,107 @@
   <div class="content">
     <div class="columns">
       <div class="column">
-        <div *ngIf="role">
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Nom du rôle</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="Soldat"
-                    value="{{ role.name }}"
-                  />
-                </p>
-              </div>
-            </div>
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Nom du rôle</label>
           </div>
-
-          <div class="field is-horizontal" *ngIf="role.player">
-            <div class="field-label is-normal">
-              <label class="label">Joueur</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="me"
-                    value="{{ role.player.username }}"
-                    disabled
-                  />
-                </p>
-              </div>
-              <div class="field is-grouped is-grouped-right">
-                <p class="control">
-                  <button class="button is-danger">Exclure</button>
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="field is-horizontal">
-            <div class="field-label is-normal">
-              <label class="label">Condition</label>
-            </div>
-            <div class="field-body">
-              <div class="field">
-                <p class="control">
-                  <input
-                    class="input"
-                    type="text"
-                    placeholder="true"
-                    value="{{ role.condition }}"
-                  />
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="mybuttons">
-            <div class="field is-grouped is-grouped-right">
+          <div class="field-body">
+            <div class="field">
               <p class="control">
-                <button class="button is-danger">Supprimer</button>
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="Soldat"
+                  value="{{ name }}"
+                />
               </p>
             </div>
+          </div>
+        </div>
 
-            <div class="field is-grouped is-grouped-right">
+        <div class="field is-horizontal" *ngIf="teams">
+          <div class="field-label is-normal">
+            <label class="label">Team</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="select">
+                <select [(ngModel)]="selectedTeam">
+                  <option *ngFor="let team of teams" [value]="team.id">
+                    {{ team.name }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal" *ngIf="role ? role.player : true">
+          <div class="field-label is-normal">
+            <label class="label">Joueur</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
               <p class="control">
-                <button class="button is-primary">Mettre à jour</button>
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="me"
+                  value="{{ role?.player.username }}"
+                  [disabled]="role?.player"
+                />
               </p>
             </div>
+            <div class="field is-grouped is-grouped-right" *ngIf="role?.player">
+              <p class="control">
+                <button class="button is-danger">Exclure</button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Condition</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="true"
+                  value="{{ condition }}"
+                />
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <label class="checkbox">
+          <input type="checkbox" value="{{ isBooked }}" />
+          Rôle Réservé
+        </label>
+
+        <div class="mybuttons">
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button" (click)="goBack()">Annuler</button>
+            </p>
+          </div>
+
+          <div class="field is-grouped is-grouped-right" *ngIf="role">
+            <p class="control">
+              <button class="button is-danger">Supprimer</button>
+            </p>
+          </div>
+
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button is-primary" (click)="validate()">
+                {{ role ? "Mettre à jour" : "Créer" }}
+              </button>
+            </p>
           </div>
         </div>
       </div>

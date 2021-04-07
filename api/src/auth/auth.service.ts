@@ -44,7 +44,6 @@ export class AuthService {
     const payload = {
       username: user.username,
       password: user.password,
-      teamId: user.team,
     };
     const entityManager = getManager();
     const obj = entityManager.create(Player, payload);

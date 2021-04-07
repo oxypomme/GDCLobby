@@ -20,14 +20,12 @@ import { TeamsService } from '../teams.service';
 export class ProfileComponent implements OnInit {
   playerLogged$: Observable<Player>;
   token: JWToken;
-  teams: Team[];
 
   selectedTeam: number;
   username: string;
   password: string;
 
   constructor(
-    private teamService: TeamsService,
     private store: Store<{ count: number }>,
     private location: Location
   ) {
@@ -42,15 +40,7 @@ export class ProfileComponent implements OnInit {
       next: (player) => {
         if (!player) this.location.back();
         this.username = player?.username;
-        this.selectedTeam = player?.team.id;
       },
-    });
-    this.getTeams();
-  }
-
-  getTeams() {
-    this.teamService.getTeams().subscribe((teams) => {
-      this.teams = teams;
     });
   }
 
@@ -60,9 +50,6 @@ export class ProfileComponent implements OnInit {
         credentials: {
           username: this.username,
           password: this.password,
-          team: this.teams.find((t) => {
-            return t.id === +this.selectedTeam;
-          }),
         },
         jwt: this.token,
       })

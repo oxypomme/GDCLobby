@@ -40,7 +40,7 @@ export class PlayerService {
       );
   }
 
-  register({ username, password, team }: Creditentials): Observable<Player> {
+  register({ username, password }: Creditentials): Observable<Player> {
     const url = `${this.authUrl}/register`;
     return this.http
       .post<Player>(
@@ -48,7 +48,6 @@ export class PlayerService {
         {
           username,
           password,
-          team,
         },
         this.httpOptions
       )
@@ -61,7 +60,7 @@ export class PlayerService {
   }
 
   update(
-    { username, password, team }: Creditentials,
+    { username, password }: Creditentials,
     { accessToken }: JWToken
   ): Observable<Player> {
     return this.http
@@ -70,7 +69,6 @@ export class PlayerService {
         {
           username,
           password,
-          team,
         },
         {
           headers: {

@@ -22,6 +22,7 @@ import { MissionOrgaBlueforComponent } from './mission-orga-bluefor/mission-orga
 import { MissionPlayersComponent } from './mission-players/mission-players.component';
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
+import { MissionPlayersDetailComponent } from './mission-players-detail/mission-players-detail.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ProfileComponent } from './profile/profile.component';
     MissionPlayersComponent,
     RegisterComponent,
     ProfileComponent,
+    MissionPlayersDetailComponent,
   ],
   imports: [
     BrowserModule,

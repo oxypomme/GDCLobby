@@ -5,6 +5,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { Mission } from './mission';
 import { environment } from '../environments/environment';
+import { Role } from './role';
+import { JWToken } from './store/player/player.reducer';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +41,34 @@ export class MissionService {
       tap((_) => this.log(`updated mission id=${mission.id}`)),
       catchError(this.handleError<any>('updateMission'))
     );
+  }
+
+  getRole(missId: number, roleId: number): Observable<any> {
+    const url = `${this.missionsUrl}/${missId}/roles/${roleId}`;
+    return this.http.get<Mission>(url).pipe(
+      tap((_) => this.log(`fetched mission mss=${missId} id=${roleId}`)),
+      catchError(
+        this.handleError<Mission>(`getRole mss=${missId} id=${roleId}`)
+      )
+    );
+  }
+  updateRole(
+    id: number,
+    role: Role,
+    { accessToken }: JWToken
+  ): Observable<any> {
+    const url = `${this.missionsUrl}/${id}/roles/${role.id}`;
+    return this.http
+      .patch(url, role, {
+        headers: {
+          ContentType: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .pipe(
+        tap((_) => this.log(`updated role mss=${id} id=${role.id}`)),
+        catchError(this.handleError<any>('updateRole mss=${id} id=${role.id}'))
+      );
   }
 
   private log(message: string): void {

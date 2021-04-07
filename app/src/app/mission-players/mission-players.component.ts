@@ -5,7 +5,11 @@ import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
 import { Role } from '../role';
 import { Player } from '../player';
-import { selectPlayerLogged } from '../store/player/player.selectors';
+import {
+  selectPlayerLogged,
+  selectPlayerToken,
+} from '../store/player/player.selectors';
+import { JWToken } from '../store/player/player.reducer';
 
 @Component({
   selector: 'app-mission-players',
@@ -16,13 +20,22 @@ export class MissionPlayersComponent implements OnInit {
   @Input() mission?: Mission;
 
   playerLogged$?: Observable<Player>;
+  playerLogged: Player;
   isAlreadyRegistered: boolean;
+  token: JWToken;
 
   constructor(
     private missionService: MissionService,
     private store: Store<{ count: number }>
   ) {
     this.playerLogged$ = this.store.select(selectPlayerLogged);
+    this.playerLogged$.subscribe({
+      next: (player) => (this.playerLogged = player),
+    });
+
+    this.store.select(selectPlayerToken).subscribe({
+      next: (jwt) => (this.token = jwt),
+    });
   }
 
   ngOnInit(): void {
@@ -42,11 +55,33 @@ export class MissionPlayersComponent implements OnInit {
   }
 
   joinMission(role: Role): void {
-    console.log('JOINING MISSION');
+    const id = 1;
+    const roleUpdated = {
+      ...role,
+      player: this.playerLogged,
+      team: undefined,
+    };
+    this.missionService
+      .updateRole(id, roleUpdated, this.token)
+      .subscribe((role) => {
+        console.log('callback', role);
+        this.getMission();
+      });
   }
 
   leaveMission(role: Role): void {
-    console.log('LEAVING MISSION');
+    const id = 1;
+    const roleUpdated = {
+      ...role,
+      player: null,
+      team: null,
+    };
+    this.missionService
+      .updateRole(id, roleUpdated, this.token)
+      .subscribe((role) => {
+        console.log('callback', role);
+        this.getMission();
+      });
   }
 
   evalCondition(role: Role): Function {

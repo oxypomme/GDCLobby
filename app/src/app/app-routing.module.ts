@@ -8,6 +8,7 @@ import { MissionBriefMissionComponent } from './mission-brief-mission/mission-br
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
 import { MissionModsetComponent } from './mission-modset/mission-modset.component';
 import { MissionOrgaBlueforComponent } from './mission-orga-bluefor/mission-orga-bluefor.component';
+import { MissionPlayersDetailComponent } from './mission-players-detail/mission-players-detail.component';
 import { MissionPlayersComponent } from './mission-players/mission-players.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
   { path: 'modset', component: MissionModsetComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'list-player', component: MissionPlayersComponent },
-  //{ path: 'list-player/:id', component: MissionPlayersComponent },
+  { path: 'list-player/:id', component: MissionPlayersDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },

@@ -70,7 +70,13 @@
             </tr>
           </tbody>
         </table>
-        <button class="button is-fullwidth">Ajout d'un slot</button>
+        <button
+          routerLink="0"
+          class="button is-fullwidth"
+          *ngIf="(playerLogged$ | async)?.isAdmin"
+        >
+          Ajout d'un slot
+        </button>
       </div>
     </div>
   </div>

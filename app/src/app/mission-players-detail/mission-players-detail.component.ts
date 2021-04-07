@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { MissionService } from '../mission.service';
 import { Role } from '../role';
 import { TeamsService } from '../teams.service';
 import { Team } from '../team';
+import { selectPlayerLogged } from '../store/player/player.selectors';
+import { Player } from '../player';
 
 @Component({
   selector: 'app-mission-players-detail',
@@ -26,8 +29,15 @@ export class MissionPlayersDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private missionService: MissionService,
     private teamService: TeamsService,
-    private location: Location
-  ) {}
+    private location: Location,
+    private store: Store
+  ) {
+    this.store.select(selectPlayerLogged).subscribe({
+      next: (player: Player) => {
+        if (!player || !player.isAdmin) this.goBack();
+      },
+    });
+  }
 
   ngOnInit(): void {
     this.getMission();

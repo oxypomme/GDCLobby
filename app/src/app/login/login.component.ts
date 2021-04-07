@@ -16,10 +16,7 @@ export class LoginComponent implements OnInit {
   password: string;
   isLogged$: Observable<boolean>;
 
-  constructor(
-    private store: Store<{ count: number }>,
-    private location: Location
-  ) {
+  constructor(private store: Store, private location: Location) {
     this.isLogged$ = store.select(selectIsPlayerLogged);
   }
 

@@ -24,10 +24,7 @@ export class MissionPlayersComponent implements OnInit {
   isAlreadyRegistered: boolean;
   token: JWToken;
 
-  constructor(
-    private missionService: MissionService,
-    private store: Store<{ count: number }>
-  ) {
+  constructor(private missionService: MissionService, private store: Store) {
     this.playerLogged$ = this.store.select(selectPlayerLogged);
     this.playerLogged$.subscribe({
       next: (player) => (this.playerLogged = player),

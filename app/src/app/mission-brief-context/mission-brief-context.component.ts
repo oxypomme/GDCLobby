@@ -11,7 +11,7 @@ export class MissionBriefContextComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.fragment.subscribe((fragment) => {
-      document.querySelector('#' + fragment).scrollIntoView();
+      if (fragment) document.querySelector('#' + fragment).scrollIntoView();
     });
   }
 }

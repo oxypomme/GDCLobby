@@ -13,6 +13,7 @@ export interface PlayerState {
   jwt?: JWToken;
   profile?: Player;
   err?: unknown;
+  lastLogin?: Date;
   isLoading: boolean;
 }
 
@@ -40,6 +41,7 @@ const _playerReducer = createReducer(
   on(PlayerActions.logIn.success, (state, { jwt }) => ({
     ...state,
     jwt,
+    lastLogin: new Date(),
     isLoading: false,
   })),
 

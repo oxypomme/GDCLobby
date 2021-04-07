@@ -8,6 +8,7 @@ import { TeamsService } from '../teams.service';
 import { Team } from '../team';
 import { selectPlayerLogged } from '../store/player/player.selectors';
 import { Player } from '../player';
+import { Mission } from '../mission';
 
 @Component({
   selector: 'app-mission-players-detail',
@@ -18,6 +19,7 @@ export class MissionPlayersDetailComponent implements OnInit {
   @Input() role?: Role;
 
   teams: Team[];
+  mission: Mission;
 
   name: string;
   selectedTeam: number;
@@ -41,10 +43,18 @@ export class MissionPlayersDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getMission();
+    this.getRoles();
     this.getTeams();
   }
 
   getMission() {
+    const missId = 1;
+    this.missionService.getMission(missId).subscribe({
+      next: (mission: Mission) => (this.mission = mission),
+    });
+  }
+
+  getRoles() {
     const missId = 1;
     const roleId = +this.route.snapshot.paramMap.get('id');
     this.missionService.getRole(missId, roleId).subscribe({
@@ -78,6 +88,8 @@ export class MissionPlayersDetailComponent implements OnInit {
           name: this.name,
           isBooked: this.isBooked,
           condition: this.condition,
+          mission: this.mission,
+          team: this.teams.find((t) => t.id === this.selectedTeam),
         })
         .subscribe({
           next: () => console.log('created Role'),

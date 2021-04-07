@@ -15,6 +15,13 @@ export class PlayerHydrationEffects implements OnInitEffects {
         if (storageValue) {
           try {
             const state = JSON.parse(storageValue);
+            if (state.player.lastLogin) {
+              const time =
+                (new Date().valueOf() -
+                  new Date(state.player.lastLogin).valueOf()) /
+                36e5;
+              if (time > 2) return HydrationPlayerActions.failed();
+            }
             return HydrationPlayerActions.success(state);
           } catch {
             localStorage.removeItem('state');

@@ -26,6 +26,7 @@
           <thead>
             <tr>
               <th>#</th>
+              <th>Équipe</th>
               <th>Nom</th>
               <th>Joueur</th>
               <th *ngIf="playerLogged$ | async"></th>
@@ -34,10 +35,11 @@
           <tbody *ngFor="let role of mission.roles">
             <tr>
               <th>{{ role.id }}</th>
+              <td>{{ role.team.name }}</td>
               <td>{{ role.name }}</td>
               <td>
                 <span *ngIf="role.player">
-                  [{{ role.player.team.name }}] {{ role.player.username }}
+                  {{ role.player.username }}
                 </span>
               </td>
               <td *ngIf="playerLogged$ | async">

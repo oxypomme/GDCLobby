@@ -24,7 +24,7 @@
                   class="input"
                   type="text"
                   placeholder="Soldat"
-                  value="{{ name }}"
+                  [(ngModel)]="name"
                 />
               </p>
             </div>
@@ -39,6 +39,7 @@
             <div class="field">
               <div class="select">
                 <select [(ngModel)]="selectedTeam">
+                  <option value="" disabled>-- Choisir une team --</option>
                   <option *ngFor="let team of teams" [value]="team.id">
                     {{ team.name }}
                   </option>
@@ -83,7 +84,7 @@
                   class="input"
                   type="text"
                   placeholder="true"
-                  value="{{ condition }}"
+                  [(ngModel)]="condition"
                 />
               </p>
             </div>
@@ -91,7 +92,7 @@
         </div>
 
         <label class="checkbox">
-          <input type="checkbox" value="{{ isBooked }}" />
+          <input type="checkbox" [(ngModel)]="isBooked" />
           Rôle Réservé
         </label>
 

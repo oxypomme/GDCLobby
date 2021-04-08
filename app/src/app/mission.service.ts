@@ -53,19 +53,34 @@ export class MissionService {
     );
   }
 
-  createRole(missId: number, role: Partial<Role>): Observable<Role> {
+  createRole(
+    missId: number,
+    role: Partial<Role>,
+    { accessToken }: JWToken
+  ): Observable<Role> {
     const url = `${this.missionsUrl}/${missId}/roles`;
-    return this.http.post<Role>(url, { ...role }, this.httpOptions).pipe(
-      tap((_) => this.log(`fetched mission mss=${missId}`)),
-      catchError(this.handleError<Role>(`getRole mss=${missId}`))
-    );
+    console.log(role);
+
+    return this.http
+      .post<Role>(url, role, {
+        headers: {
+          ContentType: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .pipe(
+        tap((_) => this.log(`fetched mission mss=${missId}`)),
+        catchError(this.handleError<Role>(`getRole mss=${missId}`))
+      );
   }
 
   updateRole(
     id: number,
-    role: Role,
+    role: Partial<Role>,
     { accessToken }: JWToken
   ): Observable<any> {
+    console.log(role);
+
     const url = `${this.missionsUrl}/${id}/roles/${role.id}`;
     return this.http
       .patch(url, role, {
@@ -76,7 +91,7 @@ export class MissionService {
       })
       .pipe(
         tap((_) => this.log(`updated role mss=${id} id=${role.id}`)),
-        catchError(this.handleError<any>('updateRole mss=${id} id=${role.id}'))
+        catchError(this.handleError<any>(`updateRole mss=${id} id=${role.id}`))
       );
   }
 

@@ -3,6 +3,6 @@
   justify-content: flex-end;
 }
 
-.mybuttons > *:first-of-type {
+.mybuttons > *:not(:last-of-type) {
   margin-right: 10px;
 }

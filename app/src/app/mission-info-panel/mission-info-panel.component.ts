@@ -10,7 +10,7 @@ import { MissionService } from '../mission.service';
 export class MissionInfoPanelComponent implements OnInit {
   @Input() mission?: Mission;
 
-  remainingTime: Date;
+  remainingTime: string;
 
   constructor(private missionService: MissionService) {}
 
@@ -18,8 +18,13 @@ export class MissionInfoPanelComponent implements OnInit {
     this.getMission();
 
     setInterval(() => {
-      const time = new Date(this.mission.date).getTime() - new Date().getTime();
-      this.remainingTime = time > 0 ? new Date(time) : null;
+      const time = new Date(this.mission.date).valueOf() - new Date().valueOf();
+
+      this.remainingTime = `
+      ${Math.round(time / (1000 * 60 * 60 * 24))}j
+       ${Math.round((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}h 
+       ${Math.round((time % (1000 * 60 * 60)) / (1000 * 60))}m 
+       ${Math.round((time % (1000 * 60)) / 1000)}s`;
     }, 1000);
   }
 

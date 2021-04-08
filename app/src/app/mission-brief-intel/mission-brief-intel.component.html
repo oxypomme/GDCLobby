@@ -9,89 +9,99 @@
   <div class="content-title">
     <h1 class="title">Intel</h1>
   </div>
-
   <!-- content -->
   <div class="content">
     <div class="columns intel-Jx">
-      <div class="column">
+      <div
+        class="column"
+        *ngIf="
+          getRemainingTime() !== null ||
+          (getRemainingTime()?.mins >= 30 &&
+            getRemainingTime()?.hours >= 0 &&
+            getRemainingTime()?.days >= 0)
+        "
+      >
         <h4 class="subtitle is-4 intel-Jx">
           Vous aurez plus d'information bientôt.
         </h4>
-        <img src="/assets/dog_wait.jpg" alt="" class="intel-Jx" />
+        <img
+          src="/assets/dog_wait.jpg"
+          alt=""
+          class="intel-Jx"
+          *ngIf="getRemainingTime().days > 7"
+        />
       </div>
     </div>
 
-    <!-- dispo à j-7 -->
-    <div class="columns intel-hide intel-J7">
+    <!-- dispo à t0 -->
+    <div class="columns" *ngIf="getRemainingTime() === null">
       <div class="column">
-        <h4 class="subtitle is-4">Objectifs</h4>
-        <p>
-          Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
-          le secteur stratégique de l’aéroport.
-        </p>
-        <p>
-          Si la situation le permet, vous devez lancer une contre-attaque sur
-          Rosche et tenter de neutraliser le QG ENI.
-        </p>
-        <h4 class="subtitle is-4">Conditions de victoire</h4>
-        <p>
-          <b>
-            Victoire majeure : la contre-attaque est brisée (tous les blindés
-            ENI sont hors combat), vous contrôlez le QG ENI sur Rosche.
-          </b>
-          <i>
-            Vous n’avez peur de rien. Une fois l’assaut brisé, vous lancez une
-            contre-attaque brutale en fonçant sur Rosche. Votre acte de bravoure
-            fait la manchette des journaux.
-          </i>
-        </p>
-        <p>
-          <b>
-            Victoire mineure : la contre-attaque est brisée (tous les blindés
-            ENI sont hors combat), vous contrôlez* les villages de Suttorf,
-            Jarlitz, Klein Malchau, Molbath et Schliekau.
-          </b>
-          <i>
-            Vous êtes prudent et méthodique : plutôt que de foncer tête baissée
-            sur Rosche, vous préférez contrôler les villages centraux en
-            attendant les renforts. L’état-major est satisfait, mais vous
-            n’inscrirez pas votre nom dans les annales militaires.
-          </i>
-        </p>
-        <p>
-          <i>
-            *“Contrôler” signifie que tous les éléments hostiles de ces villages
-            sont neutralisés et que vous couvrez l’ensemble des secteurs à vue
-            autour des villages.
-          </i>
-        </p>
-        <p>
-          <b>
-            Défaite mineure : la contre-attaque est brisée (tous les blindés ENI
-            sont hors combat), vous contrôlez au moins les villages de Jarlitz
-            et Klein Malchau.
-          </b>
-          <i>
-            Finalement, l’ennemi est plus fort que ce à quoi vous vous
-            attendiez. Vous limitez les dégâts.
-          </i>
-        </p>
-        <p>
-          <b>
-            Défaite majeure : vous ne brisez pas la contre-attaque (certains
-            blindés ENI ne sont pas neutralisés) ou vous ne contrôlez ni les
-            villages de Jarlitz et Klein Malchau ni le QG ENI.
-          </b>
-          <i>
-            Soyons clair, Capitaine, c’est un désastre et votre carrière s’en
-            ressentira, si toutefois vous êtes encore vivant.
-          </i>
-        </p>
+        <h4 class="subtitle is-4">
+          Renseignements détaillés sur certaines positions des hostiles (groupes
+          paramil)
+        </h4>
+        <h5 class="subtitle is-5">
+          Positions des iglaa et présence AA sur Rosche
+        </h5>
+      </div>
+    </div>
+
+    <!-- dispo 30min avant -->
+    <div
+      class="columns intel-M30"
+      *ngIf="
+        getRemainingTime() === null ||
+        (getRemainingTime().mins < 30 &&
+          getRemainingTime().hours <= 0 &&
+          getRemainingTime().days <= 0)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">
+          Renseignements détaillés sur Rosche (sauf si renseignements à
+          collecter par FS)
+        </h4>
+        <h5 class="subtitle is-5">Localisation du QG sur Rosche</h5>
+        <p></p>
+
+        <h5 class="subtitle is-5">Présence SAM dans la zone du QG</h5>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- dispo à h-2 -->
+    <div
+      class="columns intel-H2"
+      *ngIf="
+        getRemainingTime() === null ||
+        (getRemainingTime().hours < 2 && getRemainingTime().days <= 0)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">Position générale des hostiles</h4>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- dispo à h-4 -->
+    <div
+      class="columns intel-H4"
+      *ngIf="
+        getRemainingTime() === null ||
+        (getRemainingTime().hours < 4 && getRemainingTime().days <= 0)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4"></h4>
+        <p></p>
       </div>
     </div>
 
     <!-- dispo à j-1 -->
-    <div class="columns intel-hide intel-H24">
+    <div
+      class="columns intel-H24"
+      *ngIf="getRemainingTime() === null || getRemainingTime().days < 1"
+    >
       <div class="column">
         <h4 class="subtitle is-4">Situation générale</h4>
         <p>
@@ -177,47 +187,75 @@
       </div>
     </div>
 
-    <!-- dispo à h-4 -->
-    <div class="columns intel-hide intel-H4">
+    <!-- dispo à j-7 -->
+    <div
+      class="columns intel-J7"
+      *ngIf="getRemainingTime() === null || getRemainingTime().days < 7"
+    >
       <div class="column">
-        <h4 class="subtitle is-4"></h4>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- dispo à h-2 -->
-    <div class="columns intel-hide intel-H2">
-      <div class="column">
-        <h4 class="subtitle is-4">Position générale des hostiles</h4>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- dispo 30min avant -->
-    <div class="columns intel-hide intel-M30">
-      <div class="column">
-        <h4 class="subtitle is-4">
-          Renseignements détaillés sur Rosche (sauf si renseignements à
-          collecter par FS)
-        </h4>
-        <h5 class="subtitle is-5">Localisation du QG sur Rosche</h5>
-        <p></p>
-
-        <h5 class="subtitle is-5">Présence SAM dans la zone du QG</h5>
-        <p></p>
-      </div>
-    </div>
-
-    <!-- dispo à t0 -->
-    <div class="columns intel-hide intel-t0">
-      <div class="column">
-        <h4 class="subtitle is-4">
-          Renseignements détaillés sur certaines positions des hostiles (groupes
-          paramil)
-        </h4>
-        <h5 class="subtitle is-5">
-          Positions des iglaa et présence AA sur Rosche
-        </h5>
+        <h4 class="subtitle is-4">Objectifs</h4>
+        <p>
+          Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
+          le secteur stratégique de l’aéroport.
+        </p>
+        <p>
+          Si la situation le permet, vous devez lancer une contre-attaque sur
+          Rosche et tenter de neutraliser le QG ENI.
+        </p>
+        <h4 class="subtitle is-4">Conditions de victoire</h4>
+        <p>
+          <b>
+            Victoire majeure : la contre-attaque est brisée (tous les blindés
+            ENI sont hors combat), vous contrôlez le QG ENI sur Rosche.
+          </b>
+          <i>
+            Vous n’avez peur de rien. Une fois l’assaut brisé, vous lancez une
+            contre-attaque brutale en fonçant sur Rosche. Votre acte de bravoure
+            fait la manchette des journaux.
+          </i>
+        </p>
+        <p>
+          <b>
+            Victoire mineure : la contre-attaque est brisée (tous les blindés
+            ENI sont hors combat), vous contrôlez* les villages de Suttorf,
+            Jarlitz, Klein Malchau, Molbath et Schliekau.
+          </b>
+          <i>
+            Vous êtes prudent et méthodique : plutôt que de foncer tête baissée
+            sur Rosche, vous préférez contrôler les villages centraux en
+            attendant les renforts. L’état-major est satisfait, mais vous
+            n’inscrirez pas votre nom dans les annales militaires.
+          </i>
+        </p>
+        <p>
+          <i>
+            *“Contrôler” signifie que tous les éléments hostiles de ces villages
+            sont neutralisés et que vous couvrez l’ensemble des secteurs à vue
+            autour des villages.
+          </i>
+        </p>
+        <p>
+          <b>
+            Défaite mineure : la contre-attaque est brisée (tous les blindés ENI
+            sont hors combat), vous contrôlez au moins les villages de Jarlitz
+            et Klein Malchau.
+          </b>
+          <i>
+            Finalement, l’ennemi est plus fort que ce à quoi vous vous
+            attendiez. Vous limitez les dégâts.
+          </i>
+        </p>
+        <p>
+          <b>
+            Défaite majeure : vous ne brisez pas la contre-attaque (certains
+            blindés ENI ne sont pas neutralisés) ou vous ne contrôlez ni les
+            villages de Jarlitz et Klein Malchau ni le QG ENI.
+          </b>
+          <i>
+            Soyons clair, Capitaine, c’est un désastre et votre carrière s’en
+            ressentira, si toutefois vous êtes encore vivant.
+          </i>
+        </p>
       </div>
     </div>
   </div>

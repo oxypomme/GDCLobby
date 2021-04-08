@@ -4,6 +4,7 @@
 </header>
 
 <!-- side menu -->
+<!--TODO: REWORK-->
 <aside class="menu" id="aside">
   <ul class="menu-list">
     <li>
@@ -78,9 +79,14 @@
               target="_blank"
               >CGR CAT1A2 “Cougar”</a
             >
-            non armé (rack radio équipé d’une AN/PRV-117F)
+            non armé (rack radio équipé d’une AN/PRV-117F). Ce véhicule permet
+            d’exposer un personnel par le toit.
           </li>
           <li>Radio 148 pour CdO et OA</li>
+        </ul>
+        <h5 class="subtitle is-5" id="EquipeMedicale">Équipe médicale</h5>
+        <ul>
+          <li>Véhicule: M1230A1 médicalisé</li>
         </ul>
         <h5 class="subtitle is-5" id="92emeRegimentInfanterie">
           92ème Régiment d’Infanterie
@@ -138,8 +144,8 @@
           <li>M249 PIP Para</li>
         </ul>
         <p>
-          Véhicule du chef de section et de l’opérateur radio : CGR CAT1A2
-          “Cougar” non armé.
+          Véhicule possible pour le chef de section et l’opérateur radio : CGR
+          CAT1A2 “Cougar” (M2)
         </p>
       </div>
     </div>
@@ -222,6 +228,10 @@
         <ul>
           <li>Non armé</li>
           <li>Contient du matériel médical</li>
+          <li>
+            Médicalisé (mais non signalé comme véhicule sanitaire du fait de ses
+            multiples missions possibles).
+          </li>
         </ul>
       </div>
     </div>
@@ -381,17 +391,61 @@
 
     <div class="columns">
       <div class="column">
-        <h5 class="subtitle is-5" id="radio">Radio du 2nd MBG "RAGING BULL"</h5>
-        <h5 class="subtitle is-5">RSO</h5>
-        <p>Le réseau radio est composé de la manière suivante :</p>
-        <a href="/assets/RSO.png" target="_blank"
-          ><img src="/assets/RSO.png" alt=""
-        /></a>
+        <h4 class="subtitle is-4" id="radio">Documentation Radio</h4>
+        <h5 class="subtitle is-5">Equipement</h5>
+        <ul>
+          <li>
+            Tous les hommes sont équipés de radio courte portée AN/PRC-343.
+          </li>
+          <li>
+            Les différents échelons de commandement sont équipés de radios
+            longue portée de modèle AN/PRC-148 et/ou AN/PRC-117.
+          </li>
+          <li>
+            Les véhicules disposent tous d’un rack pour radio longue portée
+            (AN/PRC-103, par exemple), sur lequel est monté une AN/PRC-117.
+          </li>
+        </ul>
+        <h5 class="subtitle is-5">
+          Distances maximales de communications longue portée
+        </h5>
         <p>
-          Chaque homme est équipé d’une AN/PRC343 afin de pouvoir communiquer
-          avec sa section (cf: doc sur les équipements).
+          Les radios longue portée AN/PRC-117 sur ce terrain ont les portées
+          suivantes :
         </p>
-        <h5 class="subtitle is-5">Canaux radios AN/PRC343</h5>
+        <ul>
+          <li>
+            Sur le terrain : entre 3 et 4 km, parfois moins en fonction de
+            l’environnement (végétation, zone urbaine, etc.)
+          </li>
+          <li>
+            Sur un point haut (ex. toit de la tour de contrôle de la base
+            aérienne) : 4 à 6 km
+          </li>
+          <li>A 100 m. d’altitude : autour de 10 km.</li>
+        </ul>
+        <p>
+          La portée des AN-PRC-148 est inférieure de 20 à 40% à celle des
+          AN/PRC-117.
+        </p>
+        <p>
+          Il y a de fortes chances que votre dispositif soit étalé sur une large
+          zone. Pensez également que le 1er RPIMa peut être très éloigné du
+          commandement d’opération.
+        </p>
+        <p>
+          <b
+            >Soyez particulièrement vigilant à organiser vos communications en
+            fonction des contraintes de portée maximale.</b
+          >
+        </p>
+        <h5 class="subtitle is-5">Configuration du réseau radio</h5>
+        <p>
+          /!\ Il s’agit des fréquences et canaux qui sont attribués à la CyCERO.
+          Vous pouvez les utiliser en tout ou partie.
+        </p>
+        <h6 class="subtitle is-6">Réseau courte portée</h6>
+        <p>Chaque élément ou sous-élément dispose d’un bloc de 16 canaux.</p>
         <table class="table is-bordered">
           <thead>
             <tr>
@@ -409,44 +463,491 @@
               <td>Block 2</td>
             </tr>
             <tr>
-              <td>3rd Cavalry</td>
+              <td>7th Cavalry - MBT</td>
               <td>Block 3</td>
             </tr>
             <tr>
-              <td>58th RS</td>
+              <td>7th Cavalry - IFV</td>
               <td>Block 4</td>
             </tr>
             <tr>
-              <td>1ere section 92 RI</td>
+              <td>1er groupe 92 RI</td>
               <td>Block 5</td>
             </tr>
             <tr>
-              <td>2eme section 92 RI</td>
+              <td>2eme groupe 92 RI</td>
               <td>Block 6</td>
             </tr>
             <tr>
-              <td>3eme section 92 RI</td>
+              <td>3eme groupe 92 RI</td>
               <td>Block 7</td>
             </tr>
             <tr>
-              <td>7th Cavalry</td>
+              <td>4eme groupe 92 RI</td>
               <td>Block 8</td>
+            </tr>
+            <tr>
+              <td>82nd CAB - UH-60</td>
+              <td>Block 9</td>
+            </tr>
+            <tr>
+              <td>82nd CAB - AH-64</td>
+              <td>Block 10</td>
             </tr>
           </tbody>
         </table>
-        <h5 class="subtitle is-5">Protocole radio et réglage radios</h5>
+        <h6 class="subtitle is-6">Réseau longue portée</h6>
+        <p>7 fréquences* longue portée vous ont été attribuées.</p>
+        <table class="table is-bordered">
+          <thead>
+            <tr>
+              <th>Preset*</th>
+              <th>Fréquence réception</th>
+              <th>Fréquence émission</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>059.3750</td>
+              <td>059.3750</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>059.5000</td>
+              <td>059.5000</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>059.6250</td>
+              <td>059.6250</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>059.7500</td>
+              <td>059.7500</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>059.8750</td>
+              <td>059.8750</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>060.0000</td>
+              <td>060.0000</td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>060.5000</td>
+              <td>060.5000</td>
+            </tr>
+          </tbody>
+        </table>
         <p>
+          *L’Officier Radio du 2nd MBG est sympa : il a fait préparer les preset
+          de vos radios LP.
+        </p>
+        <h5 class="subtitle is-5">Organisation du réseau radio</h5>
+        <p>
+          L’organisation du réseau radio est in fine à votre main, Capitaine.
+          Mais l’OP Radio du MBG vous propose une organisation de base qui
+          devrait vous convenir. Libre à vous de l’adapter en fonction de votre
+          organisation et de vos besoins. Si vous modifiez l’organisation du
+          réseau, vérifiez la charge radio par chef d’élément.
+        </p>
+        <table class="table is-bordered">
+          <thead>
+            <tr>
+              <th>Preset*</th>
+              <th>Affectation</th>
+              <th>Autorisations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Canal commandement</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Chef de section du 92ème RI</li>
+                  </ul>
+                </b>
+                SUR AUTORISATION DU COMMANDEMENT D'OPÉRATION
+                <ul>
+                  <li>
+                    Chefs d’unités (ou OPR ou remplaçant en cas d’incapacité)
+                    des 82nd CAB, 7th Cav et 1er RPIMa
+                  </li>
+                </ul>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>Canal 82nd CAB</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Commandement</li>
+                  </ul>
+                </b>
+                SUR AUTORISATION DU COMMANDEMENT D'OPÉRATION
+                <ul>
+                  <li>Communication entre les unités de l’élément aérien</li>
+                  <li>JTAC du 1er RPIMa</li>
+                </ul>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>Canal 7th Cavalry</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Commandement</li>
+                  </ul>
+                </b>
+                SUR AUTORISATION DU COMMANDEMENT D'OPÉRATION
+                <ul>
+                  <li>Communication entre les unités de l’élément blindé.</li>
+                </ul>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Canal 92ème RI</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Communication au sein de l’élément</li>
+                  </ul>
+                </b>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>Canal 92ème RI</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Communication entre l’élément et les IFV du 7th</li>
+                  </ul>
+                </b>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Canal 1er RPIMa</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Commandement</li>
+                  </ul>
+                </b>
+                SUR AUTORISATION DU COMMANDEMENT D'OPÉRATION
+                <ul>
+                  <li>82nd</li>
+                </ul>
+                INTERDIT
+                <ul>
+                  <li>Tous les autres éléments et personnels</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td>Canal MBG et dégagement</td>
+              <td>
+                <b>
+                  AUTORISÉ
+                  <ul>
+                    <li>Commandement</li>
+                  </ul>
+                </b>
+                DÉGAGEMENT
+                <ul>
+                  <li>Ce canal sera utilisé en secours</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h5 class="subtitle is-5">Notes de l’Officier Radio du 2nd MBG</h5>
+        <p>
+          <b>
+            Quelle que soit l’organisation du réseau radio, la plus grande
+            discipline doit être respectée dans les communications.
+          </b>
+        </p>
+        <h6 class="subtitle is-6">
+          Charge radio par chef d'élément dans le plan de communication
+          ci-dessus
+        </h6>
+        <ul>
+          <!--TODO: FIX TABS-->
+          <li>
+            Le <b>commandement</b> (CdO et OA) gère <u>en routine</u>
+            <b> 4 canaux LP</b> :
+            <ul>
+              <li>
+                Canal 1 : <-> 92è<br />
+                -> autres chefs de section
+              </li>
+              <li>Canal 2 : <-> aérien</li>
+              <li>
+                Canal 3 : <-> MBT du 7th (IFV sous responsabilité du CdS du 92è)
+              </li>
+              <li>Canal 6 : <-> FS</li>
+            </ul>
+          </li>
+          <li>
+            Les <b>chefs d’élément</b> (à l’exception du chef de section du 92è)
+            ont <u>en routine</u> (AUTORISÉ) <b>2 canaux LP</b> avec le
+            commandement :
+            <ul>
+              <li>
+                82nd : <-> Canal 2<br />
+                <- Canal 1
+              </li>
+              <li>
+                7th : <-> Canal 3<br />
+                <- Canal 1
+              </li>
+              <li>
+                1er : <-> Canal 6<br />
+                <- Canal 1
+              </li>
+            </ul>
+          </li>
+          <li>
+            Le <b>chef de section du 92è</b> a <u>en routine</u> (AUTORISÉ)
+            <b>3 canaux LP</b> (raison pour laquelle il dispose d’un OPR) :
+            <ul>
+              <li>Canal 1 <-> Commandement</li>
+              <li>Canal 4 <-> Canal intra élément</li>
+              <li>Canal 5 <-> IFV du 7th</li>
+            </ul>
+          </li>
+        </ul>
+        <h6 class="subtitle is-6">
+          Communications au sein de la section d’infanterie mécanisée
+        </h6>
+        <p>
+          (rappel : 92è + IFV du 7th, sous responsabilité du chef de section du
+          92è)
+        </p>
+        <p>
+          Chaque groupe d’infanterie fonctionne en binôme avec un Bradley. Il
+          est donc nécessaire que le binôme dispose d’une capacité de
+          communication CP. Nous suggérons dans ce cas qu’un des membres de
+          l’équipage de l’IFV se branche sur le canal CP de son groupe
+          d’infanterie. Le trafic radio CP devra impérativement être le plus
+          limité possible pour ne pas emboliser la communication IFV - groupe
+          d’infanterie. L’utilisation de la CP devrait être interdite au sein et
+          entre les équipes (trinômes ou binômes) et réservée à la communication
+          CdG <-> CdE et CdG -> IFV.
+        </p>
+        <h6 class="subtitle is-6">Protocole radio</h6>
+        <p>
+          La mise en œuvre du protocole radio est de votre responsabilité,
+          Capitaine. Néanmoins, nous vous conseillons d’imposer un formalisme
+          suffisant pour que les communications soient efficaces. Inutile de
+          vous rappeler le nombre d’opérations qui ont tourné au désastre du
+          fait du manque de maîtrise des communications au différents échelons…
+        </p>
+        <p>
+          Vous trouverez un petit aide mémoire qui sera utile à vos subordonnés
+          là :
           <a
             href="https://grecedecanards.fr/wiki/doku.php/arma_3;joueurs;communication;les_bases_de_la_communication_radio"
-            target="_blank"
             >Protocole radio</a
-          >
-          <br /><br />
-          <a
-            href="https://grecedecanards.fr/wiki/doku.php/arma_3;joueurs;communication;les_secrets_caches_des_radios"
-            target="_blank"
-            >Réglage radios</a
-          >
+          >.
+        </p>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="column">
+        <h4 class="subtitle is-4" id="medical">Médical</h4>
+        <h5 class="subtitle is-5" id="personelsmedical">Personnels médicaux</h5>
+        <p>
+          <b>L'équipe médicale</b> est constituée de 3 médecins. Le médecin chef
+          sera responsable de positionner le poste médical avancé, en accord
+          avec le commandement d’opération. Il est garant du respect des règles
+          de sécurité de l’équipe médicale (voir plus bas). Attention,
+          concernant le soin des blessés, le médecin chef peut être indisponible
+          à tout moment (pour des raisons connues de lui seul et du commandement
+          du 2nd MBG). Considérez donc que vous pouvez en réalité compter sur 2
+          personnels, avec un renfort possible du médecin-chef.
+        </p>
+        <p>
+          En outre, il y a <b>un auxiliaire sanitaire dans le 92 RI</b> (groupe
+          Alpha) et <b>un auxiliaire sanitaire dans le groupe FS.</b>
+        </p>
+        <p>
+          Attention, du fait des contraintes liées aux compétences (<a
+            routerLink="."
+            fragment="qualifsmedicales"
+            >voir plus bas "qualifications médicales”</a
+          >) et au poids de l’équipement médical, les possibilités des deux
+          auxsan intégrés aux équipes de combat sont très limitées :
+        </p>
+        <ul>
+          <li>
+            <b>L’auxsan FS</b> dispose de poches de saline, lui permettant
+            d’éviter un décès par arrêt cardiaque. Mais il NE peut PAS injecter
+            d’épinéphrine. Il NE peut PAS pratiquer de chirurgie. Il ne dispose
+            par conséquent pas de ces équipements dans son chargement. La
+            conséquence de ce qui précède est simple : un personnel inconscient
+            et ayant perdu beaucoup de sang pourra être sauvé, mais ne pourra
+            pas être réveillé. Il aura cependant une petite chance de reprendre
+            conscience spontanément à condition que ses saignements aient été
+            stoppés et que sa pression sanguine soit suffisante (et donc qu’il
+            ait été transfusé).
+          </li>
+          <li>
+            <b>L’auxsan du 92 RI</b> ne transporte pas de poche de saline. L’IFV
+            auquel son équipe est affectée (Alpha) dispose d’un faible stock de
+            salines. Il est donc fortement conseillé en cas de blessure lourde
+            de faire appel à l’équipe médicale.
+          </li>
+        </ul>
+        <h5 class="subtitle is-5" id="qualifsmedicales">
+          Qualifications médicales
+        </h5>
+        <h6 class="subtitle is-6">Médecins</h6>
+        <ul>
+          <li>
+            Sur le terrain ou dans un véhicule non médicalisé : ne peuvent pas
+            pratiquer de chirurgie. Toutes les autres procédures sont possibles.
+          </li>
+          <li>
+            Dans un véhicule médicalisé ou une installation médicale : peuvent
+            effectuer toutes les procédures médicales et utiliser tous les
+            équipements médicaux.
+          </li>
+        </ul>
+        <h6 class="subtitle is-6">Auxiliaires médicaux</h6>
+        <ul>
+          <li>
+            Sur le terrain ou dans un véhicule non médicalisé : ne peuvent pas
+            utiliser d’épinéphrine. Ne peuvent pas pratiquer de chirurgie.
+            Peuvent réaliser le reste des procédures médicales.
+          </li>
+          <li>
+            Dans un véhicule médicalisé ou une installation médicale : peuvent
+            effectuer toutes les procédures médicales et utiliser tous les
+            équipements médicaux.
+          </li>
+        </ul>
+        <h6 class="subtitle is-6">Autres personnels</h6>
+        <ul>
+          <li>
+            Sur le terrain ou dans un véhicule non médicalisé : ne peuvent
+            effectuer que des soins d’urgence : garrots, bandages, attelles.
+            Veillez à utiliser les bandages adaptés à la nature de la blessure.
+          </li>
+          <li>
+            Dans un véhicule médicalisé ou une installation médicale : soins
+            d’urgence + transfusion.
+          </li>
+        </ul>
+        <h5 class="subtitle is-5" id="deploimentmedical">
+          Déploiement de l’équipe médicale
+        </h5>
+        <p>
+          <b>
+            Aucun poste médical avancé ne se trouvera à moins de 500 m. de la
+            zone de contact.
+          </b>
+        </p>
+        <p>
+          Le M1230A1 medevac, outre le conducteur et le passager, peut
+          transporter ou héberger 4 personnels (2 assis, 2 couchés). En aucun
+          cas, il ne sera envoyé sur une zone proche des combats. Dans tous les
+          cas, la distance de 500 m. minimum de la zone de contact la plus
+          proche sera respectée.
+        </p>
+        <p>
+          L’UH-60 peut être mobilisé pour transporter et soigner des blessés,
+          déployer des personnels médicaux ou apporter du ravitaillement
+          médical. Attention, il ne s’agit pas d’un hélicoptère MEDEVAC en tant
+          que tel : bien qu’il soit médicalisé, il peut être utilisé pour
+          d’autres missions et n’est donc pas signalé comme véhicule sanitaire
+          pour l'ennemi. En aucun cas, il ne sera envoyé sur une zone proche des
+          combats. Dans tous les cas, la distance de 500 m. minimum de la zone
+          de contact la plus proche sera respectée.
+        </p>
+        <p>
+          <b>
+            En cas d’ordre contraire du CdO à l’équipe médicale, celle-ci sera
+            en droit de refuser d’exécuter l’ordre.
+          </b>
+        </p>
+        <h5 class="subtitle is-5" id="protocolmedical">
+          Protocole de prise en charge
+        </h5>
+        <p>
+          En dehors des FS qui opèrent en autonomie complète aussi longtemps que
+          possible, les règles suivantes découlent de ce qui précède :
+        </p>
+        <ul>
+          <li>Toute perte de sang doit être arrêtée au plus vite.</li>
+          <li>
+            En cas de perte de conscience, le personnel doit être pris en charge
+            par un personnel médical (équipe médicale ou auxsan du 92 RI).
+          </li>
+          <li>
+            En cas de perte de sang importante, le personnel doit impérativement
+            être transfusé, soit par l’auxsan du 92 RI si celui-ci est en mesure
+            de le faire, soit par un membre de l’équipe médicale.
+          </li>
+          <li>
+            Toute blessure requérant une chirurgie nécessitera une prise en
+            charge par l’équipe médicale dans un véhicule médicalisé ou une
+            installation médicale.
+          </li>
+        </ul>
+        <p>
+          <b>
+            Ce protocole doit impérativement être appliqué dans le respect des
+            règles de déploiement de l’équipe médicale.
+          </b>
+        </p>
+        <p>
+          En clair, tous les blessés le nécessitant seront évacués vers l’équipe
+          médicale. Le seul cas autorisant la projection d’un personnel médical
+          proche de la zone de combat est celui d’une urgence absolue : perte de
+          sang nécessitant une transfusion immédiate. Cette projection sera
+          faite à pied ou en véhicule non médicalisé (règle des 500 m. de la
+          zone de contact pour les véhicules médicalisés et l’UH-60).
         </p>
       </div>
     </div>
@@ -462,9 +963,10 @@
           Les
           <b
             >équipages d’engins sont qualifiés pour effectuer des réparations
-            d’urgence</b
-          >. Les chefs de bord (chef de blindés, tireur pour l’AH-64 et pilote
-          pour l’UH-60) sont plus expérimentés que le reste de l’équipage. Ils
+            d’urgence .</b
+          >
+          Les chefs de bord (chef de blindés, tireur pour l’AH-64 et pilote pour
+          l’UH-60) sont plus expérimentés que le reste de l’équipage. Ils
           pourront donc effectuer des réparations plus efficaces (réparer à
           partir d’un seuil de dégâts plus faible et donc ramener à un niveau de
           dégâts plus faible). Cependant, les réparations faites par l’équipage
@@ -513,9 +1015,16 @@
           Ravitaillement en carburant
         </h5>
         <p>
+          <b>
+            Surveillez bien vos consommations : les blindés consomment beaucoup
+            de carburant, les hélicos encore plus, évidemment.
+          </b>
+        </p>
+        <p>
           Vous disposez de 2 HEMTT contenant 10 000 l. chacun. 40 000 litres
           sont également disponibles à la station essence de l’aéroport. Vous
           pouvez ravitailler les véhicules à cette station.
+          <b>Vous disposez donc au total de 60 000 l. de carburant.</b>
         </p>
         <p>
           Un des deux HEMTT peut être envoyé sur le terrain par le CdO ou l’OA
@@ -523,35 +1032,19 @@
           hélicoptères.
         </p>
         <p>
-          En théorie, une équipe de logistique peut aider les véhicules (en
-          particulier les hélicoptères) à refaire le plein de carburant. Mais
-          s’ils sont trop occupés (à jouer aux cartes), n’hésitez pas à vous
-          servir vous-même.
+          Pour remplir les citernes des HEMTT, rendez-vous à proximité immédiate
+          de la station essence et faites le plein (interaction ACE sur le
+          véhicule). Attention, transvaser 10 000 l., ça prend un peu de temps.
         </p>
-        <p>
-          Par contre, si les cuves des HEMTT sont vides, vous serez obligés de
-          les faire remplir par l’équipe logistique de la base. Adressez-vous au
-          commandant du MBG pour qu’ils ne trainent pas trop.
-        </p>
-        <p>
-          Surveillez bien vos consommations : les blindés consomment beaucoup de
-          carburant, les hélicos encore plus, évidemment.
-        </p>
-      </div>
-    </div>
-
-    <div class="columns">
-      <div class="column">
         <h5 class="subtitle is-5" id="rearmement_reapprovisionnement">
           Réarmement - Réapprovisionnement
         </h5>
         <p>
+          Un réarmement limité est possible pour l’AH-64,
           <mark
-            >Un réarmement limité est possible pour l’AH-64, mais uniquement
-            pour le canon et les roquettes Hydra, en quantité réduite. Ce
-            réarmement n’est possible qu’à la base (HEMTT présent sur
-            base).</mark
-          >
+            >mais uniquement pour le canon et les roquettes Hydra, en quantité
+            réduite</mark
+          >. Ce réarmement n’est possible qu’à la base (HEMTT présent sur base).
         </p>
         <p>
           <mark
@@ -560,7 +1053,9 @@
           >
         </p>
         <p>
-          <mark>Fantassins - Trousses de réparation, etc.</mark>
+          Des munitions en quantité importante pour les fantassins sont
+          embarquées dans les Bradleys.
+          <mark>Ne comptez pas sur du réapprovisionnement supplémentaire.</mark>
         </p>
       </div>
     </div>

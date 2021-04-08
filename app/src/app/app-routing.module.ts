@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { MissionBriefContextComponent } from './mission-brief-context/mission-brief-context.component';
+import { MissionBriefIntelComponent } from './mission-brief-intel/mission-brief-intel.component';
 import { MissionBriefMissionComponent } from './mission-brief-mission/mission-brief-mission.component';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
 import { MissionModsetComponent } from './mission-modset/mission-modset.component';
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: '', component: MissionDetailComponent },
   { path: 'context', component: MissionBriefContextComponent },
   { path: 'orga-blufor', component: MissionOrgaBlueforComponent },
+  { path: 'intel', component: MissionBriefIntelComponent },
   { path: 'mission', component: MissionBriefMissionComponent },
   { path: 'modset', component: MissionModsetComponent },
   { path: 'contact', component: ContactComponent },

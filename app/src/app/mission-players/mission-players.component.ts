@@ -11,6 +11,7 @@ import {
   selectPlayerToken,
 } from '../store/player/player.selectors';
 import { JWToken } from '../store/player/player.reducer';
+import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-mission-players',
@@ -40,9 +41,8 @@ export class MissionPlayersComponent implements OnInit {
     this.getMission();
   }
 
-  dateValid() {
-    //TODO: Changer pour fermeture inscription
-    return new Date() <= new Date(this.mission.date);
+  dateValid(): boolean {
+    return dayjs().isBefore(dayjs(this.mission.date).subtract(7, 'd'));
   }
 
   getMission(): void {

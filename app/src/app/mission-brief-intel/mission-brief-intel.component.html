@@ -15,10 +15,10 @@
       <div
         class="column"
         *ngIf="
-          getRemainingTime() !== null ||
-          (getRemainingTime()?.mins >= 30 &&
-            getRemainingTime()?.hours >= 0 &&
-            getRemainingTime()?.days >= 0)
+          remainingTime !== null ||
+          (remainingTime?.minutes() >= 30 &&
+            remainingTime?.hours() >= 0 &&
+            remainingTime?.asDays() >= 0)
         "
       >
         <h4 class="subtitle is-4 intel-Jx">
@@ -28,13 +28,13 @@
           src="/assets/dog_wait.jpg"
           alt=""
           class="intel-Jx"
-          *ngIf="getRemainingTime().days > 7"
+          *ngIf="remainingTime?.asDays() > 7"
         />
       </div>
     </div>
 
     <!-- dispo à t0 -->
-    <div class="columns" *ngIf="getRemainingTime() === null">
+    <div class="columns" *ngIf="remainingTime === null">
       <div class="column">
         <h4 class="subtitle is-4">
           Renseignements détaillés sur certaines positions des hostiles (groupes
@@ -50,10 +50,10 @@
     <div
       class="columns intel-M30"
       *ngIf="
-        getRemainingTime() === null ||
-        (getRemainingTime().mins < 30 &&
-          getRemainingTime().hours <= 0 &&
-          getRemainingTime().days <= 0)
+        remainingTime === null ||
+        (remainingTime?.minutes() < 30 &&
+          remainingTime?.hours() <= 0 &&
+          remainingTime?.asDays() < 1)
       "
     >
       <div class="column">
@@ -73,8 +73,8 @@
     <div
       class="columns intel-H2"
       *ngIf="
-        getRemainingTime() === null ||
-        (getRemainingTime().hours < 2 && getRemainingTime().days <= 0)
+        remainingTime === null ||
+        (remainingTime?.hours() < 2 && remainingTime?.asDays() < 1)
       "
     >
       <div class="column">
@@ -87,12 +87,12 @@
     <div
       class="columns intel-H4"
       *ngIf="
-        getRemainingTime() === null ||
-        (getRemainingTime().hours < 4 && getRemainingTime().days <= 0)
+        remainingTime === null ||
+        (remainingTime?.hours() < 4 && remainingTime?.asDays() < 1)
       "
     >
       <div class="column">
-        <h4 class="subtitle is-4"></h4>
+        <h4 class="subtitle is-4">H-4</h4>
         <p></p>
       </div>
     </div>
@@ -100,7 +100,7 @@
     <!-- dispo à j-1 -->
     <div
       class="columns intel-H24"
-      *ngIf="getRemainingTime() === null || getRemainingTime().days < 1"
+      *ngIf="remainingTime === null || remainingTime?.asDays() < 1"
     >
       <div class="column">
         <h4 class="subtitle is-4">Situation générale</h4>
@@ -190,7 +190,7 @@
     <!-- dispo à j-7 -->
     <div
       class="columns intel-J7"
-      *ngIf="getRemainingTime() === null || getRemainingTime().days < 7"
+      *ngIf="remainingTime === null || remainingTime?.asDays() < 7"
     >
       <div class="column">
         <h4 class="subtitle is-4">Objectifs</h4>

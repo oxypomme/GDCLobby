@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import dayjs from 'dayjs';
+import { Duration } from 'dayjs/plugin/duration';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
 
@@ -10,10 +12,17 @@ import { MissionService } from '../mission.service';
 export class MissionBriefIntelComponent implements OnInit {
   @Input() mission?: Mission;
 
+  remainingTime: Duration;
+
   constructor(private missionService: MissionService) {}
 
   ngOnInit(): void {
     this.getMission();
+
+    this.getRemainingTime();
+    setInterval(() => {
+      this.getRemainingTime();
+    }, 1000);
   }
 
   getMission(): void {
@@ -24,13 +33,13 @@ export class MissionBriefIntelComponent implements OnInit {
   }
 
   getRemainingTime() {
-    const time = new Date(this.mission?.date).valueOf() - new Date().valueOf();
-    return time > 0
-      ? {
-          days: Math.round(time / (1000 * 60 * 60 * 24)),
-          hours: Math.round((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          mins: Math.round((time % (1000 * 60 * 60)) / (1000 * 60)),
-        }
-      : null;
+    if (this.mission) {
+      const dur = dayjs.duration(dayjs(this.mission?.date).diff(dayjs()));
+      this.remainingTime = dayjs().isBefore(this.mission?.date) ? dur : null;
+    } else {
+      this.remainingTime = dayjs.duration({
+        days: 999,
+      });
+    }
   }
 }

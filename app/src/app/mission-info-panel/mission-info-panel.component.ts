@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import dayjs from 'dayjs';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
 
@@ -18,14 +19,22 @@ export class MissionInfoPanelComponent implements OnInit {
     this.getMission();
 
     setInterval(() => {
-      const time = new Date(this.mission.date).valueOf() - new Date().valueOf();
-
-      this.remainingTime = `
-      ${Math.round(time / (1000 * 60 * 60 * 24))}j
-       ${Math.round((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))}h 
-       ${Math.round((time % (1000 * 60 * 60)) / (1000 * 60))}m 
-       ${Math.round((time % (1000 * 60)) / 1000)}s`;
+      this.getRemainingTime();
     }, 1000);
+  }
+
+  getRemainingTime() {
+    const dur = dayjs.duration(dayjs(this.mission?.date).diff(dayjs()));
+
+    this.remainingTime = `
+    ${Math.round(dur.asDays())}j
+     ${dur.hours() - 2}h 
+     ${dur.minutes()}m 
+     ${dur.seconds()}s`;
+  }
+
+  getEndRegister(): Date {
+    return dayjs(this.mission.date).subtract(7, 'd').toDate();
   }
 
   getMission(): void {

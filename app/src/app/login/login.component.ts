@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   isLogged$: Observable<boolean>;
+  errors: string[];
 
   constructor(private store: Store, private location: Location) {
     this.isLogged$ = store.select(selectIsPlayerLogged);
@@ -27,9 +28,26 @@ export class LoginComponent implements OnInit {
   }
 
   logIn() {
+    this.errors = [];
+    if (
+      !this.username ||
+      this.username.trim().length === 0 ||
+      this.username.trim().length > 64
+    ) {
+      this.errors.push('username');
+    }
+    if (!this.password || this.password.trim().length === 0) {
+      this.errors.push('password');
+    }
+    if (this.errors.length > 0) {
+      return;
+    }
     this.store.dispatch(
       PlayerActions.logIn.request({
-        credentials: { username: this.username, password: this.password },
+        credentials: {
+          username: this.username.trim(),
+          password: this.password.trim(),
+        },
       })
     );
   }

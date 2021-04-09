@@ -80,16 +80,16 @@
             <tr>
               <th>#</th>
               <th>Mission</th>
-              <th>Rôle</th>
               <th>Team</th>
+              <th>Rôle</th>
             </tr>
           </thead>
           <tbody *ngFor="let role of (playerLogged$ | async).roles">
             <tr>
               <th>{{ role.id }}</th>
               <td>{{ role.mission?.name }}</td>
+              <td>{{ role.team?.name }}</td>
               <td>{{ role.name }}</td>
-              <td>{{ role.team.name }}</td>
             </tr>
           </tbody>
         </table>

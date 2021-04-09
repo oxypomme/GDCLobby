@@ -13,7 +13,7 @@
   <!-- content -->
   <div class="content">
     <div class="columns">
-      <div class="column">
+      <form class="column">
         <small>
           Créer un compte pour participer à l'<b
             >Opération Rogue Wave Piercer</b
@@ -32,32 +32,22 @@
             <div class="field">
               <p class="control">
                 <input
-                  class="input"
+                  class="input {{
+                    errors?.includes('username') ? 'is-danger' : ''
+                  }}"
                   [(ngModel)]="username"
                   type="text"
+                  name="username"
                   placeholder="pseudo"
+                  required
                 />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('username')">
+                Veuillez entrer un pseudo valide (64 caractères max).
               </p>
             </div>
           </div>
         </div>
-
-        <!--<div class="field is-horizontal">
-          <div class="field-label is-normal">
-            <label class="label">Email</label>
-          </div>
-          <div class="field-body">
-            <div class="field">
-              <p class="control">
-                <input
-                  class="input"
-                  type="email"
-                  placeholder="me@example.com"
-                />
-              </p>
-            </div>
-          </div>
-        </div>-->
 
         <div class="field is-horizontal">
           <div class="field-label is-normal">
@@ -67,11 +57,18 @@
             <div class="field">
               <p class="control">
                 <input
-                  class="input"
+                  class="input {{
+                    errors?.includes('password') ? 'is-danger' : ''
+                  }}"
                   [(ngModel)]="password"
                   type="password"
+                  name="password"
                   placeholder="example_mdp"
+                  required
                 />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('password')">
+                Veuillez entrer un mot de passe.
               </p>
             </div>
           </div>
@@ -81,7 +78,11 @@
 
         <div class="field is-grouped is-grouped-right">
           <p class="control">
-            <button class="button is-primary" (click)="register()">
+            <button
+              type="submit"
+              class="button is-primary"
+              (click)="register()"
+            >
               Créer
             </button>
           </p>
@@ -94,7 +95,7 @@
           Connecté vous sans attendre pour l'<b>Opération Rogue Wave Piercer</b>
           : <a routerLink="/login">Connexion</a>
         </small>
-      </div>
+      </form>
     </div>
   </div>
 </section>

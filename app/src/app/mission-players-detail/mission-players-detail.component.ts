@@ -32,6 +32,7 @@ export class MissionPlayersDetailComponent implements OnInit {
   player: string;
   condition = 'true';
   isBooked = false;
+  errors: string[];
 
   token: JWToken;
 
@@ -104,6 +105,20 @@ export class MissionPlayersDetailComponent implements OnInit {
   }
 
   validate() {
+    this.errors = [];
+    if (!this.name || this.name.trim().length === 0 || this.name.length > 255) {
+      this.errors.push('name');
+    }
+    if (!this.selectedTeam || this.selectedTeam < 1) {
+      this.errors.push('team');
+    }
+    if (!this.condition || this.condition.trim().length === 0) {
+      this.errors.push('condition');
+    }
+    if (this.errors.length > 0) {
+      return;
+    }
+
     const missId = 1;
     const roleId = +this.route.snapshot.paramMap.get('id');
     if (this.role) {
@@ -112,9 +127,9 @@ export class MissionPlayersDetailComponent implements OnInit {
           missId,
           {
             id: roleId,
-            name: this.name,
+            name: this.name.trim(),
             isBooked: this.isBooked,
-            condition: this.condition,
+            condition: this.condition.trim(),
             team: this.teams.find((t) => t.id === +this.selectedTeam),
           },
           this.token
@@ -134,9 +149,9 @@ export class MissionPlayersDetailComponent implements OnInit {
         .createRole(
           missId,
           {
-            name: this.name,
+            name: this.name.trim(),
             isBooked: this.isBooked,
-            condition: this.condition,
+            condition: this.condition.trim(),
             mission: this.mission,
             team: this.teams.find((t) => t.id === +this.selectedTeam),
           },

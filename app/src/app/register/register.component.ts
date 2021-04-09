@@ -19,6 +19,7 @@ export class RegisterComponent implements OnInit {
   username: string;
   password: string;
   isLogged$: Observable<boolean>;
+  errors: string[];
 
   constructor(
     private store: Store<{ count: number }>,
@@ -34,6 +35,20 @@ export class RegisterComponent implements OnInit {
   }
 
   register() {
+    this.errors = [];
+    if (
+      !this.username ||
+      this.username.trim().length === 0 ||
+      this.username.trim().length > 64
+    ) {
+      this.errors.push('username');
+    }
+    if (!this.password || this.password.trim().length === 0) {
+      this.errors.push('password');
+    }
+    if (this.errors.length > 0) {
+      return;
+    }
     this.store.dispatch(
       PlayerActions.register.request({
         credentials: {

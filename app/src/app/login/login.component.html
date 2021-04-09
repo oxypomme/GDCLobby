@@ -13,7 +13,7 @@
   <!-- content -->
   <div class="content">
     <div class="columns">
-      <div class="column">
+      <form class="column">
         <small>
           Utiliser le pseudo et le mot de passe renseigné lors de la création de
           votre compte.
@@ -33,11 +33,17 @@
             <div class="field">
               <p class="control">
                 <input
-                  class="input"
+                  class="input {{
+                    errors?.includes('username') ? 'is-danger' : ''
+                  }}"
                   type="text"
+                  name="username"
                   [(ngModel)]="username"
                   placeholder="me"
                 />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('username')">
+                Veuillez entrer un pseudo valide (64 caractères max).
               </p>
             </div>
           </div>
@@ -51,11 +57,17 @@
             <div class="field">
               <p class="control">
                 <input
-                  class="input"
+                  class="input {{
+                    errors?.includes('password') ? 'is-danger' : ''
+                  }}"
                   [(ngModel)]="password"
                   type="password"
+                  name="password"
                   placeholder="example_mdp"
                 />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('password')">
+                Veuillez entrer votre mot de passe.
               </p>
             </div>
           </div>
@@ -69,7 +81,9 @@
 
         <div class="field is-grouped is-grouped-right">
           <p class="control">
-            <a class="button is-primary" (click)="logIn()"> Connexion </a>
+            <button type="submit" class="button is-primary" (click)="logIn()">
+              Connexion
+            </button>
           </p>
         </div>
 
@@ -82,7 +96,7 @@
           >
           : <a routerLink="/register">Créer un compte</a>
         </small>
-      </div>
+      </form>
     </div>
   </div>
 </section>

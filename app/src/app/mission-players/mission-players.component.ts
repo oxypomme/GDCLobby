@@ -91,7 +91,15 @@ export class MissionPlayersComponent implements OnInit {
       });
   }
 
+  /* Used to make conditions easier */
+  missionPlayers() {
+    return this.mission.roles?.filter((r) => r.player !== null).length;
+  }
+
   evalCondition(role: Role): Function {
-    return Function(`"use strict";return ${role.condition}`)();
+    return Function(
+      'missionPlayers',
+      `"use strict"; return ${role.condition}`
+    )(this.missionPlayers());
   }
 }

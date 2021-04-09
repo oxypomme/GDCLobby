@@ -6,3 +6,24 @@
 .mybuttons > *:not(:last-of-type) {
   margin-right: 10px;
 }
+
+small {
+  margin-left: 75px;
+  display: block;
+}
+
+small.is-warning {
+  color: #ffe08a;
+}
+
+.checkbox {
+  margin-left: 150px;
+}
+
+code {
+  background-color: var(--bck-color);
+}
+
+.condi {
+  font-family: "Fira Code", "MonoLisa", "Monoid", "Consolas";
+}

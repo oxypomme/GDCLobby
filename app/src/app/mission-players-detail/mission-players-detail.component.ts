@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { toast } from 'bulma-toast';
+
 import { MissionService } from '../mission.service';
 import { Role } from '../role';
 import { TeamsService } from '../teams.service';
@@ -90,6 +92,17 @@ export class MissionPlayersDetailComponent implements OnInit {
     this.location.back();
   }
 
+  del() {
+    const missId = 1;
+    const roleId = +this.route.snapshot.paramMap.get('id');
+    this.missionService.deleteRole(missId, roleId, this.token).subscribe({
+      next: () => {
+        toast({ message: 'Rôle supprimé' });
+        this.goBack();
+      },
+    });
+  }
+
   validate() {
     const missId = 1;
     const roleId = +this.route.snapshot.paramMap.get('id');
@@ -107,7 +120,14 @@ export class MissionPlayersDetailComponent implements OnInit {
           this.token
         )
         .subscribe({
-          next: () => this.goBack(),
+          next: (role) => {
+            if (role) toast({ message: 'Rôle édité' });
+            else {
+              toast({ message: 'Une erreur est survenue', type: 'is-danger' });
+              return;
+            }
+            this.goBack();
+          },
         });
     } else {
       this.missionService
@@ -123,7 +143,17 @@ export class MissionPlayersDetailComponent implements OnInit {
           this.token
         )
         .subscribe({
-          next: () => this.goBack(),
+          next: (role) => {
+            if (role) toast({ message: 'Rôle créé' });
+            else {
+              toast({ message: 'Une erreur est survenue', type: 'is-danger' });
+              return;
+            }
+            this.name = '';
+            this.selectedTeam = -1;
+            this.condition = 'true';
+            this.isBooked = false;
+          },
         });
     }
   }

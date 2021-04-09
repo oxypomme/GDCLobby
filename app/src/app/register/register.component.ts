@@ -21,7 +21,6 @@ export class RegisterComponent implements OnInit {
   isLogged$: Observable<boolean>;
 
   constructor(
-    private teamService: TeamsService,
     private store: Store<{ count: number }>,
     private location: Location
   ) {

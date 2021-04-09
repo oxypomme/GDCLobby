@@ -45,21 +45,19 @@ export class RoleEditController {
   async updateOne(@Request() req) {
     const role = await this.service.getOne(req.NESTJSX_PARSED_CRUD_REQUEST_KEY);
     if (
-      !(
-        req.user.isAdmin ||
-        ((role.playerId === null || role.playerId === req.user.userId) &&
-          !role.isBooked &&
-          !['condition', 'id', 'isBooked', 'missionId', 'name'].some((el) =>
-            Object.keys(req.body).includes(el),
-          ))
-      )
+      req.user.isAdmin ||
+      ((role.playerId === null || role.playerId === req.user.userId) &&
+        !role.isBooked &&
+        !['condition', 'isBooked', 'missionId', 'name'].some((el) =>
+          Object.keys(req.body).includes(el),
+        ))
     ) {
-      throw new UnauthorizedException();
+      return await this.service.updateOne(
+        req.NESTJSX_PARSED_CRUD_REQUEST_KEY,
+        req.body,
+      );
     }
-    return await this.service.updateOne(
-      req.NESTJSX_PARSED_CRUD_REQUEST_KEY,
-      req.body,
-    );
+    throw new UnauthorizedException();
   }
 
   @Override()

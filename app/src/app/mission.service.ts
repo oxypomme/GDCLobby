@@ -79,8 +79,6 @@ export class MissionService {
     role: Partial<Role>,
     { accessToken }: JWToken
   ): Observable<any> {
-    console.log(role);
-
     const url = `${this.missionsUrl}/${id}/roles/${role.id}`;
     return this.http
       .patch(url, role, {
@@ -92,6 +90,24 @@ export class MissionService {
       .pipe(
         tap((_) => this.log(`updated role mss=${id} id=${role.id}`)),
         catchError(this.handleError<any>(`updateRole mss=${id} id=${role.id}`))
+      );
+  }
+
+  deleteRole(
+    id: number,
+    roleid: number,
+    { accessToken }: JWToken
+  ): Observable<any> {
+    const url = `${this.missionsUrl}/${id}/roles/${roleid}`;
+    return this.http
+      .delete(url, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .pipe(
+        tap((_) => this.log(`deleted role mss=${id} id=${roleid}`)),
+        catchError(this.handleError<any>(`deleteRole mss=${id} id=${roleid}`))
       );
   }
 

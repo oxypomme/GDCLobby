@@ -48,7 +48,7 @@ import { MissionPlayersDetailComponent } from './mission-players-detail/mission-
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(store),
-    StoreDevtoolsModule.instrument(),
+    StoreDevtoolsModule.instrument(), //TODO: Remove before deploy
     EffectsModule.forRoot(effects),
   ],
   providers: [],

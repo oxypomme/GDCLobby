@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { toast } from 'bulma-toast';
+
 import { Player } from '../player';
 import PlayerActions from '../store/player/player.actions';
 import { selectPlayerLogged } from '../store/player/player.selectors';
@@ -21,5 +23,6 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.store.dispatch(PlayerActions.logOut());
+    toast({ message: 'Vous êtes déconnecté' });
   }
 }

@@ -39,6 +39,7 @@ export default {
       '[Player Component] Delete Requested',
       props<{ jwt: JWToken }>()
     ),
+    success: createAction('[Player Component] Delete Success'),
   },
 
   fetch: {

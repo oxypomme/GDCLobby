@@ -63,7 +63,10 @@
                   class="button is-small is-outlined"
                   (click)="joinMission(role)"
                   *ngIf="
-                    !isAlreadyRegistered && !role.player && evalCondition(role)
+                    dateValid() &&
+                    !isAlreadyRegistered &&
+                    !role.player &&
+                    evalCondition(role)
                   "
                 >
                   S'inscrire

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators';
-import { Player } from 'src/app/player';
 
+import { Player } from 'src/app/player';
 import { PlayerService } from 'src/app/player.service';
 import PlayerActions from './player.actions';
 import { JWToken } from './player.reducer';
@@ -64,7 +64,10 @@ export class PlayerEffects {
       ofType(PlayerActions.delete.request),
       exhaustMap(({ jwt }) =>
         this.playerService.delete(jwt).pipe(
-          map((profile: any) => PlayerActions.logOut()),
+          mergeMap((profile: any) => [
+            PlayerActions.delete.success(),
+            PlayerActions.logOut(),
+          ]),
           catchError((err) => of(PlayerActions.failed({ err })))
         )
       )

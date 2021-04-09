@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
+import { toast } from 'bulma-toast';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
 import { Role } from '../role';
@@ -39,6 +40,11 @@ export class MissionPlayersComponent implements OnInit {
     this.getMission();
   }
 
+  dateValid() {
+    //TODO: Changer pour fermeture inscription
+    return new Date() <= new Date(this.mission.date);
+  }
+
   getMission(): void {
     const id = 1;
     this.missionService.getMission(id).subscribe((mission) => {
@@ -54,14 +60,16 @@ export class MissionPlayersComponent implements OnInit {
   joinMission(role: Role): void {
     const id = 1;
     const roleUpdated = {
-      ...role,
+      id: role.id,
       player: this.playerLogged,
-      team: undefined,
     };
     this.missionService
       .updateRole(id, roleUpdated, this.token)
       .subscribe((role) => {
-        console.log('callback', role);
+        if (role)
+          toast({ message: `Vous êtes inscrit en tant que ${role?.name}` });
+        else
+          toast({ message: 'Une erreur est survenue...', type: 'is-danger' });
         this.getMission();
       });
   }
@@ -69,14 +77,16 @@ export class MissionPlayersComponent implements OnInit {
   leaveMission(role: Role): void {
     const id = 1;
     const roleUpdated = {
-      ...role,
+      id: role.id,
       player: null,
-      team: null,
     };
     this.missionService
       .updateRole(id, roleUpdated, this.token)
       .subscribe((role) => {
-        console.log('callback', role);
+        if (role)
+          toast({ message: `Vous vous êtes retiré du rôle ${role?.name}` });
+        else
+          toast({ message: 'Une erreur est survenue...', type: 'is-danger' });
         this.getMission();
       });
   }

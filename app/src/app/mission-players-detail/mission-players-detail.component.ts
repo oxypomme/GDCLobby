@@ -15,6 +15,7 @@ import {
 import { Player } from '../player';
 import { Mission } from '../mission';
 import { JWToken } from '../store/player/player.reducer';
+import { PlayerService } from '../player.service';
 
 @Component({
   selector: 'app-mission-players-detail',
@@ -25,11 +26,12 @@ export class MissionPlayersDetailComponent implements OnInit {
   @Input() role?: Role;
 
   teams: Team[];
+  players: Player[];
   mission: Mission;
 
   name: string;
   selectedTeam: number;
-  player: string;
+  selectedPlayer: number;
   condition = 'true';
   isBooked = false;
   errors: string[];
@@ -40,6 +42,7 @@ export class MissionPlayersDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private missionService: MissionService,
     private teamService: TeamsService,
+    private playerService: PlayerService,
     private location: Location,
     private store: Store
   ) {
@@ -57,6 +60,7 @@ export class MissionPlayersDetailComponent implements OnInit {
     this.getMission();
     this.getRoles();
     this.getTeams();
+    this.getPlayers();
   }
 
   getMission() {
@@ -75,6 +79,7 @@ export class MissionPlayersDetailComponent implements OnInit {
           if (role) {
             this.role = role;
             this.selectedTeam = role.team?.id;
+            this.selectedPlayer = role.player?.id;
             this.name = role.name;
             this.condition = role.condition;
             this.isBooked = role.isBooked;
@@ -86,6 +91,12 @@ export class MissionPlayersDetailComponent implements OnInit {
   getTeams() {
     this.teamService.getTeams().subscribe({
       next: (teams: Team[]) => (this.teams = teams),
+    });
+  }
+
+  getPlayers() {
+    this.playerService.getPlayers().subscribe({
+      next: (players: Player[]) => (this.players = players),
     });
   }
 
@@ -102,6 +113,26 @@ export class MissionPlayersDetailComponent implements OnInit {
         this.goBack();
       },
     });
+  }
+
+  kick() {
+    const missId = 1;
+    const roleId = +this.route.snapshot.paramMap.get('id');
+    this.missionService
+      .updateRole(
+        missId,
+        {
+          id: roleId,
+          player: null,
+        },
+        this.token
+      )
+      .subscribe({
+        next: () => {
+          this.selectedPlayer = -1;
+          toast({ message: 'Joueur exclu' });
+        },
+      });
   }
 
   validate() {
@@ -130,6 +161,7 @@ export class MissionPlayersDetailComponent implements OnInit {
             name: this.name.trim(),
             isBooked: this.isBooked,
             condition: this.condition.trim(),
+            player: this.players.find((p) => p.id === +this.selectedPlayer),
             team: this.teams.find((t) => t.id === +this.selectedTeam),
           },
           this.token
@@ -153,6 +185,7 @@ export class MissionPlayersDetailComponent implements OnInit {
             isBooked: this.isBooked,
             condition: this.condition.trim(),
             mission: this.mission,
+            player: this.players.find((p) => p.id === +this.selectedPlayer),
             team: this.teams.find((t) => t.id === +this.selectedTeam),
           },
           this.token
@@ -166,6 +199,7 @@ export class MissionPlayersDetailComponent implements OnInit {
             }
             this.name = '';
             this.selectedTeam = -1;
+            this.selectedPlayer = -1;
             this.condition = 'true';
             this.isBooked = false;
           },

@@ -112,6 +112,13 @@ export class PlayerService {
       );
   }
 
+  getPlayers(): Observable<Player[]> {
+    return this.http.get<Player[]>(this.playerUrl + 's').pipe(
+      tap((_) => this.log('fecthed player list')),
+      catchError(this.handleError<Player[]>('fetch player list'))
+    );
+  }
+
   private log(message: string): void {
     console.log(message);
   }

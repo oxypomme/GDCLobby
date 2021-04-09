@@ -67,14 +67,22 @@
           </div>
         </div>
 
-        <!--TODO: List of player and select one-->
-        <div class="field is-horizontal" *ngIf="role ? role.player : false">
+        <div class="field is-horizontal">
           <div class="field-label is-normal">
             <label class="label">Joueur</label>
           </div>
           <div class="field-body">
             <div class="field">
-              <p class="control">
+              <div class="select">
+                <select [(ngModel)]="selectedPlayer" name="selectedPlayer">
+                  <option value="" value="0"></option>
+                  <option value="" disabled>-- Choisir un joueur --</option>
+                  <option *ngFor="let player of players" [value]="player.id">
+                    {{ player.username }}
+                  </option>
+                </select>
+              </div>
+              <!--<p class="control">
                 <input
                   class="input"
                   type="text"
@@ -83,11 +91,13 @@
                   value="{{ role?.player.username }}"
                   [disabled]="role?.player"
                 />
-              </p>
+              </p>-->
             </div>
             <div class="field is-grouped is-grouped-right" *ngIf="role?.player">
               <p class="control">
-                <button class="button is-danger">Exclure</button>
+                <button class="button is-danger" (click)="kick()">
+                  Exclure
+                </button>
               </p>
             </div>
           </div>

@@ -9,13 +9,16 @@
 
 ### Configurer GDCLobby
 
-- Mettre en place la base de données (fichier `.sql` disponible dans `api/db`).
+- Mettre en place la base de données (fichier `.sql` disponible dans `api/db/`).
 - Lancer le serveur de la base de données.
 - Ajouter la/les mission(s).
 - Configurer le `.env` de l'API (fichier `.sample-env` disponible dans `api/` pour aider à la configuration).
   - Note pour Docker : le `.env` doit être placé au même endroit que les `docker-compose*.yaml`. Le même `.sample-env` est disponible à cet endroit.
-- Lancer l'API (`cd api && npm ci && npm run start:prod`). API disponible au port `3000`.
-- Lancer l'APP (`cd app && npm ci && npm run start`). App disponible au port `80`.
+- Lancer le tout (`./start.bat`)
+  - Notes :
+    - Les scripts existents en version Windows (`.bat`) et Linux (`.sh`)
+    - Lancer seulement l'API (`cd api && ./start.bat`). API disponible au port `3000`.
+    - Lancer seulement l'APP (`cd app && ./start.bat`). App disponible au port `80`.
   
 ### Configurer l'admin
 

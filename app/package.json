@@ -8,7 +8,7 @@
   "homepage": "https://github.com/oxypomme/GDCLobby#readme",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 80",
     "start:dev": "ng serve -o --watch",
     "build": "ng build",
     "test": "ng test",

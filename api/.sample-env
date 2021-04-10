@@ -1,0 +1,5 @@
+DB_HOST = localhost # IP to MySQL Host
+DB_USER = root # User for the database
+DB_PASSWORD = MySecuredPassword # Password for the database
+DB_DATABASE = MyDatabase # The database used for the API
+JWT_SECRET = MySuperSecret # The secret for JWT

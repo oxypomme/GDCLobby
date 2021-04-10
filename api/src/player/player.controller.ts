@@ -30,10 +30,6 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
         eager: true,
         required: false,
       },
-      'roles.mission': {
-        eager: true,
-        required: false,
-      },
     },
   },
   routes: {

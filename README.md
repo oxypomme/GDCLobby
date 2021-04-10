@@ -7,6 +7,10 @@
 
 ## Déploiement
 
+Soit vous le faites manuellement, soit vous utilisez un manager.
+
+Avec PM2 : `pm2 start gdclobby.yml --env production`
+
 ### Configurer GDCLobby
 
 - Mettre en place la base de données (fichier `.sql` disponible dans `api/db/`).

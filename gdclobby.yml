@@ -1,0 +1,24 @@
+apps:
+  - name: "API"
+    cwd: "./api"
+    script: "npm"
+    args: "run start:prod"
+    instance: 1
+    env_production:
+      NODE_ENV: production
+  - name: "APP"
+    cwd: "./app"
+    script: "npm"
+    args: "run start"
+    instance: 1
+    env_production:
+      NODE_ENV: production
+
+deploy:
+  production:
+    user: "USER"
+    host: "HOST"
+    ref: "origin/master"
+    repo: "git@github.com:oxypomme/GDCLobby.git"
+    path: "TARGET"
+    post-deploy: "npm ci && pm2 startOrRestart gdclobby.yml --env production"

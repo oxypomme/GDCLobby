@@ -6,7 +6,7 @@ import duration from 'dayjs/plugin/duration';
 import 'dayjs/locale/fr';
 
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import { environment } from './environments/environment.prod';
 
 dayjs.extend(duration);
 dayjs.locale('fr');

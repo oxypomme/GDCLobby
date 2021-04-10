@@ -34,7 +34,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  register() {
+  register(e: Event) {
+    e.preventDefault();
     this.errors = [];
     if (
       !this.username ||

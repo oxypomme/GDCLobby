@@ -4,7 +4,6 @@
 </header>
 
 <!-- side menu -->
-<!--TODO: REWORK-->
 <aside class="menu" id="aside">
   <ul class="menu-list">
     <li>
@@ -17,6 +16,9 @@
       <a routerLink="." fragment="equipement">Equipement</a>
       <ul>
         <li><a routerLink="." fragment="commandement">Commandement</a></li>
+        <li>
+          <a routerLink="." fragment="EquipeMedicale">Équipe médicale</a>
+        </li>
         <li>
           <a routerLink="." fragment="92emeRegimentInfanterie"
             >92ème Régiment d’Infanterie</a
@@ -37,16 +39,112 @@
             >1er régiment de Parachutistes d’Infanterie de Marine</a
           >
         </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="." fragment="radio">Documentation Radio </a>
+      <ul>
+        <li><a routerLink="." fragment="radioequip">Equipement</a></li>
         <li>
-          <a routerLink="." fragment="radio">Radio du 2nd MBG "RAGING BULL"</a>
+          <a routerLink="." fragment="radiomax"
+            >Distances maximales de communications longue portée</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="radioconfig"
+            >Configuration du réseau radio</a
+          >
+          <ul>
+            <li>
+              <a routerLink="." fragment="radiocp">Réseau courte portée</a>
+            </li>
+            <li>
+              <a routerLink="." fragment="radiolp">Réseau longue portée</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="." fragment="radioorga"
+            >Organisation du réseau radio</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="radionotes"
+            >Notes de l’Officier Radio du 2nd MBG</a
+          >
+          <ul>
+            <li>
+              <a routerLink="." fragment="radiocharge"
+                >Charge radio par chef d'élément dans le plan de communication
+                ci-dessus</a
+              >
+            </li>
+            <li>
+              <a routerLink="." fragment="radiocomms"
+                >Communications au sein de la section d’infanterie mécanisée</a
+              >
+            </li>
+            <li>
+              <a routerLink="." fragment="radioprotocol">Protocole radio</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a routerLink="." fragment="medical">Médical</a>
+      <ul>
+        <li>
+          <a routerLink="." fragment="personelsmedical">Personnels médicaux</a>
+        </li>
+        <li>
+          <a routerLink="." fragment="qualifsmedicales"
+            >Qualifications médicales</a
+          >
+          <ul>
+            <li><a routerLink="." fragment="medecins">Médecins</a></li>
+            <li>
+              <a routerLink="." fragment="auxsan">Auxiliaires médicaux</a>
+            </li>
+            <li><a routerLink="." fragment="medautre">Autres personnels</a></li>
+          </ul>
+        </li>
+        <li>
+          <a routerLink="." fragment="deploimentmedical"
+            >Déploiement de l’équipe médicale</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="protocolmedical"
+            >Protocole de prise en charge</a
+          >
         </li>
       </ul>
     </li>
     <li>
       <a routerLink="." fragment="logistique">Logistique</a>
+      <ul>
+        <li><a routerLink="." fragment="reparations">Réparations</a></li>
+        <li>
+          <a routerLink="." fragment="ravitaillement_carburant"
+            >Ravitaillement en carburant</a
+          >
+        </li>
+        <li>
+          <a routerLink="." fragment="rearmement_reapprovisionnement"
+            >Réarmement - Réapprovisionnement</a
+          >
+        </li>
+      </ul>
     </li>
   </ul>
 </aside>
+
+<div class="floatbtn" *ngIf="isShowTopBtn()">
+  <button class="button is-dark" routerLink="." (click)="scrollToTop()">
+    Retour en haut
+  </button>
+</div>
 
 <!-- content -->
 <section>
@@ -392,7 +490,7 @@
     <div class="columns">
       <div class="column">
         <h4 class="subtitle is-4" id="radio">Documentation Radio</h4>
-        <h5 class="subtitle is-5">Equipement</h5>
+        <h5 class="subtitle is-5" id="radioequip">Equipement</h5>
         <ul>
           <li>
             Tous les hommes sont équipés de radio courte portée AN/PRC-343.
@@ -406,7 +504,7 @@
             (AN/PRC-103, par exemple), sur lequel est monté une AN/PRC-117.
           </li>
         </ul>
-        <h5 class="subtitle is-5">
+        <h5 class="subtitle is-5" id="radiomax">
           Distances maximales de communications longue portée
         </h5>
         <p>
@@ -439,12 +537,14 @@
             fonction des contraintes de portée maximale.</b
           >
         </p>
-        <h5 class="subtitle is-5">Configuration du réseau radio</h5>
+        <h5 class="subtitle is-5" id="radioconfig">
+          Configuration du réseau radio
+        </h5>
         <p>
           /!\ Il s’agit des fréquences et canaux qui sont attribués à la CyCERO.
           Vous pouvez les utiliser en tout ou partie.
         </p>
-        <h6 class="subtitle is-6">Réseau courte portée</h6>
+        <h6 class="subtitle is-6" id="radiocp">Réseau courte portée</h6>
         <p>Chaque élément ou sous-élément dispose d’un bloc de 16 canaux.</p>
         <table class="table is-bordered">
           <thead>
@@ -496,7 +596,7 @@
             </tr>
           </tbody>
         </table>
-        <h6 class="subtitle is-6">Réseau longue portée</h6>
+        <h6 class="subtitle is-6" id="radiolp">Réseau longue portée</h6>
         <p>7 fréquences* longue portée vous ont été attribuées.</p>
         <table class="table is-bordered">
           <thead>
@@ -548,7 +648,9 @@
           *L’Officier Radio du 2nd MBG est sympa : il a fait préparer les preset
           de vos radios LP.
         </p>
-        <h5 class="subtitle is-5">Organisation du réseau radio</h5>
+        <h5 class="subtitle is-5" id="radioorga">
+          Organisation du réseau radio
+        </h5>
         <p>
           L’organisation du réseau radio est in fine à votre main, Capitaine.
           Mais l’OP Radio du MBG vous propose une organisation de base qui
@@ -699,26 +801,29 @@
             </tr>
           </tbody>
         </table>
-        <h5 class="subtitle is-5">Notes de l’Officier Radio du 2nd MBG</h5>
+        <h5 class="subtitle is-5" id="radionotes">
+          Notes de l’Officier Radio du 2nd MBG
+        </h5>
         <p>
           <b>
             Quelle que soit l’organisation du réseau radio, la plus grande
             discipline doit être respectée dans les communications.
           </b>
         </p>
-        <h6 class="subtitle is-6">
+        <h6 class="subtitle is-6" id="radiocharge">
           Charge radio par chef d'élément dans le plan de communication
           ci-dessus
         </h6>
         <ul>
-          <!--TODO: FIX TABS-->
           <li>
             Le <b>commandement</b> (CdO et OA) gère <u>en routine</u>
             <b> 4 canaux LP</b> :
             <ul>
               <li>
-                Canal 1 : <-> 92è<br />
-                -> autres chefs de section
+                <dl>
+                  <dt>Canal 1 : <-> 92è</dt>
+                  <dd id="ddcmd">-> autres chefs de section</dd>
+                </dl>
               </li>
               <li>Canal 2 : <-> aérien</li>
               <li>
@@ -733,16 +838,22 @@
             commandement :
             <ul>
               <li>
-                82nd : <-> Canal 2<br />
-                <- Canal 1
+                <dl>
+                  <dt>82nd : <-> Canal 2</dt>
+                  <dd id="dd82"><- Canal 1</dd>
+                </dl>
               </li>
               <li>
-                7th : <-> Canal 3<br />
-                <- Canal 1
+                <dl>
+                  <dt>7th : <-> Canal 3</dt>
+                  <dd><- Canal 1</dd>
+                </dl>
               </li>
               <li>
-                1er : <-> Canal 6<br />
-                <- Canal 1
+                <dl>
+                  <dt>1er : <-> Canal 6</dt>
+                  <dd><- Canal 1</dd>
+                </dl>
               </li>
             </ul>
           </li>
@@ -756,7 +867,7 @@
             </ul>
           </li>
         </ul>
-        <h6 class="subtitle is-6">
+        <h6 class="subtitle is-6" id="radiocomms">
           Communications au sein de la section d’infanterie mécanisée
         </h6>
         <p>
@@ -774,7 +885,7 @@
           entre les équipes (trinômes ou binômes) et réservée à la communication
           CdG <-> CdE et CdG -> IFV.
         </p>
-        <h6 class="subtitle is-6">Protocole radio</h6>
+        <h6 class="subtitle is-6" id="radioprotocol">Protocole radio</h6>
         <p>
           La mise en œuvre du protocole radio est de votre responsabilité,
           Capitaine. Néanmoins, nous vous conseillons d’imposer un formalisme
@@ -842,7 +953,7 @@
         <h5 class="subtitle is-5" id="qualifsmedicales">
           Qualifications médicales
         </h5>
-        <h6 class="subtitle is-6">Médecins</h6>
+        <h6 class="subtitle is-6" id="medecins">Médecins</h6>
         <ul>
           <li>
             Sur le terrain ou dans un véhicule non médicalisé : ne peuvent pas
@@ -854,7 +965,7 @@
             équipements médicaux.
           </li>
         </ul>
-        <h6 class="subtitle is-6">Auxiliaires médicaux</h6>
+        <h6 class="subtitle is-6" id="auxsan">Auxiliaires médicaux</h6>
         <ul>
           <li>
             Sur le terrain ou dans un véhicule non médicalisé : ne peuvent pas
@@ -867,7 +978,7 @@
             équipements médicaux.
           </li>
         </ul>
-        <h6 class="subtitle is-6">Autres personnels</h6>
+        <h6 class="subtitle is-6" id="medautre">Autres personnels</h6>
         <ul>
           <li>
             Sur le terrain ou dans un véhicule non médicalisé : ne peuvent

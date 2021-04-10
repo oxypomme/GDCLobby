@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './app.component';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
@@ -48,7 +47,6 @@ import { MissionPlayersDetailComponent } from './mission-players-detail/mission-
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot(store),
-    StoreDevtoolsModule.instrument(), //TODO: Remove before deploy
     EffectsModule.forRoot(effects),
   ],
   providers: [],

@@ -14,4 +14,16 @@ export class MissionOrgaBlueforComponent implements OnInit {
       if (fragment) document.querySelector('#' + fragment).scrollIntoView();
     });
   }
+
+  isShowTopBtn(): boolean {
+    return (
+      document.body.scrollTop > 500 || // For Safari
+      document.documentElement.scrollTop > 500 // For Chrome, Firefox, IE and Opera
+    );
+  }
+
+  scrollToTop() {
+    document.body.scrollTop = 370; // For Safari
+    document.documentElement.scrollTop = 370; // For Chrome, Firefox, IE and Opera
+  }
 }

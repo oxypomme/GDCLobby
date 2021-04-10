@@ -21,4 +21,4 @@ deploy:
     ref: "origin/master"
     repo: "git@github.com:oxypomme/GDCLobby.git"
     path: "TARGET"
-    post-deploy: "npm ci && pm2 startOrRestart gdclobby.yml --env production"
+    post-deploy: "cd ./api && npm ci && npm build && cd ../app && npm ci && cd ../ && pm2 startOrRestart gdclobby.yml --env production"

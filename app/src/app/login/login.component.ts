@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  logIn() {
+  logIn(e: Event) {
+    e.preventDefault();
     this.errors = [];
     if (
       !this.username ||

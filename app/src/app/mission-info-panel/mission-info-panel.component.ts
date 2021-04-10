@@ -24,11 +24,15 @@ export class MissionInfoPanelComponent implements OnInit {
   }
 
   getRemainingTime() {
-    const dur = dayjs.duration(dayjs(this.mission?.date).diff(dayjs()));
+    const dur = dayjs.duration(
+      dayjs(this.mission?.date).diff(dayjs().add(2, 'h'))
+    );
 
     this.remainingTime = `
-    ${Math.round(dur.asDays())}j
-     ${dur.hours() - 2}h 
+    ${
+      dur.days() > dayjs().daysInMonth() ? Math.round(dur.asDays()) : dur.days()
+    }j
+     ${dur.hours()}h 
      ${dur.minutes()}m 
      ${dur.seconds()}s`;
   }

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { Mission } from './mission';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { Role } from './role';
 import { JWToken } from './store/player/player.reducer';
 import { BaseService } from './base.service';

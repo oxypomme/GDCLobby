@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiHost: 'api:3000',
+  apiHost: 'http://orwp.team-gie.com/:3000', // or api:3000
 };

@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
 import { Player } from './player';
-import { environment } from '../environments/environment';
+import { environment } from '../environments/environment.prod';
 import { catchError, tap } from 'rxjs/operators';
 import { Creditentials } from './store/player/creditentials';
 import { JWToken } from './store/player/player.reducer';

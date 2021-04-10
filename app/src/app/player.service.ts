@@ -7,11 +7,12 @@ import { environment } from '../environments/environment';
 import { catchError, tap } from 'rxjs/operators';
 import { Creditentials } from './store/player/creditentials';
 import { JWToken } from './store/player/player.reducer';
+import { BaseService } from './base.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PlayerService {
+export class PlayerService extends BaseService {
   private playerUrl = `http://${environment.apiHost}/player`;
   private authUrl = `http://${environment.apiHost}/auth`;
 
@@ -19,7 +20,9 @@ export class PlayerService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    super();
+  }
 
   logIn({ username, password }: Creditentials): Observable<any> {
     const url = `${this.authUrl}/login`;
@@ -59,6 +62,48 @@ export class PlayerService {
       );
   }
 
+  update(
+    { username, password }: Creditentials,
+    { accessToken }: JWToken
+  ): Observable<Player> {
+    return this.http
+      .patch<Player>(
+        this.playerUrl,
+        {
+          username,
+          password,
+        },
+        {
+          headers: {
+            ContentType: 'application/json',
+            Authorization: `Bearer ${accessToken}`,
+          },
+        }
+      )
+      .pipe(
+        tap(
+          (_) => this.log('try updating'),
+          catchError(this.handleError<Player>('update'))
+        )
+      );
+  }
+
+  delete({ accessToken }: JWToken): Observable<Player> {
+    return this.http
+      .delete<Player>(this.playerUrl, {
+        headers: {
+          ContentType: 'application/json',
+          Authorization: `Bearer ${accessToken}`,
+        },
+      })
+      .pipe(
+        tap(
+          (_) => this.log('try deleting'),
+          catchError(this.handleError<Player>('delete'))
+        )
+      );
+  }
+
   fetch({ accessToken }: JWToken): Observable<Player> {
     return this.http
       .get<Player>(this.playerUrl, {
@@ -70,26 +115,10 @@ export class PlayerService {
       );
   }
 
-  private log(message: string): void {
-    console.log(message);
-  }
-
-  /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
+  getPlayers(): Observable<Player[]> {
+    return this.http.get<Player[]>(this.playerUrl + 's').pipe(
+      tap((_) => this.log('fecthed player list')),
+      catchError(this.handleError<Player[]>('fetch player list'))
+    );
   }
 }

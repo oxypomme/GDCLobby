@@ -1,0 +1,88 @@
+<!-- image header -->
+<header>
+  <div id="img-header" class="contact"></div>
+</header>
+
+<!-- content -->
+<section>
+  <!-- title -->
+  <div class="content-title">
+    <h1 class="title">Liste des joueurs</h1>
+  </div>
+
+  <!-- content -->
+  <div class="content">
+    <div class="columns">
+      <div class="column">
+        <small>
+          Liste des joueurs inscrit pour l'<b>Opération Rogue Wave Piercer</b>.
+        </small>
+        <br /><br />
+
+        <table
+          class="table is-bordered is-hoverable is-fullwidth"
+          *ngIf="mission"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Équipe</th>
+              <th>Nom</th>
+              <th>Joueur</th>
+              <th *ngIf="playerLogged$ | async"></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let role of mission.roles">
+            <tr>
+              <th>{{ role.id }}</th>
+              <td>{{ role.team.name }}</td>
+              <td>{{ role.name }}</td>
+              <td>
+                <span *ngIf="role.player">
+                  {{ role.player.username }}
+                </span>
+              </td>
+              <td *ngIf="playerLogged$ | async">
+                <button
+                  routerLink="{{ role.id }}"
+                  class="button is-small is-outlined"
+                  *ngIf="(playerLogged$ | async).isAdmin"
+                >
+                  Editer
+                </button>
+                <button
+                  class="button is-small is-outlined"
+                  (click)="leaveMission(role)"
+                  *ngIf="
+                    role.player && role.player.id === (playerLogged$ | async).id
+                  "
+                >
+                  Déserter
+                </button>
+                <button
+                  class="button is-small is-outlined"
+                  (click)="joinMission(role)"
+                  *ngIf="
+                    dateValid() &&
+                    !isAlreadyRegistered &&
+                    !role.player &&
+                    evalCondition(role)
+                  "
+                >
+                  S'inscrire
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <button
+          routerLink="0"
+          class="button is-fullwidth"
+          *ngIf="(playerLogged$ | async)?.isAdmin"
+        >
+          Ajout d'un slot
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,4 +1,28 @@
-<nav>
-  <a routerLink="/missions">Missions</a>
-</nav>
+<app-navbar></app-navbar>
+<app-mission-info-panel></app-mission-info-panel>
+<!-- logo panel -->
+<div class="logo-panel">
+  <div id="logo-cpc" class="logo"></div>
+  <div id="logo-gie" class="logo"></div>
+</div>
 <router-outlet></router-outlet>
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      <strong>Opération Rogue Wave Piercer</strong> proposé par
+      <a href="https://github.com/Morbakos" target="_blank">Morbakos</a>,
+      <a href="https://github.com/Tanin69" target="_blank">tanin</a>,
+      <a>Tisma</a> & <a href="https://chrisblnc.fr" target="_blank">Stians</a>.
+    </p>
+    <p>
+      <a href="https://arma3.com/" target="_blank">Arma 3</a> ainsi que l'<a
+        href="./modset.html"
+        >installation des mods</a
+      >
+      est requis pour jouer le soir de l'interco. L'utilisation de TS et du
+      module ACRE2 est nécessaire pour venir jouer.
+      <small>PS : FUCK YOU IE USERS ! 😘</small>
+    </p>
+    <p>Copyright © GDC, GIE <span id="years-now">2021</span>.</p>
+  </div>
+</footer>

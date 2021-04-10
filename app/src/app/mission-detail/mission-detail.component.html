@@ -1,69 +1,63 @@
-<div *ngIf="mission">
-  <h2>{{ mission.name }}</h2>
-  <div>
-    Liste des slots pour {{ mission.name }}.
-    <table>
-      <thead>
-        <th>#</th>
-        <th>Nom</th>
-        <th>Joueur</th>
-        <th></th>
-      </thead>
-      <tbody *ngFor="let role of mission.roles">
-        <td>{{ role.id }}</td>
-        <td>{{ role.name }}</td>
-        <td>
-          <span *ngIf="role.player">
-            [{{ role.team?.name }}] {{ role.player.username }}
-          </span>
-        </td>
-        <td>
-          <button *ngIf="!role.player && evalCondition(role)">
-            S'inscrire
-          </button>
-          <!--TODO: If auth or admin, add EDIT-->
-        </td>
-      </tbody>
-    </table>
+<!-- image header -->
+<header>
+  <div id="img-header" class="home"></div>
+</header>
+
+<section *ngIf="mission">
+  <!-- title -->
+  <div class="content-title">
+    <h1 class="title">
+      Bienvenue à l'<span class="title-color"
+        >Opération Rogue Wave Piercer</span
+      >
+    </h1>
   </div>
-  <div>
-    <h3>A la une</h3>
-    <div>
-      <h4>Ouverture du site de l'interco !</h4>
-      <p>
-        Mission dans :
-        <span class="value">{{
-          calcRemainingTime() | date: "dj hh mm ss"
-        }}</span>
-      </p>
+
+  <!-- content -->
+  <div class="content">
+    <div class="columns">
+      <div class="column">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec dictum
+          ex vel finibus lacinia. Mauris suscipit, ante vel bibendum
+          condimentum, lectus odio sodales diam, nec pharetra felis est vel
+          neque. Class aptent taciti sociosqu ad litora torquent per conubia
+          nostra, per inceptos himenaeos. Integer sit amet fermentum ligula.
+          Mauris pretium ex dignissim orci volutpat feugiat. Nam in turpis
+          tortor. Phasellus mattis nibh semper arcu lacinia sagittis. Aenean
+          tellus velit, pellentesque nec nibh non, rutrum bibendum ante. Etiam
+          sit amet malesuada purus. Morbi tincidunt nulla neque, non posuere
+          sapien placerat non. Mauris hendrerit rutrum pulvinar. Nullam non
+          tortor sed lectus luctus consectetur id et orci. Nulla fringilla
+          euismod ullamcorper.
+        </p>
+        <p>
+          Orci varius natoque penatibus et magnis dis parturient montes,
+          nascetur ridiculus mus. Maecenas eget sodales metus. Nam rutrum
+          hendrerit aliquam. Donec pretium semper ornare. Proin eu ante neque.
+          Donec dictum purus nisi. Integer vestibulum id arcu at tincidunt.
+          Nulla rutrum ante quis metus cursus, vitae efficitur eros dignissim.
+          Mauris accumsan sapien sapien, eget dapibus dui congue id. Curabitur
+          nulla ipsum, mollis vitae leo id, rutrum placerat dui. Donec et auctor
+          tellus, id commodo augue. In consequat elit non ultricies pharetra.
+          Fusce porta libero nec leo lobortis, id porta ante mattis. Vivamus
+          accumsan nisl quis lacus varius, quis luctus nibh elementum. In hac
+          habitasse platea dictumst.
+        </p>
+      </div>
     </div>
-    <div>
-      <h4>Dates clés</h4>
-      <p>
-        Inscriptions ouvertes jusqu'au <span class="value">{{ "???" }}</span>
-      </p>
-      <p>
-        Mission prévue le
-        <span class="value">{{ mission.date | date: "dd/MM/yyyy" }}</span>
-      </p>
-    </div>
-    <div>
-      <h4>Inscriptions</h4>
-      <p>
-        Joueurs inscrits :
-        <span class="value">{{ calcPlayers() }}</span>
-      </p>
-      <p>
-        Places disponibles :
-        <span class="value">{{ calcFree() }}</span>
-      </p>
-      <p>
-        Places réservées :
-        <span class="value">{{ calcBooked() }}</span>
-      </p>
-      <p></p>
-      <p></p>
+
+    <div class="columns">
+      <div class="column">
+        <p>
+          Sed rutrum metus quis dui vehicula iaculis. Pellentesque in augue vel
+          dolor faucibus tristique ut porttitor est. Donec sit amet metus metus.
+          Quisque viverra commodo arcu. Suspendisse convallis rutrum mauris, nec
+          sodales lacus vulputate vel. Nam sed metus ac libero tempor efficitur
+          a vitae est. Pellentesque malesuada blandit placerat. Phasellus quis
+          tincidunt ligula, ac mattis orci.
+        </p>
+      </div>
     </div>
   </div>
-  <button (click)="goBack()">Retour à la liste</button>
-</div>
+</section>

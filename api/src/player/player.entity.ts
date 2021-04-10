@@ -4,9 +4,9 @@ import {
   Column,
   OneToMany,
   BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 import { ApiHideProperty, ApiProperty } from '@nestjs/swagger';
-import { Exclude } from 'class-transformer';
 import * as bcrypt from 'bcrypt';
 import { Role } from 'src/role/role.entity';
 
@@ -20,13 +20,13 @@ export class Player {
 
   @ApiHideProperty()
   @Column()
-  @Exclude()
   password: string;
 
   @Column({ default: false, update: false, insert: false })
   isAdmin: boolean;
 
   @BeforeInsert()
+  @BeforeUpdate()
   async hashPassword() {
     this.password = await bcrypt.hash(this.password, 10);
   }

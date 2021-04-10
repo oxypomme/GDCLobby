@@ -1,0 +1,262 @@
+<!-- image header -->
+<header>
+  <div id="img-header" class="intel"></div>
+</header>
+
+<!-- content -->
+<section>
+  <!-- title -->
+  <div class="content-title">
+    <h1 class="title">Intel</h1>
+  </div>
+  <!-- content -->
+  <div class="content">
+    <div class="columns intel-Jx">
+      <div
+        class="column"
+        *ngIf="
+          remainingTime !== null ||
+          (remainingTime?.minutes() >= 30 &&
+            remainingTime?.hours() >= 0 &&
+            remainingTime?.asDays() >= 0)
+        "
+      >
+        <h4 class="subtitle is-4 intel-Jx">
+          Vous aurez plus d'information bientôt.
+        </h4>
+        <img
+          src="/assets/dog_wait.jpg"
+          alt=""
+          class="intel-Jx"
+          *ngIf="remainingTime?.asDays() > 7"
+        />
+      </div>
+    </div>
+
+    <!-- dispo à t0 -->
+    <div class="columns" *ngIf="remainingTime === null">
+      <div class="column">
+        <h4 class="subtitle is-4">
+          Renseignements détaillés sur certaines positions des hostiles (groupes
+          paramil)
+        </h4>
+        <h5 class="subtitle is-5">
+          Positions des iglaa et présence AA sur Rosche
+        </h5>
+      </div>
+    </div>
+
+    <!-- dispo 30min avant -->
+    <div
+      class="columns intel-M30"
+      *ngIf="
+        remainingTime === null ||
+        (remainingTime?.minutes() < 30 &&
+          remainingTime?.hours() <= 0 &&
+          remainingTime?.asDays() < 1)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">
+          Renseignements détaillés sur Rosche (sauf si renseignements à
+          collecter par FS)
+        </h4>
+        <h5 class="subtitle is-5">Localisation du QG sur Rosche</h5>
+        <p></p>
+
+        <h5 class="subtitle is-5">Présence SAM dans la zone du QG</h5>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- dispo à h-2 -->
+    <div
+      class="columns intel-H2"
+      *ngIf="
+        remainingTime === null ||
+        (remainingTime?.hours() < 2 && remainingTime?.asDays() < 1)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">Position générale des hostiles</h4>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- dispo à h-4 -->
+    <div
+      class="columns intel-H4"
+      *ngIf="
+        remainingTime === null ||
+        (remainingTime?.hours() < 4 && remainingTime?.asDays() < 1)
+      "
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">H-4</h4>
+        <p></p>
+      </div>
+    </div>
+
+    <!-- dispo à j-1 -->
+    <div
+      class="columns intel-H24"
+      *ngIf="remainingTime === null || remainingTime?.asDays() < 1"
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">Situation générale</h4>
+        <p>
+          Les forces hostiles ont lancé ce jour, 3 juillet 2012, un assaut
+          massif à travers la Pologne, partant de l’Ukraine et visant
+          l’Allemagne. Seul le 2nd MBG “raging bull” est en mesure de projeter
+          ses premiers effectifs dans les 24h.
+        </p>
+
+        <h4 class="subtitle is-4">Situation tactique sur l’OZ Rosche</h4>
+        <p>La carte tactique couvre une zone de 15 km².</p>
+        <p>Télécharger la carte tactique :</p>
+        <ul>
+          <li>
+            <a href="/assets/J-7_2_carte_tactique_MR.png" target="_blank"
+              >au format png</a
+            >
+            (env. 9 Mo)
+          </li>
+          <li>
+            <a href="/assets/J-7_2_carte_tactique_MR.xcf">au format GIMP</a>
+            (xcf) avec calques (env. 23 Mo)
+          </li>
+        </ul>
+
+        <h4 class="subtitle is-4">Situation tactique détaillée</h4>
+        <p>
+          3 routes principales, la 71 (la plus au sud), la 493 (au centre) et la
+          191 (au nord) convergent vers l’aéroport situé au sud de Ridpord. Le
+          contrôle de ce nœud routier et de l’aéroport est vital car il ouvre
+          directement l’axe Frankfurt-am-Oder - Berlin.
+        </p>
+        <p>
+          <b>Important </b>: la rivière Wipperau qui serpente de l’Oder (ZI au
+          sud de Oldenstadter See) jusqu’à Rosche en passant par le nord de
+          notre TZ <u>n’est pas franchissable</u> par des véhicules motorisés.
+        </p>
+        <p>
+          <a href="/assets/J-7_2_carte_tactique_MR.png" target="_blank">
+            <img
+              src="/assets/J-7_2_carte_tactique_MR.png"
+              class="left-align"
+              alt=""
+              style="width: 50%"
+            />
+          </a>
+        </p>
+        <p>
+          L’aéroport, ainsi que les 3 avant-postes Nestor (nord), Cassandre
+          (centre) et Sofia (sud) sont pour le moment sous notre contrôle.
+        </p>
+        <p>
+          Côté hostile, les troupes ont pénétré par la 493 à l’est. Elles
+          contrôlent Rosche.
+        </p>
+        <p>
+          Elles sont constituées pour partie de groupes paramilitaires qui se
+          déploient rapidement vers l’ouest.
+        </p>
+        <p>Rosche est occupée par des troupes régulières ukrainiennes.</p>
+        <h4 class="subtitle is-4">Mission</h4>
+        <p>
+          Vous devez briser l’assaut et empêcher l’ennemi d’arriver sur le
+          secteur stratégique de l’aéroport.
+        </p>
+        <p>
+          Si la situation le permet, vous devez lancer une contre-attaque sur
+          Rosche et tenter de neutraliser le QG ENI.
+        </p>
+        <h4 class="subtitle is-4">Déploiement des forces alliées</h4>
+        <p>
+          CyNORO, CyCERO et CySURO sont déployées en synchronisation. Concernant
+          CyCERO, en particulier :
+        </p>
+        <p>
+          <b>04/07/2012 - 0145 ZULU : 1er RPIMa</b> via HALO jump (8 000 m.) par
+          C130
+        </p>
+        <p>
+          <b>04/07/2012 - 0300 ZULU : ensemble de l’effectif</b> d’avant-garde
+          (30-60 hommes) déployé sur zone (aéroport de Ridpord)
+        </p>
+      </div>
+    </div>
+
+    <!-- dispo à j-7 -->
+    <div
+      class="columns intel-J7"
+      *ngIf="remainingTime === null || remainingTime?.asDays() < 7"
+    >
+      <div class="column">
+        <h4 class="subtitle is-4">Objectifs</h4>
+        <p>
+          Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
+          le secteur stratégique de l’aéroport.
+        </p>
+        <p>
+          Si la situation le permet, vous devez lancer une contre-attaque sur
+          Rosche et tenter de neutraliser le QG ENI.
+        </p>
+        <h4 class="subtitle is-4">Conditions de victoire</h4>
+        <p>
+          <b>
+            Victoire majeure : la contre-attaque est brisée (tous les blindés
+            ENI sont hors combat), vous contrôlez le QG ENI sur Rosche.
+          </b>
+          <i>
+            Vous n’avez peur de rien. Une fois l’assaut brisé, vous lancez une
+            contre-attaque brutale en fonçant sur Rosche. Votre acte de bravoure
+            fait la manchette des journaux.
+          </i>
+        </p>
+        <p>
+          <b>
+            Victoire mineure : la contre-attaque est brisée (tous les blindés
+            ENI sont hors combat), vous contrôlez* les villages de Suttorf,
+            Jarlitz, Klein Malchau, Molbath et Schliekau.
+          </b>
+          <i>
+            Vous êtes prudent et méthodique : plutôt que de foncer tête baissée
+            sur Rosche, vous préférez contrôler les villages centraux en
+            attendant les renforts. L’état-major est satisfait, mais vous
+            n’inscrirez pas votre nom dans les annales militaires.
+          </i>
+        </p>
+        <p>
+          <i>
+            *“Contrôler” signifie que tous les éléments hostiles de ces villages
+            sont neutralisés et que vous couvrez l’ensemble des secteurs à vue
+            autour des villages.
+          </i>
+        </p>
+        <p>
+          <b>
+            Défaite mineure : la contre-attaque est brisée (tous les blindés ENI
+            sont hors combat), vous contrôlez au moins les villages de Jarlitz
+            et Klein Malchau.
+          </b>
+          <i>
+            Finalement, l’ennemi est plus fort que ce à quoi vous vous
+            attendiez. Vous limitez les dégâts.
+          </i>
+        </p>
+        <p>
+          <b>
+            Défaite majeure : vous ne brisez pas la contre-attaque (certains
+            blindés ENI ne sont pas neutralisés) ou vous ne contrôlez ni les
+            villages de Jarlitz et Klein Malchau ni le QG ENI.
+          </b>
+          <i>
+            Soyons clair, Capitaine, c’est un désastre et votre carrière s’en
+            ressentira, si toutefois vous êtes encore vivant.
+          </i>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

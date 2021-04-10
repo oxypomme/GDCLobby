@@ -8,6 +8,11 @@ export const selectIsPlayerLogged = createSelector(
   (state: PlayerState) => !!state.jwt
 );
 
+export const selectPlayerToken = createSelector(
+  selectPlayer,
+  (state: PlayerState) => state.jwt
+);
+
 export const selectPlayerLogged = createSelector(
   selectPlayer,
   (state: PlayerState) => state.profile

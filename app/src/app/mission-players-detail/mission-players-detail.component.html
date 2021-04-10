@@ -1,0 +1,169 @@
+<!-- image header -->
+<header>
+  <div id="img-header" class="contact"></div>
+</header>
+<!-- content -->
+<section>
+  <!-- title -->
+  <div class="content-title">
+    <h1 class="title">Liste des joueurs</h1>
+  </div>
+
+  <!-- content -->
+  <div class="content">
+    <div class="columns">
+      <form class="column">
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Nom du rôle</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input
+                  class="input {{
+                    errors?.includes('name') ? 'is-danger' : ''
+                  }}"
+                  type="text"
+                  placeholder="Soldat"
+                  name="name"
+                  [(ngModel)]="name"
+                />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('name')">
+                Veuillez entrer un nom valide (255 caractères max).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <label class="checkbox">
+            <input type="checkbox" name="isBooked" [(ngModel)]="isBooked" />
+            Rôle Réservé
+          </label>
+        </div>
+
+        <div class="field is-horizontal" *ngIf="teams">
+          <div class="field-label is-normal">
+            <label class="label">Équipe</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div
+                class="select {{ errors?.includes('team') ? 'is-danger' : '' }}"
+              >
+                <select [(ngModel)]="selectedTeam" name="selectedTeam">
+                  <option value="" disabled>-- Choisir une équipe --</option>
+                  <option *ngFor="let team of teams" [value]="team.id">
+                    {{ team.name }}
+                  </option>
+                </select>
+              </div>
+              <p class="help is-danger" *ngIf="errors?.includes('team')">
+                Veuillez sélectionner une équipe.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Joueur</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <div class="select">
+                <select [(ngModel)]="selectedPlayer" name="selectedPlayer">
+                  <option value="" value="0"></option>
+                  <option value="" disabled>-- Choisir un joueur --</option>
+                  <option *ngFor="let player of players" [value]="player.id">
+                    {{ player.username }}
+                  </option>
+                </select>
+              </div>
+              <!--<p class="control">
+                <input
+                  class="input"
+                  type="text"
+                  placeholder="me"
+                  name="player"
+                  value="{{ role?.player.username }}"
+                  [disabled]="role?.player"
+                />
+              </p>-->
+            </div>
+            <div class="field is-grouped is-grouped-right" *ngIf="role?.player">
+              <p class="control">
+                <button class="button is-danger" (click)="kick()">
+                  Exclure
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Condition</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input
+                  class="input {{
+                    errors?.includes('condition') ? 'is-danger' : ''
+                  }} condi"
+                  type="text"
+                  name="condition"
+                  placeholder="true"
+                  [(ngModel)]="condition"
+                />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('condition')">
+                Veuillez entrer une condition valide (<code>true</code> par
+                défaut).
+              </p>
+            </div>
+          </div>
+        </div>
+        <small>
+          Code JavaScript qui sera exécuté pour savoir si le slot est ouvert.
+          <br />
+          (Mini) API :<br />
+          - <code>missionPlayers</code> indique le nombre de joueurs inscrits.
+          <br />
+        </small>
+        <small class="is-warning"
+          >Attention, le code n'est pas vérifié avant d'être validé. <br />
+          Ce qui implique que si une condition est mal écrite, une ligne vide
+          sera affiché pour les joueurs.</small
+        >
+
+        <div class="mybuttons">
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button" (click)="goBack()">Retour</button>
+            </p>
+          </div>
+
+          <div class="field is-grouped is-grouped-right" *ngIf="role">
+            <p class="control">
+              <button class="button is-danger" (click)="del()">
+                Supprimer
+              </button>
+            </p>
+          </div>
+
+          <div class="field is-grouped is-grouped-right">
+            <p class="control">
+              <button class="button is-primary" (click)="validate()">
+                {{ role ? "Mettre à jour" : "Créer" }}
+              </button>
+            </p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

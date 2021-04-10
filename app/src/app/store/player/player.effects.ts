@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, mergeMap } from 'rxjs/operators';
-import { Player } from 'src/app/player';
 
+import { Player } from 'src/app/player';
 import { PlayerService } from 'src/app/player.service';
 import PlayerActions from './player.actions';
 import { JWToken } from './player.reducer';
@@ -37,6 +37,37 @@ export class PlayerEffects {
           map((profile: Player) =>
             PlayerActions.logIn.request({ credentials })
           ),
+          catchError((err) => of(PlayerActions.failed({ err })))
+        )
+      )
+    )
+  );
+
+  update$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlayerActions.update.request),
+      exhaustMap(({ credentials, jwt }) =>
+        this.playerService.update(credentials, jwt).pipe(
+          map((profile: Player) =>
+            profile
+              ? PlayerActions.update.success({ profile })
+              : PlayerActions.failed({ err: 'An error occured' })
+          ),
+          catchError((err) => of(PlayerActions.failed({ err })))
+        )
+      )
+    )
+  );
+
+  delete$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(PlayerActions.delete.request),
+      exhaustMap(({ jwt }) =>
+        this.playerService.delete(jwt).pipe(
+          mergeMap((profile: any) => [
+            PlayerActions.delete.success(),
+            PlayerActions.logOut(),
+          ]),
           catchError((err) => of(PlayerActions.failed({ err })))
         )
       )

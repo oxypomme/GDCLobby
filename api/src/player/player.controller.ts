@@ -17,9 +17,14 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
     },
   },
   query: {
+    exclude: ['password'],
     join: {
       roles: {
         eager: true,
+      },
+      'roles.mission': {
+        eager: true,
+        required: false,
       },
       'roles.team': {
         eager: true,

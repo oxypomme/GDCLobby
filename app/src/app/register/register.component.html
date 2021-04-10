@@ -1,0 +1,101 @@
+<!-- image header -->
+<header>
+  <div id="img-header" class="home"></div>
+</header>
+
+<!-- content -->
+<section>
+  <!-- title -->
+  <div class="content-title">
+    <h1 class="title">Créer un compte</h1>
+  </div>
+
+  <!-- content -->
+  <div class="content">
+    <div class="columns">
+      <form class="column">
+        <small>
+          Créer un compte pour participer à l'<b
+            >Opération Rogue Wave Piercer</b
+          >
+          !
+        </small>
+
+        <br />
+        <br /><br />
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Pseudo</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input
+                  class="input {{
+                    errors?.includes('username') ? 'is-danger' : ''
+                  }}"
+                  [(ngModel)]="username"
+                  type="text"
+                  name="username"
+                  placeholder="pseudo"
+                  required
+                />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('username')">
+                Veuillez entrer un pseudo valide (64 caractères max).
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="field is-horizontal">
+          <div class="field-label is-normal">
+            <label class="label">Mot de passe</label>
+          </div>
+          <div class="field-body">
+            <div class="field">
+              <p class="control">
+                <input
+                  class="input {{
+                    errors?.includes('password') ? 'is-danger' : ''
+                  }}"
+                  [(ngModel)]="password"
+                  type="password"
+                  name="password"
+                  placeholder="example_mdp"
+                  required
+                />
+              </p>
+              <p class="help is-danger" *ngIf="errors?.includes('password')">
+                Veuillez entrer un mot de passe.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <br /><br />
+
+        <div class="field is-grouped is-grouped-right">
+          <p class="control">
+            <button
+              type="submit"
+              class="button is-primary"
+              (click)="register()"
+            >
+              Créer
+            </button>
+          </p>
+        </div>
+
+        <br /><br />
+
+        <small>
+          Vous avez déjà un compte ? <br />
+          Connecté vous sans attendre pour l'<b>Opération Rogue Wave Piercer</b>
+          : <a routerLink="/login">Connexion</a>
+        </small>
+      </form>
+    </div>
+  </div>
+</section>

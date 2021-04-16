@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { AppComponent } from './app.component';
 import { MissionDetailComponent } from './mission-detail/mission-detail.component';
 import { AppRoutingModule } from './app-routing.module';
 import { effects, store } from './store';
-import { EffectsModule } from '@ngrx/effects';
 import { ContactComponent } from './contact/contact.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MissionInfoPanelComponent } from './mission-info-panel/mission-info-panel.component';
@@ -22,6 +23,7 @@ import { MissionPlayersComponent } from './mission-players/mission-players.compo
 import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MissionPlayersDetailComponent } from './mission-players-detail/mission-players-detail.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { MissionPlayersDetailComponent } from './mission-players-detail/mission-
     RegisterComponent,
     ProfileComponent,
     MissionPlayersDetailComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,7 @@ import { MissionPlayersDetailComponent } from './mission-players-detail/mission-
     StoreModule.forRoot(store),
     EffectsModule.forRoot(effects),
   ],
-  providers: [],
+  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -11,6 +11,7 @@ import { MissionModsetComponent } from './mission-modset/mission-modset.componen
 import { MissionOrgaBlueforComponent } from './mission-orga-bluefor/mission-orga-bluefor.component';
 import { MissionPlayersDetailComponent } from './mission-players-detail/mission-players-detail.component';
 import { MissionPlayersComponent } from './mission-players/mission-players.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 
@@ -27,7 +28,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'profile', component: ProfileComponent },
-  // { path: '**', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

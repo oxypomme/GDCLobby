@@ -1,52 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
-/* vietnamese */
-@font-face {
-  font-family: "Asap";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/asap/v15/KFO9CniXp96a4Tc2EZzSuDAoKsE61phGW36MAA.woff2)
-    format("woff2");
-  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1,
-    U+01AF-01B0, U+1EA0-1EF9, U+20AB;
-}
-/* latin-ext */
-@font-face {
-  font-family: "Asap";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/asap/v15/KFO9CniXp96a4Tc2EZzSuDAoKsE61phHW36MAA.woff2)
-    format("woff2");
-  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB,
-    U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
-}
-/* latin */
-@font-face {
-  font-family: "Asap";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/asap/v15/KFO9CniXp96a4Tc2EZzSuDAoKsE61phJW34.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-/* latin */
-@font-face {
-  font-family: "Marvel";
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url(https://fonts.gstatic.com/s/marvel/v10/nwpVtKeoNgBV0qa4llTF.woff2)
-    format("woff2");
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-    U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
-    U+FEFF, U+FFFD;
-}
-
 /*-- variable --*/
 :root {
   /*-- color var --*/
@@ -93,12 +45,11 @@ a:hover {
   color: var(--font-color);
 }
 
-.navbar,
-.navbar-menu {
+.navbar, .navbar-menu {
   background-color: var(--elem-color);
 }
 
-.navbar .navbar-menu a.navbar-item,
+.navbar .navbar-menu a.navbar-item, 
 .navbar .navbar-menu a.navbar-link {
   font-family: var(--title-font);
   font-size: 20px;
@@ -106,14 +57,14 @@ a:hover {
   letter-spacing: 2px;
 }
 
-.navbar .navbar-menu a.navbar-item:active,
+.navbar .navbar-menu a.navbar-item:active, 
 .navbar .navbar-menu a.navbar-item:focus,
 .navbar .navbar-menu a.navbar-item:hover {
   background-color: var(--bck-color);
 }
 
-.navbar-item.has-dropdown.is-active .navbar-link,
-.navbar-item.has-dropdown:focus .navbar-link,
+.navbar-item.has-dropdown.is-active .navbar-link, 
+.navbar-item.has-dropdown:focus .navbar-link, 
 .navbar-item.has-dropdown:hover .navbar-link {
   background-color: var(--bck-color);
 }
@@ -129,7 +80,7 @@ a:hover {
 }
 
 .navbar .navbar-menu .toggle-dropdown .navbar-link::after {
-  transform: rotate(135deg) translate(0.25em, -0.25em);
+  transform: rotate(135deg) translate(.25em,-.25em);
 }
 
 .navbar .navbar-menu .navbar-dropdown a.navbar-item {
@@ -141,7 +92,7 @@ a:hover {
   margin-left: 15px;
 }
 
-.navbar .navbar-menu .navbar-start a.navbar-item,
+.navbar .navbar-menu .navbar-start a.navbar-item, 
 .navbar .navbar-menu a.navbar-link {
   margin: 0px 15px;
 }
@@ -176,8 +127,7 @@ a:hover {
   margin-left: 15px;
 }
 
-.navbar.is-fixed-top .navbar-menu,
-.navbar.is-fixed-top-touch .navbar-menu {
+.navbar.is-fixed-top .navbar-menu, .navbar.is-fixed-top-touch .navbar-menu {
   height: 100vh;
 }
 
@@ -273,9 +223,9 @@ aside.menu .menu-list li a {
 
 aside.menu .menu-list li ul {
   border-left: 1px solid var(--font-color);
-  margin: 0.75em;
+  margin: .75em;
   margin-left: 55px;
-  padding-left: 0.75em;
+  padding-left: .75em;
 }
 
 aside.menu .menu-list li ul li a {
@@ -320,7 +270,7 @@ aside.menu .is-active {
   padding: 10px 15px;
   height: auto;
   width: auto;
-
+  
   position: relative;
   left: 0px;
   margin-top: 0px;
@@ -354,12 +304,13 @@ aside.menu .is-active {
 /*- title -*/
 section .content-title {
   background-color: var(--bck-color);
-
+  
   border-radius: 0px;
   position: relative;
   padding: 50px;
   border-top: 1px solid var(--font-color);
 }
+
 
 section .content-title h1.title {
   font-family: var(--title-font);
@@ -378,13 +329,13 @@ section .content .columns .subtitle {
 }
 
 section .content .columns .column p img.left-align {
-  float: left;
-  margin: 0px 15px 15px 0px;
+  float: left; 
+  margin: 0px 15px 15px 0px; 
 }
 
 section .content .columns .column p img.right-align {
-  float: right;
-  margin: 0px 15px 15px 0px;
+  float: right; 
+  margin: 0px 15px 15px 0px;    
 }
 
 /*- content -*/
@@ -419,7 +370,7 @@ section .content img {
 }
 
 section .content mark {
-  padding: 0.25rem 5px;
+  padding: .25rem 5px;
 }
 
 .intel-hide {
@@ -453,186 +404,187 @@ footer.footer strong {
 /*-- media queries --*/
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
+
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
+  
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
+  
   /*-- content --*/
   section .content {
-    margin: 0px 80px 80px 80px;
+      margin: 0px 80px 80px 80px;
   }
 
   section .content .columns {
-    margin: 0px 0px;
-    border-radius: 0px;
+      margin: 0px 0px;
+      border-radius: 0px;
   }
 
   section .content .columns:first-child {
-    border-radius: 5px 5px 0px 0px;
+      border-radius: 5px 5px 0px 0px;
   }
 
   section .content .columns:last-child {
-    border-radius: 0px 0px 5px 5px;
+      border-radius: 0px 0px 5px 5px;
   }
 
   /*-- footer --*/
-  footer.footer {
-    border: none;
-  }
+  footer.footer {    
+      border: none;
+  }       
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   /*-- navbar --*/
-  .navbar.is-fixed-top .navbar-menu,
-  .navbar.is-fixed-top-touch .navbar-menu {
-    height: auto;
+  .navbar.is-fixed-top .navbar-menu, .navbar.is-fixed-top-touch .navbar-menu {
+      height: auto;
   }
 
   .navbar .navbar-menu .navbar-dropdown a.navbar-item {
-    margin: 0px !important;
+      margin: 0px !important;
   }
 
   .navbar .navbar-menu .navbar-end .separator {
-    display: none;
+      display: none;
   }
 
   /*-- logo panel --*/
   .logo-panel {
-    position: absolute;
-    left: 200px;
-    margin-top: -84px;
+      position: absolute;
+      left: 200px;
+      margin-top: -84px;
   }
 
   /*-- side menu --*/
   aside.menu {
-    border: none;
+      border: none;
   }
 
   /*-- content --*/
   /*- title -*/
   section .content-title {
-    position: absolute;
-    left: 120px;
-    margin-top: -60px;
-    padding: 20px 50px;
-    border-radius: 5px;
-    border: none;
+      position: absolute;
+      left: 120px;
+      margin-top: -60px;
+      padding: 20px 50px;
+      border-radius: 5px;
+      border: none;
   }
 
   section .content {
-    margin: 80px;
+      margin: 80px;
   }
 
   section .content .columns {
-    margin: 0px 10px;
-    border-radius: 0px;
+      margin: 0px 10px;
+      border-radius: 0px;
   }
 
   section .content .columns:first-child {
-    border-radius: 5px 5px 0px 0px;
+      border-radius: 5px 5px 0px 0px;
   }
 
   section .content .columns:last-child {
-    border-radius: 0px 0px 5px 5px;
+      border-radius: 0px 0px 5px 5px;
   }
 
   /*-- footer --*/
   footer.footer {
-    border: none;
-  }
+      border: none;
+  } 
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   /*-- navbar --*/
-  .navbar.is-fixed-top .navbar-menu,
-  .navbar.is-fixed-top-touch .navbar-menu {
-    height: auto;
+  .navbar.is-fixed-top .navbar-menu, .navbar.is-fixed-top-touch .navbar-menu {
+      height: auto;
   }
 
   .navbar .navbar-menu .navbar-dropdown a.navbar-item {
-    margin: 0px !important;
+      margin: 0px !important;
   }
 
   .navbar .navbar-menu .navbar-end .separator {
-    display: none;
+      display: none;
   }
 
   /*-- information panel --*/
   .information-panel {
-    position: absolute;
-    right: 40px;
-    top: 60vh;
+      position: absolute;
+      right: 40px;
+      top: 60vh;
   }
 
   .information-panel.fixed {
-    position: fixed;
-    right: 40px;
-    top: 5vh;
+      position: fixed;
+      right: 40px;
+      top: 5vh;
   }
 
   /*-- side menu --*/
   aside.menu {
-    position: absolute;
-    left: 40px;
-    top: 60vh;
-    width: 440px;
+      position: absolute;
+      left: 40px;
+      top: 60vh;
+      width: 440px;
   }
 
   aside.menu.fixed {
-    position: fixed;
-    left: 40px;
-    top: 5vh;
-    width: 440px;
+      position: fixed;
+      left: 40px;
+      top: 5vh;
+      width: 440px;
   }
 
   /*-- logo panel --*/
   .logo-panel {
-    position: absolute;
-    left: 200px;
-    margin-top: -135px;
+      position: absolute;
+      left: 200px;
+      margin-top: -135px;
   }
 
   /*-- content --*/
   /*- title -*/
   section .content-title {
-    position: absolute;
-    left: 160px;
-    margin-top: -134px;
-    padding: 20px 50px;
-    border-radius: 5px;
-    border: none;
+      position: absolute;
+      left: 160px;
+      margin-top: -134px;
+      padding: 20px 50px;
+      border-radius: 5px;
+      border: none;
   }
 
   /*- content -*/
   section .content {
-    margin: 80px;
+      margin: 80px;
   }
-
+  
   section .content img {
-    height: 500px;
+      height: 500px;
   }
 
   section .content .columns {
-    margin: 0px 400px;
-    border-radius: 0px;
+      margin: 0px 400px;
+      border-radius: 0px;
   }
 
   section .content .columns:first-child {
-    border-radius: 5px 5px 0px 0px;
+      border-radius: 5px 5px 0px 0px;
   }
 
   section .content .columns:last-child {
-    border-radius: 0px 0px 5px 5px;
+      border-radius: 0px 0px 5px 5px;
   }
 
   /*-- footer --*/
   footer.footer {
-    border: none;
-  }
+      border: none;
+  }    
 }

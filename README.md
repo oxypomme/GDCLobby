@@ -15,7 +15,7 @@ Avec PM2 : `pm2 start gdclobby.yml --env production`
 
 - Mettre en place la base de données (fichier `.sql` disponible dans `api/db/`).
 - Lancer le serveur de la base de données.
-- Ajouter la/les mission(s).
+- Ajouter la/les mission(s) dans la base.
 - Configurer le `.env` de l'API (fichier `.sample-env` disponible dans `api/` pour aider à la configuration).
   - Note pour Docker : le `.env` doit être placé au même endroit que les `docker-compose*.yaml`. Le même `.sample-env` est disponible à cet endroit.
 - Lancer le tout (`./start.bat`)

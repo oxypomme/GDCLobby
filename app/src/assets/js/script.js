@@ -34,52 +34,84 @@ function aside_active_elemnt() {
 
         // read each aside item
         $('#aside').find('a').each(function () {
+            let isFound = false;
             var aside_item = $(this);
 
             // reach each h5
-            $('.content').find('h5').each(function () {
-                var h5 = $(this);
+            if (!isFound)
+                $('.content').find('h5').each(function () {
+                    var h5 = $(this);
 
-                // if aside item match with h5
-                if (aside_item.text() == h5.text()) {
+                    // if aside item match with h5
+                    if (aside_item.text().trim().normalize() == h5.text().trim().normalize()) {
 
-                    // if window scroll match with h5 pos
-                    if (scrollTop >= h5.offset().top - 200) {
+                        //console.log(aside_item.text(), scrollTop, h5.offset().top - 200);
+                        // if window scroll match with h5 pos
+                        if (scrollTop >= h5.offset().top - 200) {
 
-                        // remove all is-active class
-                        $('#aside').find('a').each(function () {
-                            $(this).removeClass('is-active');
-                        });
+                            // remove all is-active class
+                            $('#aside').find('a').each(function () {
+                                $(this).removeClass('is-active');
+                            });
 
-                        aside_item.addClass('is-active');
-                    }
+                            aside_item.addClass('is-active');
 
-                    // no h5 match
-                } else {
-
-                    // reach each h4
-                    $('.content').find('h4').each(function () {
-                        var h4 = $(this);
-
-                        // if aside item match with h4
-                        if (aside_item.text() == h4.text()) {
-
-                            // if window scroll match with h4 pos
-                            if (scrollTop >= h4.offset().top - 200) {
-
-                                // remove all is-active class
-                                $('#aside').find('a').each(function () {
-                                    $(this).removeClass('is-active');
-                                });
-
-                                aside_item.addClass('is-active');
-                            }
-
+                            isFound = true;
                         }
-                    });
-                }
-            });
+
+                        // no h5 match
+                    }
+                });
+
+            if (!isFound)
+                $('.content').find('h4').each(function () {
+                    isFound = false;
+                    var h4 = $(this);
+
+                    // if aside item match with h4
+                    if (aside_item.text().trim().normalize() == h4.text().trim().normalize()) {
+
+                        // if window scroll match with h4 pos
+                        if (scrollTop >= h4.offset().top - 200) {
+
+                            // remove all is-active class
+                            $('#aside').find('a').each(function () {
+                                $(this).removeClass('is-active');
+                            });
+
+                            aside_item.addClass('is-active');
+
+                            isFound = true;
+                        }
+
+                    }
+                });
+
+            if (!isFound)
+                $('.content').find('h6').each(function () {
+                    isFound = false;
+                    var h6 = $(this);
+
+                    // if aside item match with h6
+                    if (aside_item.text().trim().normalize() == h6.text().trim().normalize()) {
+
+                        // if window scroll match with h6 pos
+                        if (scrollTop >= h6.offset().top - 200) {
+
+                            // remove all is-active class
+                            $('#aside').find('a').each(function () {
+                                $(this).removeClass('is-active');
+                            });
+
+                            aside_item.addClass('is-active');
+
+                            isFound = true;
+                        }
+
+                    }
+                });
         });
+
     }
 }
 

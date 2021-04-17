@@ -30,7 +30,9 @@ export class MissionInfoPanelComponent implements OnInit {
 
     this.remainingTime = `
     ${
-      dur.days() > dayjs().daysInMonth() ? Math.round(dur.asDays()) : dur.days()
+      dur.asDays() > dayjs().daysInMonth()
+        ? Math.round(dur.asDays())
+        : dur.days()
     }j
      ${dur.hours()}h 
      ${dur.minutes()}m 

@@ -26,6 +26,10 @@ export class MissionPlayersComponent implements OnInit {
   isAlreadyRegistered: boolean;
   token: JWToken;
 
+  teams: {
+    [name: string]: Role[];
+  } = {};
+
   constructor(private missionService: MissionService, private store: Store) {
     this.playerLogged$ = this.store.select(selectPlayerLogged);
     this.playerLogged$.subscribe({
@@ -50,11 +54,28 @@ export class MissionPlayersComponent implements OnInit {
     this.missionService.getMission(id).subscribe((mission) => {
       this.mission = mission;
 
+      for (const role of mission.roles) {
+        if (!this.teams[role.team.name]) {
+          this.teams = {
+            ...this.teams,
+            [role.team.name]: [],
+          };
+        }
+        this.teams = {
+          ...this.teams,
+          [role.team.name]: [...this.teams[role.team.name], role],
+        };
+      }
+
       this.playerLogged$.subscribe((player) => {
         this.isAlreadyRegistered =
           mission.roles?.findIndex((r) => r.player?.id === player?.id) >= 0;
       });
     });
+  }
+
+  getTeamsKey(): string[] {
+    return Object.keys(this.teams);
   }
 
   joinMission(role: Role): void {

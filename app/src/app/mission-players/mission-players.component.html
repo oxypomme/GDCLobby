@@ -63,6 +63,13 @@
                       Editer
                     </button>
                     <button
+                      routerLink="{{ role.id }}"
+                      class="button is-small is-outlined"
+                      *ngIf="(playerLogged$ | async).isAdmin"
+                    >
+                      Exclure
+                    </button>
+                    <button
                       class="button is-small is-outlined"
                       (click)="leaveMission(role)"
                       *ngIf="

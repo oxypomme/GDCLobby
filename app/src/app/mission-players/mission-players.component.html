@@ -34,49 +34,62 @@
               <th *ngIf="playerLogged$ | async"></th>
             </tr>
           </thead>
-          <tbody *ngFor="let role of mission.roles">
-            <tr>
-              <th>{{ role.id }}</th>
-              <td>{{ role.team.name }}</td>
-              <td>{{ role.name }}</td>
-              <td>
-                <span *ngIf="role.player">
-                  {{ role.player.username }}
-                </span>
-              </td>
-              <td *ngIf="playerLogged$ | async">
-                <button
-                  routerLink="{{ role.id }}"
-                  class="button is-small is-outlined"
-                  *ngIf="(playerLogged$ | async).isAdmin"
-                >
-                  Editer
-                </button>
-                <button
-                  class="button is-small is-outlined"
-                  (click)="leaveMission(role)"
-                  *ngIf="
-                    role.player && role.player.id === (playerLogged$ | async).id
-                  "
-                >
-                  Déserter
-                </button>
-                <button
-                  class="button is-small is-outlined"
-                  (click)="joinMission(role)"
-                  *ngIf="
-                    dateValid() &&
-                    !isAlreadyRegistered &&
-                    !role.player &&
-                    evalCondition(role)
-                  "
-                >
-                  S'inscrire
-                </button>
-              </td>
-            </tr>
-          </tbody>
         </table>
+        <div *ngIf="mission && teams">
+          <div *ngFor="let team of getTeamsKey()">
+            <h6>{{ team }} :</h6>
+            <table class="table is-bordered is-hoverable is-fullwidth">
+              <tbody *ngFor="let role of mission.roles">
+                <tr
+                  *ngIf="
+                    role.team.name.trim().normalize() ===
+                    team.trim().normalize()
+                  "
+                >
+                  <th>{{ role.id }}</th>
+                  <td>{{ role.team.name }}</td>
+                  <td>{{ role.name }}</td>
+                  <td>
+                    <span *ngIf="role.player">
+                      {{ role.player.username }}
+                    </span>
+                  </td>
+                  <td *ngIf="playerLogged$ | async">
+                    <button
+                      routerLink="{{ role.id }}"
+                      class="button is-small is-outlined"
+                      *ngIf="(playerLogged$ | async).isAdmin"
+                    >
+                      Editer
+                    </button>
+                    <button
+                      class="button is-small is-outlined"
+                      (click)="leaveMission(role)"
+                      *ngIf="
+                        role.player &&
+                        role.player.id === (playerLogged$ | async).id
+                      "
+                    >
+                      Déserter
+                    </button>
+                    <button
+                      class="button is-small is-outlined"
+                      (click)="joinMission(role)"
+                      *ngIf="
+                        dateValid() &&
+                        !isAlreadyRegistered &&
+                        !role.player &&
+                        evalCondition(role)
+                      "
+                    >
+                      S'inscrire
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
         <button
           routerLink="0"
           class="button is-fullwidth"

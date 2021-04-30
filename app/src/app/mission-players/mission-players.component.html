@@ -57,20 +57,18 @@
                   <td *ngIf="playerLogged$ | async">
                     <button
                       routerLink="{{ role.id }}"
-                      class="button is-small is-outlined"
+                      class="button is-small is-outlined is-light is-info"
                       *ngIf="(playerLogged$ | async).isAdmin"
                     >
                       Editer
                     </button>
                     <button
-                      routerLink="{{ role.id }}"
-                      class="button is-small is-outlined"
-                      *ngIf="(playerLogged$ | async).isAdmin"
+                      class="button is-small is-outlined is-light is-danger"
                     >
                       Exclure
                     </button>
                     <button
-                      class="button is-small is-outlined"
+                      class="button is-small is-outlined is-light is-warning"
                       (click)="leaveMission(role)"
                       *ngIf="
                         role.player &&
@@ -80,7 +78,7 @@
                       Déserter
                     </button>
                     <button
-                      class="button is-small is-outlined"
+                      class="button is-small is-outlined is-light is-primary"
                       (click)="joinMission(role)"
                       *ngIf="
                         dateValid() &&

@@ -63,7 +63,13 @@
                       Editer
                     </button>
                     <button
+                      (click)="kick(role.id)"
                       class="button is-small is-outlined is-light is-danger"
+                      *ngIf="
+                        (playerLogged$ | async).isAdmin &&
+                        role.player &&
+                        role.player.id !== (playerLogged$ | async).id
+                      "
                     >
                       Exclure
                     </button>

@@ -95,6 +95,24 @@ export class MissionPlayersComponent implements OnInit {
       });
   }
 
+  kick(roleId) {
+    const missId = 1;
+    this.missionService
+      .updateRole(
+        missId,
+        {
+          id: roleId,
+          player: null,
+        },
+        this.token
+      )
+      .subscribe({
+        next: () => {
+          toast({ message: 'Joueur exclu' });
+          this.getMission();
+        },
+      });
+  }
   leaveMission(role: Role): void {
     const id = 1;
     const roleUpdated = {

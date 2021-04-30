@@ -36,7 +36,7 @@
           </thead>
         </table>
         <div *ngIf="mission && teams">
-          <div *ngFor="let team of getTeamsKey()">
+          <div *ngFor="let team of getObjKey(teams)">
             <h6>{{ team }} :</h6>
             <table class="table is-bordered is-hoverable is-fullwidth">
               <tbody *ngFor="let role of mission.roles">

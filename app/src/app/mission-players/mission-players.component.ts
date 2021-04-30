@@ -74,8 +74,8 @@ export class MissionPlayersComponent implements OnInit {
     });
   }
 
-  getTeamsKey(): string[] {
-    return Object.keys(this.teams);
+  getObjKey(obj): string[] {
+    return Object.keys(obj);
   }
 
   joinMission(role: Role): void {
@@ -113,6 +113,7 @@ export class MissionPlayersComponent implements OnInit {
         },
       });
   }
+
   leaveMission(role: Role): void {
     const id = 1;
     const roleUpdated = {

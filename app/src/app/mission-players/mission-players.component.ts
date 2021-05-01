@@ -74,8 +74,8 @@ export class MissionPlayersComponent implements OnInit {
     });
   }
 
-  getTeamsKey(): string[] {
-    return Object.keys(this.teams);
+  getObjKey(obj): string[] {
+    return Object.keys(obj);
   }
 
   joinMission(role: Role): void {
@@ -92,6 +92,25 @@ export class MissionPlayersComponent implements OnInit {
         else
           toast({ message: 'Une erreur est survenue...', type: 'is-danger' });
         this.getMission();
+      });
+  }
+
+  kick(roleId) {
+    const missId = 1;
+    this.missionService
+      .updateRole(
+        missId,
+        {
+          id: roleId,
+          player: null,
+        },
+        this.token
+      )
+      .subscribe({
+        next: () => {
+          toast({ message: 'Joueur exclu' });
+          this.getMission();
+        },
       });
   }
 

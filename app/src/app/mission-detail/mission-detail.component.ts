@@ -1,9 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
 import { Mission } from '../mission';
-import { MissionService } from '../mission.service';
-import { Role } from '../role';
+import { Store } from '@ngrx/store';
+import { selectMissionObj } from '../store/mission/mission.selectors';
 
 @Component({
   selector: 'app-mission-detail',
@@ -13,24 +11,11 @@ import { Role } from '../role';
 export class MissionDetailComponent implements OnInit {
   @Input() mission?: Mission;
 
-  constructor(
-    private route: ActivatedRoute,
-    private missionService: MissionService,
-    private location: Location
-  ) {}
-
-  ngOnInit(): void {
-    this.getMission();
-  }
-
-  getMission(): void {
-    const id = 1;
-    this.missionService
-      .getMission(id)
+  constructor(private store: Store) {
+    this.store
+      .select(selectMissionObj)
       .subscribe((mission) => (this.mission = mission));
   }
 
-  evalCondition(role: Role): Function {
-    return Function(`"use strict";return ${role.condition}`)();
-  }
+  ngOnInit(): void {}
 }

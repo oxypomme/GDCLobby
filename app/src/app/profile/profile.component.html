@@ -9,7 +9,7 @@
 <section>
   <!-- title -->
   <div class="content-title">
-    <h1 class="title">Liste des joueurs</h1>
+    <h1 class="title">Profil</h1>
   </div>
 
   <!-- content -->
@@ -18,14 +18,14 @@
       <div class="column">
         <div *ngIf="playerLogged$ | async">
           <div class="field is-horizontal">
-            <div class="field-label is-normal">
+            <div class="field-label is-small">
               <label class="label">Pseudo</label>
             </div>
             <div class="field-body">
               <div class="field">
                 <p class="control">
                   <input
-                    class="input"
+                    class="input is-small"
                     type="text"
                     [(ngModel)]="username"
                     placeholder="me"
@@ -36,14 +36,14 @@
           </div>
 
           <div class="field is-horizontal">
-            <div class="field-label is-normal">
+            <div class="field-label is-small">
               <label class="label">Mot de passe</label>
             </div>
             <div class="field-body">
               <div class="field">
                 <p class="control">
                   <input
-                    class="input"
+                    class="input is-small"
                     [(ngModel)]="password"
                     type="password"
                     placeholder="example_mdp"
@@ -57,16 +57,22 @@
         <div class="mybuttons">
           <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <button class="button is-danger" (click)="del()">
-                Supprimer
+              <button
+                class="button is-small is-outlined is-light is-danger"
+                (click)="del()"
+              >
+                💣 Supprimer
               </button>
             </p>
           </div>
 
           <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <button class="button is-primary" (click)="update()">
-                Mettre à jour
+              <button
+                class="button is-small is-outlined is-light is-info"
+                (click)="update()"
+              >
+                👌🏼 Mettre à jour
               </button>
             </p>
           </div>

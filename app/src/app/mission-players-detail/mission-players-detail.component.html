@@ -9,7 +9,7 @@
 <section>
   <!-- title -->
   <div class="content-title">
-    <h1 class="title">Liste des joueurs</h1>
+    <h1 class="title">Modifier un slot</h1>
   </div>
 
   <!-- content -->
@@ -17,14 +17,14 @@
     <div class="columns">
       <form class="column">
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Nom du rôle</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control">
                 <input
-                  class="input {{
+                  class="input is-small is-fullwidth {{
                     errors?.includes('name') ? 'is-danger' : ''
                   }}"
                   type="text"
@@ -41,20 +41,22 @@
         </div>
 
         <div class="field is-horizontal">
-          <label class="checkbox">
+          <label class="checkbox is-small">
             <input type="checkbox" name="isBooked" [(ngModel)]="isBooked" />
             Rôle Réservé
           </label>
         </div>
 
         <div class="field is-horizontal" *ngIf="teams">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Équipe</label>
           </div>
           <div class="field-body">
             <div class="field">
               <div
-                class="select {{ errors?.includes('team') ? 'is-danger' : '' }}"
+                class="select is-small {{
+                  errors?.includes('team') ? 'is-danger' : ''
+                }}"
               >
                 <select [(ngModel)]="selectedTeam" name="selectedTeam">
                   <option value="" disabled>-- Choisir une équipe --</option>
@@ -71,12 +73,12 @@
         </div>
 
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Joueur</label>
           </div>
           <div class="field-body">
             <div class="field">
-              <div class="select">
+              <div class="select is-small is-fullwidth">
                 <select [(ngModel)]="selectedPlayer" name="selectedPlayer">
                   <option value="" value="0"></option>
                   <option value="" disabled>-- Choisir un joueur --</option>
@@ -98,8 +100,11 @@
             </div>
             <div class="field is-grouped is-grouped-right" *ngIf="role?.player">
               <p class="control">
-                <button class="button is-danger" (click)="kick()">
-                  Exclure
+                <button
+                  class="button is-small is-outlined is-light is-danger"
+                  (click)="kick()"
+                >
+                  👊🏼 Exclure
                 </button>
               </p>
             </div>
@@ -107,14 +112,14 @@
         </div>
 
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Condition</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control">
                 <input
-                  class="input {{
+                  class="input is-small{{
                     errors?.includes('condition') ? 'is-danger' : ''
                   }} condi"
                   type="text"
@@ -140,28 +145,37 @@
         <small class="is-warning"
           >Attention, le code n'est pas vérifié avant d'être validé. <br />
           Ce qui implique que si une condition est mal écrite, une ligne vide
-          sera affiché pour les joueurs.</small
-        >
+          sera affiché pour les joueurs.
+        </small>
+
+        <br />
 
         <div class="mybuttons">
           <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <button class="button" (click)="goBack()">Retour</button>
-            </p>
-          </div>
-
-          <div class="field is-grouped is-grouped-right" *ngIf="role">
-            <p class="control">
-              <button class="button is-danger" (click)="del()">
-                Supprimer
+              <button
+                class="button is-small is-outlined is-light"
+                (click)="goBack()"
+              >
+                👎🏼 Retour
               </button>
             </p>
-          </div>
 
-          <div class="field is-grouped is-grouped-right">
+            <p class="control" *ngIf="role">
+              <button
+                class="button is-small is-outlined is-light is-danger"
+                (click)="del()"
+              >
+                💣 Supprimer
+              </button>
+            </p>
+
             <p class="control">
-              <button class="button is-primary" (click)="validate()">
-                {{ role ? "Mettre à jour" : "Créer" }}
+              <button
+                class="button is-small is-outlined is-light is-info"
+                (click)="validate()"
+              >
+                👌🏼 {{ role ? "Mettre à jour" : "Créer" }}
               </button>
             </p>
           </div>

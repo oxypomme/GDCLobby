@@ -9,8 +9,6 @@ import {
   selectPlayerLogged,
   selectPlayerToken,
 } from '../store/player/player.selectors';
-import { Team } from '../team';
-import { TeamsService } from '../teams.service';
 
 @Component({
   selector: 'app-profile',

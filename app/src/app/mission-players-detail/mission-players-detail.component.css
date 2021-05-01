@@ -1,5 +1,4 @@
 .mybuttons {
-  display: flex;
   justify-content: flex-end;
 }
 
@@ -22,6 +21,9 @@ small.is-warning {
 
 code {
   background-color: var(--bck-color);
+  color: greenyellow;
+  font-size: 14px;
+  font-family: Lucida Console;
 }
 
 .condi {

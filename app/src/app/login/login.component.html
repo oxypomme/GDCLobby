@@ -28,14 +28,14 @@
         <br /><br />
 
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Pseudo</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control">
                 <input
-                  class="input {{
+                  class="input is-small {{
                     errors?.includes('username') ? 'is-danger' : ''
                   }}"
                   type="text"
@@ -52,14 +52,14 @@
         </div>
 
         <div class="field is-horizontal">
-          <div class="field-label is-normal">
+          <div class="field-label is-small">
             <label class="label">Mot de passe</label>
           </div>
           <div class="field-body">
             <div class="field">
               <p class="control">
                 <input
-                  class="input {{
+                  class="input is-small {{
                     errors?.includes('password') ? 'is-danger' : ''
                   }}"
                   [(ngModel)]="password"
@@ -85,10 +85,10 @@
           <p class="control">
             <button
               type="submit"
-              class="button is-primary"
+              class="button is-small is-outlined is-light is-primary"
               (click)="logIn($event)"
             >
-              Connexion
+              👍🏼 Connexion
             </button>
           </p>
         </div>

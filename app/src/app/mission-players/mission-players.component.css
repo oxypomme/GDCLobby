@@ -9,28 +9,12 @@ tr {
   height: 50px;
 }
 
-td,
-th {
-  vertical-align: middle !important;
-  min-width: 22%;
-  width: 22%;
-  max-width: 22%;
-}
-
-th:first-child {
-  min-width: 7%;
-  width: 7%;
-  max-width: 7%;
-}
-
-th:last-child,
-td:last-child {
-  min-width: 27%;
-  width: 27%;
-  max-width: 27%;
-}
-
 td > .button {
   margin-right: 10px;
   width: 75px;
+}
+
+.floating {
+  float: right;
+  margin-top: -50px;
 }

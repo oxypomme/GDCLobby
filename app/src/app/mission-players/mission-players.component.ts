@@ -11,6 +11,7 @@ import {
   selectPlayerToken,
 } from '../store/player/player.selectors';
 import { JWToken } from '../store/player/player.reducer';
+import { selectMissionObj } from '../store/mission/mission.selectors';
 import dayjs from 'dayjs';
 
 @Component({
@@ -20,6 +21,8 @@ import dayjs from 'dayjs';
 })
 export class MissionPlayersComponent implements OnInit {
   @Input() mission?: Mission;
+
+  selectedTeams: string[] = [];
 
   playerLogged$?: Observable<Player>;
   playerLogged: Player;
@@ -39,42 +42,44 @@ export class MissionPlayersComponent implements OnInit {
     this.store.select(selectPlayerToken).subscribe({
       next: (jwt) => (this.token = jwt),
     });
+
+    this.store.select(selectMissionObj).subscribe({
+      next: (mission) => {
+        if (mission) this.onFetchMission(mission);
+      },
+    });
   }
 
-  ngOnInit(): void {
-    this.getMission();
-  }
+  ngOnInit(): void {}
 
   dateValid(): boolean {
     return dayjs().isBefore(dayjs(this.mission.date).subtract(7, 'd'));
   }
 
-  getMission(): void {
-    const id = 1;
-    this.missionService.getMission(id).subscribe((mission) => {
-      this.mission = mission;
+  onFetchMission(mission: Mission): void {
+    this.mission = mission;
 
-      for (const role of mission.roles) {
-        if (!this.teams[role.team.name]) {
-          this.teams = {
-            ...this.teams,
-            [role.team.name]: [],
-          };
-        }
+    for (const role of mission.roles) {
+      if (!this.teams[role.team.name]) {
+        this.teams = {
+          ...this.teams,
+          [role.team.name]: [role],
+        };
+      } else {
         this.teams = {
           ...this.teams,
           [role.team.name]: [...this.teams[role.team.name], role],
         };
       }
+    }
 
-      this.playerLogged$.subscribe((player) => {
-        this.isAlreadyRegistered =
-          mission.roles?.findIndex((r) => r.player?.id === player?.id) >= 0;
-      });
+    this.playerLogged$.subscribe((player) => {
+      this.isAlreadyRegistered =
+        mission.roles?.findIndex((r) => r.player?.id === player?.id) >= 0;
     });
   }
 
-  getObjKey(obj): string[] {
+  getObjKey(obj: Object): string[] {
     return Object.keys(obj);
   }
 
@@ -87,11 +92,8 @@ export class MissionPlayersComponent implements OnInit {
     this.missionService
       .updateRole(id, roleUpdated, this.token)
       .subscribe((role) => {
-        if (role)
-          toast({ message: `Vous êtes inscrit en tant que ${role?.name}` });
-        else
-          toast({ message: 'Une erreur est survenue...', type: 'is-danger' });
-        this.getMission();
+        if (role) toast({ message: `✔️ Inscrit pour ${role?.name}` });
+        else toast({ message: '⚠️ Erreur', type: 'is-danger' });
       });
   }
 
@@ -108,8 +110,7 @@ export class MissionPlayersComponent implements OnInit {
       )
       .subscribe({
         next: () => {
-          toast({ message: 'Joueur exclu' });
-          this.getMission();
+          toast({ message: `📌 Joueur exclu`, type: 'is-warning' });
         },
       });
   }
@@ -124,11 +125,25 @@ export class MissionPlayersComponent implements OnInit {
       .updateRole(id, roleUpdated, this.token)
       .subscribe((role) => {
         if (role)
-          toast({ message: `Vous vous êtes retiré du rôle ${role?.name}` });
-        else
-          toast({ message: 'Une erreur est survenue...', type: 'is-danger' });
-        this.getMission();
+          toast({ message: `📌 Retiré de ${role?.name}`, type: 'is-warning' });
+        else toast({ message: '⚠️ Erreur', type: 'is-danger' });
       });
+  }
+
+  openAll(teams: string[]) {
+    if (this.selectedTeams.length > 0) {
+      this.selectedTeams = [];
+    } else {
+      this.selectedTeams = teams;
+    }
+  }
+
+  addSelectedTeams(team: string) {
+    if (this.selectedTeams.includes(team)) {
+      this.selectedTeams.splice(this.selectedTeams.indexOf(team), 1);
+    } else {
+      this.selectedTeams.push(team);
+    }
   }
 
   /* Used to make conditions easier */

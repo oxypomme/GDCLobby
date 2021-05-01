@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import dayjs from 'dayjs';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
+import { selectMissionObj } from '../store/mission/mission.selectors';
 
 @Component({
   selector: 'app-mission-info-panel',
@@ -13,11 +15,13 @@ export class MissionInfoPanelComponent implements OnInit {
 
   remainingTime: string;
 
-  constructor(private missionService: MissionService) {}
+  constructor(private missionService: MissionService, private store: Store) {
+    this.store.select(selectMissionObj).subscribe({
+      next: (mission) => (this.mission = mission),
+    });
+  }
 
   ngOnInit(): void {
-    this.getMission();
-
     setInterval(() => {
       this.getRemainingTime();
     }, 1000);
@@ -41,13 +45,6 @@ export class MissionInfoPanelComponent implements OnInit {
 
   getEndRegister(): Date {
     return dayjs(this.mission.date).subtract(7, 'd').toDate();
-  }
-
-  getMission(): void {
-    const id = 1;
-    this.missionService
-      .getMission(id)
-      .subscribe((mission) => (this.mission = mission));
   }
 
   calcPlayers(): number {

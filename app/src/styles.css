@@ -6,6 +6,9 @@
   --font-color: #eeeeee;
   --elem-color: #141414;
   --font-theme-color: #4f96e8;
+  --font-theme-danger-color: #ED371E;
+  --font-theme-warning-color: #EA8B0A;
+  --font-theme-success-color: #38AD3D;
 
   /*-- font var --*/
   --content-font: "Asap", sans-serif;
@@ -43,6 +46,86 @@ a:focus,
 a:hover {
   opacity: 60%;
   color: var(--font-theme-color);
+}
+
+/*-- button --*/
+.mybuttons {
+  display: flex;
+}
+
+.button.is-outlined.is-primary {
+  background: none;
+  border-color: var(--font-theme-success-color);
+  color: var(--font-theme-success-color);
+}
+
+.button.is-outlined.is-info {
+  background: none;
+  border-color: var(--font-theme-color);
+  color: var(--font-theme-color);
+}
+
+.button.is-outlined.is-danger {
+  background: none;
+  border-color: var(--font-theme-danger-color);
+  color: var(--font-theme-danger-color);
+}
+
+.button.is-outlined.is-warning {
+  background: none;
+  border-color: var(--font-theme-warning-color);
+  color: var(--font-theme-warning-color);
+}
+
+.button.is-outlined.is-primary:active,
+.button.is-outlined.is-primary:focus,
+.button.is-outlined.is-primary:hover {
+  background: var(--font-theme-success-color);
+  border-color: var(--font-theme-success-color);
+  color: var(--font-color);
+}
+
+.button.is-outlined.is-info:active,
+.button.is-outlined.is-info:focus,
+.button.is-outlined.is-info:hover {
+  background: var(--font-theme-color);
+  border-color: var(--font-theme-color);
+  color: var(--font-color);
+}
+
+.button.is-outlined.is-danger:active,
+.button.is-outlined.is-danger:focus,
+.button.is-outlined.is-danger:hover {
+  background: var(--font-theme-danger-color);
+  border-color: var(--font-theme-danger-color);
+  color: var(--font-color);
+}
+
+.button.is-outlined.is-warning:active,
+.button.is-outlined.is-warning:focus,
+.button.is-outlined.is-warning:hover {
+  background: var(--font-theme-warning-color);
+  border-color: var(--font-theme-warning-color);
+  color: var(--font-color);
+}
+
+/*-- notification --*/
+.notification {
+  margin: 0;
+  padding: 2vh 15vh;
+  padding-left: 4vh;
+  text-align: left;
+
+  background-color: var(--font-theme-success-color) !important;
+  color: var(--bck-color) !important;
+}
+
+.notification.is-danger {
+  background-color: var(--font-theme-danger-color) !important;
+}
+
+.notification.is-warning {
+  background-color: var(--font-theme-warning-color) !important;
 }
 
 /*-- navbar --*/
@@ -387,10 +470,6 @@ section .content mark {
   color: var(--font-color);
 }
 
-.field .button.is-primary {
-  background-color: var(--font-theme-color);
-}
-
 /*-- footer --*/
 footer.footer {
   background-color: var(--elem-color);
@@ -416,15 +495,52 @@ footer.footer strong {
   font-size: 35px;
 }
 
+/*-- table --*/
+table.accordion {
+  table-layout: fixed;
+}
+
+table.accordion thead tr th {
+  vertical-align: middle;
+}
+
+table.accordion thead tr:hover {
+  cursor: pointer;
+  background-color: rgba(1, 1, 1, 0.1);
+}
+
+/* roles */
+table.accordion tbody role {
+  width: 100%;
+  display: contents;
+}
+
+/* tr */
+table.accordion tbody tr {
+  width: 100%;
+  visibility: collapse;
+}
+
+table.accordion tbody tr.visible {
+  visibility: visible;
+}
+
+/* team */
+table.accordion team {
+  width: 100%;
+  display: contents;
+}
+
+/* cellule */
+table.accordion tbody tr td {
+  vertical-align: middle;
+}
+
 /*-- media queries --*/
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   .floatbtn {
     display: none;
-  }
-
-  table {
-    max-width: 100vw;
   }
 }
 

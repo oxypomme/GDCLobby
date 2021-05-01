@@ -16,6 +16,7 @@ import { Player } from '../player';
 import { Mission } from '../mission';
 import { JWToken } from '../store/player/player.reducer';
 import { PlayerService } from '../player.service';
+import { selectMissionObj } from '../store/mission/mission.selectors';
 
 @Component({
   selector: 'app-mission-players-detail',
@@ -54,20 +55,16 @@ export class MissionPlayersDetailComponent implements OnInit {
     this.store.select(selectPlayerToken).subscribe({
       next: (jwt) => (this.token = jwt),
     });
+
+    this.store.select(selectMissionObj).subscribe({
+      next: (mission: Mission) => (this.mission = mission),
+    });
   }
 
   ngOnInit(): void {
-    this.getMission();
     this.getRoles();
     this.getTeams();
     this.getPlayers();
-  }
-
-  getMission() {
-    const missId = 1;
-    this.missionService.getMission(missId).subscribe({
-      next: (mission: Mission) => (this.mission = mission),
-    });
   }
 
   getRoles() {
@@ -109,7 +106,7 @@ export class MissionPlayersDetailComponent implements OnInit {
     const roleId = +this.route.snapshot.paramMap.get('id');
     this.missionService.deleteRole(missId, roleId, this.token).subscribe({
       next: () => {
-        toast({ message: 'Rôle supprimé' });
+        toast({ message: ' ❌ Rôle supprimé', type: 'is-danger' });
         this.goBack();
       },
     });
@@ -130,7 +127,7 @@ export class MissionPlayersDetailComponent implements OnInit {
       .subscribe({
         next: () => {
           this.selectedPlayer = -1;
-          toast({ message: 'Joueur exclu' });
+          toast({ message: '📌 Joueur exclu', type: 'is-warning' });
         },
       });
   }
@@ -168,9 +165,9 @@ export class MissionPlayersDetailComponent implements OnInit {
         )
         .subscribe({
           next: (role) => {
-            if (role) toast({ message: 'Rôle édité' });
+            if (role) toast({ message: '✔️ Rôle édité' });
             else {
-              toast({ message: 'Une erreur est survenue', type: 'is-danger' });
+              toast({ message: '⚠️ Erreur', type: 'is-danger' });
               return;
             }
             this.goBack();
@@ -192,9 +189,9 @@ export class MissionPlayersDetailComponent implements OnInit {
         )
         .subscribe({
           next: (role) => {
-            if (role) toast({ message: 'Rôle créé' });
+            if (role) toast({ message: '✔️ Rôle créé' });
             else {
-              toast({ message: 'Une erreur est survenue', type: 'is-danger' });
+              toast({ message: '⚠️ Erreur ', type: 'is-danger' });
               return;
             }
             this.name = '';

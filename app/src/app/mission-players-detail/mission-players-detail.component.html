@@ -54,7 +54,9 @@
           <div class="field-body">
             <div class="field">
               <div
-                class="select is-small {{ errors?.includes('team') ? 'is-danger' : '' }}"
+                class="select is-small {{
+                  errors?.includes('team') ? 'is-danger' : ''
+                }}"
               >
                 <select [(ngModel)]="selectedTeam" name="selectedTeam">
                   <option value="" disabled>-- Choisir une équipe --</option>
@@ -98,7 +100,10 @@
             </div>
             <div class="field is-grouped is-grouped-right" *ngIf="role?.player">
               <p class="control">
-                <button class="button is-small is-outlined is-light is-danger" (click)="kick()">
+                <button
+                  class="button is-small is-outlined is-light is-danger"
+                  (click)="kick()"
+                >
                   👊🏼 Exclure
                 </button>
               </p>
@@ -141,24 +146,35 @@
           >Attention, le code n'est pas vérifié avant d'être validé. <br />
           Ce qui implique que si une condition est mal écrite, une ligne vide
           sera affiché pour les joueurs.
-        </small> 
+        </small>
 
-        <br>
+        <br />
 
         <div class="mybuttons">
           <div class="field is-grouped is-grouped-right">
             <p class="control">
-              <button class="button is-small is-outlined is-light" (click)="goBack()">👎🏼 Retour</button>
+              <button
+                class="button is-small is-outlined is-light"
+                (click)="goBack()"
+              >
+                👎🏼 Retour
+              </button>
             </p>
 
             <p class="control" *ngIf="role">
-              <button class="button is-small is-outlined is-light is-danger" (click)="del()">
+              <button
+                class="button is-small is-outlined is-light is-danger"
+                (click)="del()"
+              >
                 💣 Supprimer
               </button>
             </p>
 
             <p class="control">
-              <button class="button is-small is-outlined is-light is-info" (click)="validate()">
+              <button
+                class="button is-small is-outlined is-light is-info"
+                (click)="validate()"
+              >
                 👌🏼 {{ role ? "Mettre à jour" : "Créer" }}
               </button>
             </p>

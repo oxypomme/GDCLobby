@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import dayjs from 'dayjs';
 import { Mission } from '../mission';
-import { MissionService } from '../mission.service';
 import { selectMissionObj } from '../store/mission/mission.selectors';
 
 @Component({
@@ -15,7 +14,7 @@ export class MissionInfoPanelComponent implements OnInit {
 
   remainingTime: string;
 
-  constructor(private missionService: MissionService, private store: Store) {
+  constructor(private store: Store) {
     this.store.select(selectMissionObj).subscribe({
       next: (mission) => (this.mission = mission),
     });

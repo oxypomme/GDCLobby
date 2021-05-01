@@ -9,25 +9,24 @@ import MissionActions from './mission.actions';
 
 @Injectable()
 export class MissionEffects {
-
-    fetch$ = createEffect(() =>
-        this.actions$.pipe(
-        ofType(MissionActions.fetch.request),
-        exhaustMap(({ missionId }) =>
-            this.missionService.getMission(missionId).pipe(
-            map((mission: Mission) =>
+  fetch$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MissionActions.fetch.request),
+      exhaustMap(({ missionId }) =>
+        this.missionService.getMission(missionId).pipe(
+          map((mission: Mission) =>
             mission
-                ? MissionActions.fetch.success({ mission })
-                : MissionActions.failed({ err: 'An error occured' })
-            ),
-            catchError((err) => of(MissionActions.failed({ err })))
-            )
+              ? MissionActions.fetch.success({ mission })
+              : MissionActions.failed({ err: 'An error occured' })
+          ),
+          catchError((err) => of(MissionActions.failed({ err })))
         )
-        )
-    );
+      )
+    )
+  );
 
-    constructor(
-        private actions$: Actions,
-        private missionService: MissionService
-    ) {}
+  constructor(
+    private actions$: Actions,
+    private missionService: MissionService
+  ) {}
 }

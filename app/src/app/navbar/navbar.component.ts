@@ -26,13 +26,11 @@ export class NavbarComponent implements OnInit {
     store.select(selectMissionObj).subscribe({
       next: (mission) => {
         this.getRemainingTime(mission);
-      }
-    })
+      },
+    });
   }
 
-  ngOnInit(): void {
-    
-  }
+  ngOnInit(): void {}
 
   logOut() {
     this.store.dispatch(PlayerActions.logOut());

@@ -45,14 +45,12 @@ export class MissionPlayersComponent implements OnInit {
 
     this.store.select(selectMissionObj).subscribe({
       next: (mission) => {
-        if(mission)
-          this.onFetchMission(mission);
+        if (mission) this.onFetchMission(mission);
       },
-    })
+    });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   dateValid(): boolean {
     return dayjs().isBefore(dayjs(this.mission.date).subtract(7, 'd'));
@@ -94,10 +92,8 @@ export class MissionPlayersComponent implements OnInit {
     this.missionService
       .updateRole(id, roleUpdated, this.token)
       .subscribe((role) => {
-        if (role)
-          toast({ message: `✔️ Inscrit pour ${role?.name}` });
-        else
-          toast({ message: '⚠️ Erreur', type: 'is-danger' });
+        if (role) toast({ message: `✔️ Inscrit pour ${role?.name}` });
+        else toast({ message: '⚠️ Erreur', type: 'is-danger' });
       });
   }
 
@@ -130,13 +126,12 @@ export class MissionPlayersComponent implements OnInit {
       .subscribe((role) => {
         if (role)
           toast({ message: `📌 Retiré de ${role?.name}`, type: 'is-warning' });
-        else
-          toast({ message: '⚠️ Erreur', type: 'is-danger' });
+        else toast({ message: '⚠️ Erreur', type: 'is-danger' });
       });
   }
 
   openAll(teams: string[]) {
-    if(this.selectedTeams.length > 0) {
+    if (this.selectedTeams.length > 0) {
       this.selectedTeams = [];
     } else {
       this.selectedTeams = teams;
@@ -144,7 +139,7 @@ export class MissionPlayersComponent implements OnInit {
   }
 
   addSelectedTeams(team: string) {
-    if(this.selectedTeams.includes(team)) {
+    if (this.selectedTeams.includes(team)) {
       this.selectedTeams.splice(this.selectedTeams.indexOf(team), 1);
     } else {
       this.selectedTeams.push(team);

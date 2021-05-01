@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import MissionActions from './store/mission/mission.actions';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -16,7 +15,7 @@ export class AppComponent {
       MissionActions.fetch.request({
         missionId: 1,
       })
-    )
+    );
   }
 
   constructor(private store: Store) {

@@ -25,12 +25,33 @@
         <a class="navbar-link" onclick="dropdown_open()"> Briefing </a>
 
         <div class="navbar-dropdown">
-          <a routerLink="/context" class="navbar-item" onclick="dropdown_open()"> Contexte </a>
-          <a routerLink="/orga-blufor" class="navbar-item" onclick="dropdown_open()">
+          <a
+            routerLink="/context"
+            class="navbar-item"
+            onclick="dropdown_open()"
+          >
+            Contexte
+          </a>
+          <a
+            routerLink="/orga-blufor"
+            class="navbar-item"
+            onclick="dropdown_open()"
+          >
             Organisation BLUFOR
           </a>
-          <a routerLink="/mission" class="navbar-item" onclick="dropdown_open()"> Mission </a>
-          <a routerLink="/intel" class="navbar-item" onclick="dropdown_open()" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">
+          <a
+            routerLink="/mission"
+            class="navbar-item"
+            onclick="dropdown_open()"
+          >
+            Mission
+          </a>
+          <a
+            routerLink="/intel"
+            class="navbar-item"
+            onclick="dropdown_open()"
+            *ngIf="remainingTime === null || remainingTime?.asDays() < 7"
+          >
             Intel
           </a>
         </div>

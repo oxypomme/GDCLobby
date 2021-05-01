@@ -3,7 +3,6 @@ import { Store } from '@ngrx/store';
 import dayjs from 'dayjs';
 import { Duration } from 'dayjs/plugin/duration';
 import { Mission } from '../mission';
-import { MissionService } from '../mission.service';
 import { selectMissionObj } from '../store/mission/mission.selectors';
 
 @Component({
@@ -16,10 +15,10 @@ export class MissionBriefIntelComponent implements OnInit {
 
   remainingTime: Duration;
 
-  constructor(private missionService: MissionService, store: Store) {
+  constructor(store: Store) {
     store.select(selectMissionObj).subscribe({
-      next: (mission) => (this.mission = mission)
-    })
+      next: (mission) => (this.mission = mission),
+    });
   }
 
   ngOnInit(): void {

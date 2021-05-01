@@ -19,109 +19,107 @@
         <small>
           Liste des slots pour l'<b>Opération Rogue Wave Piercer</b>.
         </small>
-        <br/><br/>
-
-
-
+        <br /><br />
 
         <!-- test -->
         <div *ngIf="mission && teams">
+          <button
+            class="button is-small is-outlined floating"
+            (click)="openAll(getObjKey(teams))"
+          >
+            {{ selectedTeams.length > 0 ? "🙏🏼 Tout fermer" : "🤲🏼 Tout ouvrir" }}
+          </button>
 
-        <button class="button is-small is-outlined floating" (click)="openAll(getObjKey(teams))"> 
-          {{selectedTeams.length > 0 ? "🙏🏼 Tout fermer" : "🤲🏼 Tout ouvrir"}}
-        </button>
-
-        <table
-          class="table is-bordered is-hoverable is-fullwidth accordion"
-        >
-          <team *ngFor="let team of getObjKey(teams)">
-
-          <!-- for each team -->
-            <thead>
-              <tr>
-                <th 
-                  [attr.colspan]="(playerLogged$ | async) ? 4 : 3"
-                  (click)="addSelectedTeams(team)"
-                >
-                  {{ team }}
-                </th>
-              </tr>         
-            </thead>
-            <tbody>
-              <role *ngFor="let role of mission.roles">
-                <!-- for each role -->
-                <tr *ngIf="role.team.name.trim().normalize() === team.trim().normalize()" [ngClass]="{'visible': selectedTeams.includes(team)}">
-                  <th>
-                    <span class="tag">{{ role.id }}</span>
+          <table class="table is-bordered is-hoverable is-fullwidth accordion">
+            <team *ngFor="let team of getObjKey(teams)">
+              <!-- for each team -->
+              <thead>
+                <tr>
+                  <th
+                    [attr.colspan]="(playerLogged$ | async) ? 4 : 3"
+                    (click)="addSelectedTeams(team)"
+                  >
+                    {{ team }}
                   </th>
-                  <td>{{ role.name }}</td>
-                  <td>
-                    <span *ngIf="role.player">
-                      {{ role.player.username }}
-                    </span>
-                  </td>
-                  <td *ngIf="playerLogged$ | async">
-                    <button
-                      routerLink="{{ role.id }}"
-                      class="button is-small is-outlined is-light is-info"
-                      *ngIf="(playerLogged$ | async).isAdmin"
-                    >
-                      ✍🏼 Editer
-                    </button>
-                    <button
-                      (click)="kick(role.id)"
-                      class="button is-small is-outlined is-light is-danger"
-                      *ngIf="
-                        (playerLogged$ | async).isAdmin &&
-                        role.player &&
-                        role.player.id !== (playerLogged$ | async).id
-                      "
-                    >
-                      👊🏼 Exclure
-                    </button>
-                    <button
-                      class="button is-small is-outlined is-light is-warning"
-                      (click)="leaveMission(role)"
-                      *ngIf="
-                        role.player &&
-                        role.player.id === (playerLogged$ | async).id
-                      "
-                    >
-                      🖕🏼 Déserter
-                    </button>
-                    <button
-                      class="button is-small is-outlined is-light is-primary"
-                      (click)="joinMission(role)"
-                      *ngIf="
-                        dateValid() &&
-                        !isAlreadyRegistered &&
-                        !role.player &&
-                        evalCondition(role)
-                      "
-                    >
-                      ☝🏼 S'inscrire
-                    </button>
-                  </td>
                 </tr>
-              </role>
-              
-            </tbody>
-          </team>
-          <thead>
-            <tr *ngIf="(playerLogged$ | async)?.isAdmin" routerLink="0">
-              <th [attr.colspan]="(playerLogged$ | async) ? 4 : 3" style="color: var(--font-theme-color); text-align: center;">
-                📝 Ajouter un slot
-              </th>
-            </tr>
-          </thead>
-
-        </table>
-
-        
-      </div>
-        
-
-        
+              </thead>
+              <tbody>
+                <role *ngFor="let role of mission.roles">
+                  <!-- for each role -->
+                  <tr
+                    *ngIf="
+                      role.team.name.trim().normalize() ===
+                      team.trim().normalize()
+                    "
+                    [ngClass]="{ visible: selectedTeams.includes(team) }"
+                  >
+                    <th>
+                      <span class="tag">{{ role.id }}</span>
+                    </th>
+                    <td>{{ role.name }}</td>
+                    <td>
+                      <span *ngIf="role.player">
+                        {{ role.player.username }}
+                      </span>
+                    </td>
+                    <td *ngIf="playerLogged$ | async">
+                      <button
+                        routerLink="{{ role.id }}"
+                        class="button is-small is-outlined is-light is-info"
+                        *ngIf="(playerLogged$ | async).isAdmin"
+                      >
+                        ✍🏼 Editer
+                      </button>
+                      <button
+                        (click)="kick(role.id)"
+                        class="button is-small is-outlined is-light is-danger"
+                        *ngIf="
+                          (playerLogged$ | async).isAdmin &&
+                          role.player &&
+                          role.player.id !== (playerLogged$ | async).id
+                        "
+                      >
+                        👊🏼 Exclure
+                      </button>
+                      <button
+                        class="button is-small is-outlined is-light is-warning"
+                        (click)="leaveMission(role)"
+                        *ngIf="
+                          role.player &&
+                          role.player.id === (playerLogged$ | async).id
+                        "
+                      >
+                        🖕🏼 Déserter
+                      </button>
+                      <button
+                        class="button is-small is-outlined is-light is-primary"
+                        (click)="joinMission(role)"
+                        *ngIf="
+                          dateValid() &&
+                          !isAlreadyRegistered &&
+                          !role.player &&
+                          evalCondition(role)
+                        "
+                      >
+                        ☝🏼 S'inscrire
+                      </button>
+                    </td>
+                  </tr>
+                </role>
+              </tbody>
+            </team>
+            <thead>
+              <tr *ngIf="(playerLogged$ | async)?.isAdmin" routerLink="0">
+                <th
+                  [attr.colspan]="(playerLogged$ | async) ? 4 : 3"
+                  style="color: var(--font-theme-color); text-align: center"
+                >
+                  📝 Ajouter un slot
+                </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
       </div>
     </div>
   </div>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import PlayerActions from '../store/player/player.actions';
 import { selectIsPlayerLogged } from '../store/player/player.selectors';
 import { Team } from '../team';
@@ -21,8 +23,10 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private store: Store<{ count: number }>,
-    private location: Location
+    private location: Location,
+    private titleService: Title
   ) {
+    this.titleService.setTitle(`Inscription | ${environment.title}`);
     this.isLogged$ = store.select(selectIsPlayerLogged);
   }
 

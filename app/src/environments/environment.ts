@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiHost: 'localhost:3000',
+  title: 'Operation Rogue Wave Piercer',
 };
 
 /*

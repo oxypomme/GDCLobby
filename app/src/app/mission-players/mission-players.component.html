@@ -31,7 +31,7 @@
           </button>
 
           <table class="table is-bordered is-hoverable is-fullwidth accordion">
-            <team *ngFor="let team of getObjKey(teams)">
+            <div *ngFor="let team of getObjKey(teams)">
               <!-- for each team -->
               <thead>
                 <tr>
@@ -47,7 +47,7 @@
                 </tr>
               </thead>
               <tbody>
-                <role *ngFor="let role of mission.roles">
+                <div *ngFor="let role of mission.roles">
                   <!-- for each role -->
                   <tr
                     *ngIf="
@@ -108,9 +108,9 @@
                       </button>
                     </td>
                   </tr>
-                </role>
+                </div>
               </tbody>
-            </team>
+            </div>
             <thead>
               <tr *ngIf="(playerLogged$ | async)?.isAdmin" routerLink="0">
                 <th

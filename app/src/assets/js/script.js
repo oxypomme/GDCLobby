@@ -35,7 +35,7 @@ function aside_active_elemnt() {
     // read each aside item
     $("#aside")
       .find("a")
-      .each(() => {
+      .each(function () {
         const aside_item = $(this);
 
         for (const h of ["h4", "h5", "h6"]) {

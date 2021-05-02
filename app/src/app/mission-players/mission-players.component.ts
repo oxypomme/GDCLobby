@@ -1,18 +1,20 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
 import { toast } from 'bulma-toast';
+import dayjs from 'dayjs';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
-import { Role } from '../role';
 import { Player } from '../player';
+import { Role } from '../role';
+import { selectMissionObj } from '../store/mission/mission.selectors';
+import { JWToken } from '../store/player/player.reducer';
 import {
   selectPlayerLogged,
   selectPlayerToken,
 } from '../store/player/player.selectors';
-import { JWToken } from '../store/player/player.reducer';
-import { selectMissionObj } from '../store/mission/mission.selectors';
-import dayjs from 'dayjs';
 
 @Component({
   selector: 'app-mission-players',
@@ -33,7 +35,12 @@ export class MissionPlayersComponent implements OnInit {
     [name: string]: Role[];
   } = {};
 
-  constructor(private missionService: MissionService, private store: Store) {
+  constructor(
+    private missionService: MissionService,
+    private store: Store,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle(`Joueurs | ${environment.title}`);
     this.playerLogged$ = this.store.select(selectPlayerLogged);
     this.playerLogged$.subscribe({
       next: (player) => (this.playerLogged = player),

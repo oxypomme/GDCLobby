@@ -510,7 +510,7 @@ table.accordion thead tr:hover {
 }
 
 /* roles */
-table.accordion tbody role {
+table.accordion tbody > div {
   width: 100%;
   display: contents;
 }
@@ -526,7 +526,7 @@ table.accordion tbody tr.visible {
 }
 
 /* team */
-table.accordion team {
+table.accordion > div {
   width: 100%;
   display: contents;
 }

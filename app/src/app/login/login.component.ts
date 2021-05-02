@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import PlayerActions from '../store/player/player.actions';
 import { selectIsPlayerLogged } from '../store/player/player.selectors';
 
@@ -16,7 +18,12 @@ export class LoginComponent implements OnInit {
   isLogged$: Observable<boolean>;
   errors: string[];
 
-  constructor(private store: Store, private location: Location) {
+  constructor(
+    private store: Store,
+    private location: Location,
+    private titleService: Title
+  ) {
+    this.titleService.setTitle(`Connexion | ${environment.title}`);
     this.isLogged$ = store.select(selectIsPlayerLogged);
   }
 

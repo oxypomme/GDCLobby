@@ -1,22 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { toast } from 'bulma-toast';
-
+import { environment } from 'src/environments/environment.prod';
+import { Mission } from '../mission';
 import { MissionService } from '../mission.service';
+import { Player } from '../player';
+import { PlayerService } from '../player.service';
 import { Role } from '../role';
-import { TeamsService } from '../teams.service';
-import { Team } from '../team';
+import { selectMissionObj } from '../store/mission/mission.selectors';
+import { JWToken } from '../store/player/player.reducer';
 import {
   selectPlayerLogged,
   selectPlayerToken,
 } from '../store/player/player.selectors';
-import { Player } from '../player';
-import { Mission } from '../mission';
-import { JWToken } from '../store/player/player.reducer';
-import { PlayerService } from '../player.service';
-import { selectMissionObj } from '../store/mission/mission.selectors';
+import { Team } from '../team';
+import { TeamsService } from '../teams.service';
 
 @Component({
   selector: 'app-mission-players-detail',
@@ -45,8 +46,10 @@ export class MissionPlayersDetailComponent implements OnInit {
     private teamService: TeamsService,
     private playerService: PlayerService,
     private location: Location,
-    private store: Store
+    private store: Store,
+    private titleService: Title
   ) {
+    this.titleService.setTitle(`Edition | ${environment.title}`);
     this.store.select(selectPlayerLogged).subscribe({
       next: (player: Player) => {
         if (!player || !player.isAdmin) this.goBack();

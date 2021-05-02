@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment.prod';
 import { Player } from '../player';
 import PlayerActions from '../store/player/player.actions';
 import { JWToken } from '../store/player/player.reducer';
@@ -25,8 +27,10 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private store: Store<{ count: number }>,
-    private location: Location
+    private location: Location,
+    private titleService: Title
   ) {
+    this.titleService.setTitle(`Profil | ${environment.title}`);
     this.playerLogged$ = this.store.select(selectPlayerLogged);
     this.store.select(selectPlayerToken).subscribe({
       next: (jwt) => (this.token = jwt),

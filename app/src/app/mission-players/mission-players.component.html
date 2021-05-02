@@ -39,6 +39,9 @@
                     [attr.colspan]="(playerLogged$ | async) ? 4 : 3"
                     (click)="addSelectedTeams(team)"
                   >
+                    <small>
+                      {{ selectedTeams.includes(team) ? "🔼" : "🔽" }}
+                    </small>
                     {{ team }}
                   </th>
                 </tr>

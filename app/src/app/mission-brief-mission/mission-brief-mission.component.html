@@ -25,7 +25,28 @@
   <!-- content -->
   <div class="content">
     <div class="columns">
-      <div class="column">
+      <div
+        class="column"
+        *ngIf="
+          remainingTime !== null ||
+          (remainingTime?.minutes() >= 30 &&
+            remainingTime?.hours() >= 0 &&
+            remainingTime?.asDays() >= 0)
+        "
+      >
+        <h4 class="subtitle is-4 intel-Jx">
+          Vous aurez plus d'information bientôt.
+        </h4>
+        <img
+          src="/assets/dog_wait.jpg"
+          alt=""
+          class="intel-Jx"
+          *ngIf="remainingTime?.asDays() > 7"
+        />
+      </div>
+    </div>
+
+      <div class="column" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">
         <h4 class="subtitle is-4" id="objectifs">Objectifs</h4>
         <p>
           Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
@@ -38,7 +59,7 @@
       </div>
     </div>
 
-    <div class="columns">
+    <div class="columns" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">
       <div class="column">
         <h4 class="subtitle is-4" id="conditions_victoire">
           Conditions de victoire

@@ -43,6 +43,7 @@
             routerLink="/mission"
             class="navbar-item"
             onclick="dropdown_open()"
+            *ngIf="remainingTime === null || remainingTime?.asDays() < 7"
           >
             Mission
           </a>

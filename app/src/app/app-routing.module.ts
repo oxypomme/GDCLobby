@@ -22,7 +22,6 @@ const routes: Routes = [
   { path: 'intel', component: MissionBriefIntelComponent },
   { path: 'mission', component: MissionBriefMissionComponent },
   { path: 'modset', component: MissionModsetComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'list-player', component: MissionPlayersComponent },
   { path: 'list-player/:id', component: MissionPlayersDetailComponent },
   { path: 'login', component: LoginComponent },

@@ -46,17 +46,16 @@
       </div>
     </div>
 
-      <div class="column" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">
-        <h4 class="subtitle is-4" id="objectifs">Objectifs</h4>
-        <p>
-          Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
-          le secteur stratégique de l’aéroport.
-        </p>
-        <p>
-          Si la situation le permet, vous devez lancer une contre-attaque sur
-          Rosche et tenter de neutraliser le QG ENI.
-        </p>
-      </div>
+    <div class="column" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">
+      <h4 class="subtitle is-4" id="objectifs">Objectifs</h4>
+      <p>
+        Vous devez briser l’assaut blindé et empêcher l’ennemi d’arriver sur
+        le secteur stratégique de l’aéroport.
+      </p>
+      <p>
+        Si la situation le permet, vous devez lancer une contre-attaque sur
+        Rosche et tenter de neutraliser le QG ENI.
+      </p>
     </div>
 
     <div class="columns" *ngIf="remainingTime === null || remainingTime?.asDays() < 7">

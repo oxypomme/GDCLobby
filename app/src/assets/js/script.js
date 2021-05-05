@@ -82,6 +82,6 @@ function menu_open() {
 }
 
 /*-- dropdown for mobile --*/
-function dropdown_open() {
-  $("#navbar-dropdown").toggleClass("toggle-dropdown");
+function dropdown_open(drop_item) {
+  $(drop_item).toggleClass("toggle-dropdown");
 }

@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { MissionBriefContextComponent } from './mission-brief-context/mission-brief-context.component';
 import { MissionBriefIntelComponent } from './mission-brief-intel/mission-brief-intel.component';
@@ -22,7 +20,6 @@ const routes: Routes = [
   { path: 'intel', component: MissionBriefIntelComponent },
   { path: 'mission', component: MissionBriefMissionComponent },
   { path: 'modset', component: MissionModsetComponent },
-  { path: 'contact', component: ContactComponent },
   { path: 'list-player', component: MissionPlayersComponent },
   { path: 'list-player/:id', component: MissionPlayersDetailComponent },
   { path: 'login', component: LoginComponent },

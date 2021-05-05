@@ -1,0 +1,53 @@
+name: Rogue Wave Piercer - App
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "app/**"
+  pull_request:
+    branches:
+      - main
+    paths:
+      - "app/**"
+
+jobs:
+  deploy-front:
+    name: Deploy App - ssh pull, build and run
+    runs-on: ubuntu-latest
+    steps:
+      # TODO: Kill previous instance
+      #- name: Kill
+      #  uses: appleboy/ssh-action@master
+      #  with:
+      #      host: ${{secrets.HOST}}
+      #      username: ${{ secrets.USERNAME }}
+      #      key: ${{ secrets.KEY }}
+      #      port: ${{ secrets.PORT }}
+      #  script: |
+      #    # TODO: cd to folder
+      #    git pull
+      - name: Pull
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+        script: |
+          # TODO: cd to folder
+          git pull
+      - name: Build and run
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+        script: |
+
+      #   # TODO: How to keep running even after unlog. Screen for Windows ?
+      #   screen -dmS "orwp-app"
+      #   # TODO: cd to folder
+      #   screen -S "orwp-app" -p 0 -X stuff " cd && ./start.cmd"

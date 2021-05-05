@@ -7,7 +7,6 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ContactComponent } from './contact/contact.component';
 import { LoginComponent } from './login/login.component';
 import { MissionBriefContextComponent } from './mission-brief-context/mission-brief-context.component';
 import { MissionBriefIntelComponent } from './mission-brief-intel/mission-brief-intel.component';
@@ -28,7 +27,6 @@ import { effects, store } from './store';
   declarations: [
     AppComponent,
     MissionDetailComponent,
-    ContactComponent,
     NavbarComponent,
     MissionInfoPanelComponent,
     LoginComponent,

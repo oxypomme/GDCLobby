@@ -28,12 +28,12 @@
       <span class="info-val">{{ mission.date | date: "dd/MM/yyyy" }}</span>
     </div>
 
-    <div class="info-item">
+    <div class="info-item" *ngIf="!dateOpen()">
       Ouverture des inscriptions :
       <span class="info-val">19/05/2021</span>
     </div>
 
-    <div class="info-item">
+    <div class="info-item" *ngIf="dateOpen()">
       Inscriptions ouvertes jusqu'au :
       <span class="info-val">{{ getEndRegister() | date: "dd/MM/yyyy" }}</span>
     </div>

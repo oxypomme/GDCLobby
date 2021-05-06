@@ -12,6 +12,7 @@ import { selectMissionObj } from '../store/mission/mission.selectors';
 export class MissionInfoPanelComponent implements OnInit {
   @Input() mission?: Mission;
 
+  openDate = dayjs('19/05/2021', 'DD/MM/YYYY');
   remainingTime: string;
 
   constructor(private store: Store) {
@@ -37,13 +38,17 @@ export class MissionInfoPanelComponent implements OnInit {
         ? Math.round(dur.asDays())
         : dur.days()
     }j
-     ${dur.hours()}h 
-     ${dur.minutes()}m 
+     ${dur.hours()}h
+     ${dur.minutes()}m
      ${dur.seconds()}s`;
   }
 
   getEndRegister(): Date {
     return dayjs(this.mission.date).subtract(7, 'd').toDate();
+  }
+
+  dateOpen(): boolean {
+    return dayjs().isAfter(this.openDate);
   }
 
   calcPlayers(): number {

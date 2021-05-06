@@ -24,6 +24,8 @@ import {
 export class MissionPlayersComponent implements OnInit {
   @Input() mission?: Mission;
 
+  openDate = dayjs('19/05/2021', 'DD/MM/YYYY');
+
   selectedTeams: string[] = [];
 
   playerLogged$?: Observable<Player>;
@@ -61,6 +63,10 @@ export class MissionPlayersComponent implements OnInit {
 
   dateValid(): boolean {
     return dayjs().isBefore(dayjs(this.mission.date).subtract(7, 'd'));
+  }
+
+  dateOpen(): boolean {
+    return dayjs().isAfter(this.openDate);
   }
 
   onFetchMission(mission: Mission): void {

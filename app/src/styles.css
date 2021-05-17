@@ -15,13 +15,13 @@
   --title-font: "Marvel", sans-serif;
 
   /*-- lien img --*/
-  --img-header-home: url("/assets/img-header-home.jpg");
-  --img-header-contexte: url("/assets/img-header-contexte.jpg");
-  --img-header-orgaBLUFOR: url("/assets/img-header-orgaBLUFOR.jpg");
-  --img-header-mission: url("/assets/img-header-mission.jpg");
-  --img-header-intel: url("/assets/img-header-intel.jpg");
-  --img-header-modset: url("/assets/img-header-modset.jpg");
-  --img-header-contact: url("/assets/img-header-contact.jpg");
+  --img-header-home: url("/assets/Header/20210506151233_1.jpg");
+  --img-header-contexte: url("/assets/Header/20210506150810_1.jpg");
+  --img-header-orgaBLUFOR: url("/assets/Header/20210506125847_1.jpg");
+  --img-header-mission: url("/assets//Header/20210506150841_1.jpg");
+  --img-header-intel: url("/assets/Header/20210506152721_1.jpg");
+  --img-header-modset: url("/assets/Header/20210506152511_1.jpg");
+  --img-header-lobby: url("/assets/Header/20210506131043_1.jpg");
   --img-cpc: url("/assets/logocpc.png");
   --img-gie: url("/assets/logogie.png");
 }
@@ -256,8 +256,8 @@ header #img-header.modset {
   --img-header: var(--img-header-modset);
 }
 
-header #img-header.contact {
-  --img-header: var(--img-header-contact);
+header #img-header.lobby {
+  --img-header: var(--img-header-lobby);
 }
 
 header #img-header.scrolled {

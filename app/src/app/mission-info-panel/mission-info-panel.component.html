@@ -39,7 +39,7 @@
     </div>
   </div>
 
-  <div class="info-top">
+  <div class="info-top" *ngIf="getRawRemainingTime().days > 7">
     <h4 class="title">Intel</h4>
     <div class="info-item">
       Les renseignements sur les hostiles vous seront <br />
@@ -47,7 +47,6 @@
     </div>
   </div>
 
-  <!--
   <div class="info-top">
     <h4 class="title">Etat des inscriptions</h4>
 
@@ -63,5 +62,4 @@
       Places réservées : <span class="info-val">{{ calcBooked() }}</span>
     </div>
   </div>
-  -->
 </div>

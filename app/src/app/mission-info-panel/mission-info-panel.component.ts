@@ -27,19 +27,29 @@ export class MissionInfoPanelComponent implements OnInit {
     }, 1000);
   }
 
-  getRemainingTime() {
+  getRawRemainingTime() {
     const dur = dayjs.duration(
       dayjs(this.mission?.date).diff(dayjs().add(2, 'h'))
     );
+    return {
+      days:
+        dur.asDays() >= dayjs().daysInMonth() - 1
+          ? Math.floor(dur.asDays())
+          : dur.days(),
+      hours: dur.hours(),
+      mins: dur.minutes(),
+      secs: dur.seconds(),
+    };
+  }
+
+  getRemainingTime() {
+    const dur = this.getRawRemainingTime();
     this.remainingTime = `
-    ${
-      dur.asDays() >= dayjs().daysInMonth() - 1
-        ? Math.floor(dur.asDays())
-        : dur.days()
-    }j
-     ${dur.hours()}h
-     ${dur.minutes()}m
-     ${dur.seconds()}s`;
+     ${dur.days}j
+     ${dur.hours}h
+     ${dur.mins}m
+     ${dur.secs}s
+    `;
   }
 
   getEndRegister(): Date {

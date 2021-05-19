@@ -31,11 +31,10 @@ export class MissionInfoPanelComponent implements OnInit {
     const dur = dayjs.duration(
       dayjs(this.mission?.date).diff(dayjs().add(2, 'h'))
     );
-
     this.remainingTime = `
     ${
-      dur.asDays() > dayjs().daysInMonth()
-        ? Math.round(dur.asDays())
+      dur.asDays() >= dayjs().daysInMonth() - 1
+        ? Math.floor(dur.asDays())
         : dur.days()
     }j
      ${dur.hours()}h

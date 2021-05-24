@@ -54,10 +54,13 @@
                       role.team.name.trim().normalize() ===
                       team.trim().normalize()
                     "
-                    [ngClass]="{ visible: selectedTeams.includes(team) }"
+                    [ngClass]="{
+                      visible: selectedTeams.includes(team)
+                    }"
                   >
                     <th>
                       <span class="tag">{{ role.id }}</span>
+                      <span class="lock" *ngIf="role.isBooked">🔒</span>
                     </th>
                     <td>{{ role.name }}</td>
                     <td>
@@ -100,6 +103,7 @@
                         *ngIf="
                           dateValid() &&
                           !isAlreadyRegistered &&
+                          !role.isBooked &&
                           !role.player &&
                           evalCondition(role) &&
                           dateOpen()

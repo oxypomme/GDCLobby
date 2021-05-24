@@ -525,6 +525,11 @@ table.accordion tbody tr {
   visibility: collapse;
 }
 
+table.accordion tbody tr .lock {
+  margin-left: 5px;
+  vertical-align: bottom;
+}
+
 table.accordion tbody tr.visible {
   visibility: visible;
 }

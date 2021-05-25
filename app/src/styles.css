@@ -525,7 +525,7 @@ table.accordion tbody tr {
   visibility: collapse;
 }
 
-table.accordion tbody tr .lock {
+table.accordion tbody tr .icon {
   margin-left: 5px;
   vertical-align: bottom;
 }

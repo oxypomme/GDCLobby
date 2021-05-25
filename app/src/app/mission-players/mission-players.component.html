@@ -60,7 +60,8 @@
                   >
                     <th>
                       <span class="tag">{{ role.id }}</span>
-                      <span class="lock" *ngIf="role.isBooked">🔒</span>
+                      <span class="icon" *ngIf="role.isBooked">🔒</span>
+                      <span class="icon" *ngIf="!evalCondition(role)">⌛</span>
                     </th>
                     <td>{{ role.name }}</td>
                     <td>
